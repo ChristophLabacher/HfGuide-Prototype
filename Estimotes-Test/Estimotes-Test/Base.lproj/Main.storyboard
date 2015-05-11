@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="Estimotes_Test" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Beacon Found" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iem-TB-crz">
+                                <rect key="frame" x="230" y="20" width="140" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xLh-MV-hh5" userLabel="Button">
+                                <rect key="frame" x="235" y="562" width="131" height="30"/>
+                                <state key="normal" title="Seach for Beacons">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="searchButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Pgb-x9-hse"/>
+                                </connections>
+                            </button>
+                            <webView contentMode="scaleToFill" misplaced="YES" keyboardDisplayRequiresUserAction="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AeR-eW-KPJ">
+                                <rect key="frame" x="0.0" y="49" width="600" height="505"/>
+                                <color key="backgroundColor" red="0.27166002389999999" green="0.69773065479999996" blue="0.047651351100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="505" id="qaV-CR-Nri"/>
+                                </constraints>
+                                <dataDetectorType key="dataDetectorTypes"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="qaV-CR-Nri"/>
+                                    </mask>
+                                </variation>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xLh-MV-hh5" firstAttribute="top" secondItem="AeR-eW-KPJ" secondAttribute="bottom" constant="8" id="5PR-xT-u2B"/>
+                            <constraint firstItem="AeR-eW-KPJ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="6ET-VF-zIl"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="xLh-MV-hh5" secondAttribute="bottom" constant="8" id="DVK-WH-SPu"/>
+                            <constraint firstItem="Iem-TB-crz" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="GUk-8k-yQq"/>
+                            <constraint firstAttribute="centerX" secondItem="Iem-TB-crz" secondAttribute="centerX" id="Hwk-LQ-6bZ"/>
+                            <constraint firstItem="AeR-eW-KPJ" firstAttribute="top" secondItem="Iem-TB-crz" secondAttribute="bottom" constant="8" id="Mpr-fl-YI0"/>
+                            <constraint firstAttribute="centerX" secondItem="AeR-eW-KPJ" secondAttribute="centerX" id="P10-Hf-t6u"/>
+                            <constraint firstAttribute="centerX" secondItem="xLh-MV-hh5" secondAttribute="centerX" id="e6w-BW-zyP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="AeR-eW-KPJ" secondAttribute="trailing" id="rsD-Dn-KXN"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="beaconLabel" destination="Iem-TB-crz" id="fP7-D3-9RS"/>
+                        <outlet property="webView" destination="AeR-eW-KPJ" id="0SK-Yb-a68"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
