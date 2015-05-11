@@ -28,8 +28,8 @@ class ViewController: UIViewController {
 		self.mainCollectionView!.pagingEnabled = true;
 		self.mainCollectionView!.dataSource = mainCollectionViewController()
 		self.mainCollectionView!.delegate = mainCollectionViewController()
-		self.mainCollectionView!.registerClass(mainCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
 		self.mainCollectionView!.backgroundColor = UIColor.whiteColor()
+		self.mainCollectionView!.registerClass(mainCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
 		self.view.addSubview(self.mainCollectionView!)
 	}
 
