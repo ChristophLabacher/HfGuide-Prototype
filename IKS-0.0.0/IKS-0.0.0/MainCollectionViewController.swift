@@ -8,7 +8,7 @@
 
 import UIKit
 
-class mainCollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource  {
+class MainCollectionViewController: NSObject, UICollectionViewDelegate, UICollectionViewDataSource  {
 	
 	func collectionView(collectionView: UICollectionView, numberOfSectionsInCollectionView section: Int) -> Int {
 		return 1
@@ -19,7 +19,9 @@ class mainCollectionViewController: UIViewController, UICollectionViewDelegate, 
 	}
  
 	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! mainCollectionViewCell
+		let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! MainCollectionViewCell
+		
+		//cell.imageView.image = UIImage(named: String(viewController.dataArray![indexPath.item] as! NSString))
 		cell.imageView.image = UIImage(named: "cousteau.png")
 		cell.textLabel.text = String("test")
 		

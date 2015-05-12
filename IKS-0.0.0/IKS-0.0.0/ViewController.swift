@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
 	var mainCollectionView:UICollectionView?
 	var dataArray:NSArray?
+	var delegateAndDataSource = MainCollectionViewController()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -18,7 +19,7 @@ class ViewController: UIViewController {
 		loadImagesFromAssets()
 		
 		let mainCollectionViewLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-		mainCollectionViewLayout.itemSize = CGSize(width: 375, height: 440)
+		mainCollectionViewLayout.itemSize = CGSize(width: self.view.frame.width, height: self.view.frame.height)
 		mainCollectionViewLayout.scrollDirection = UICollectionViewScrollDirection.Horizontal
 		mainCollectionViewLayout.minimumLineSpacing = 0
 		mainCollectionViewLayout.minimumInteritemSpacing = 0
@@ -26,10 +27,10 @@ class ViewController: UIViewController {
 		self.mainCollectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: mainCollectionViewLayout)
 		self.mainCollectionView!.showsHorizontalScrollIndicator = false
 		self.mainCollectionView!.pagingEnabled = true;
-		self.mainCollectionView!.dataSource = mainCollectionViewController()
-		self.mainCollectionView!.delegate = mainCollectionViewController()
+		self.mainCollectionView!.dataSource = delegateAndDataSource
+		self.mainCollectionView!.delegate = delegateAndDataSource
 		self.mainCollectionView!.backgroundColor = UIColor.whiteColor()
-		self.mainCollectionView!.registerClass(mainCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+		self.mainCollectionView!.registerClass(MainCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
 		self.view.addSubview(self.mainCollectionView!)
 	}
 
