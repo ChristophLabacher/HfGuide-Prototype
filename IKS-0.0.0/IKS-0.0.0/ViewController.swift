@@ -9,29 +9,40 @@
 import UIKit
 
 class ViewController: UIViewController {
-	var mainCollectionView:UICollectionView?
-	var dataArray:NSArray?
-	var delegateAndDataSource = MainCollectionViewController()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
 		loadImagesFromAssets()
 		
+		let scrollCollectionViewLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+		scrollCollectionViewLayout.itemSize = CGSize(width: 200, height: 200)
+		scrollCollectionViewLayout.scrollDirection = UICollectionViewScrollDirection.Horizontal
+		scrollCollectionViewLayout.minimumLineSpacing = 0
+		scrollCollectionViewLayout.minimumInteritemSpacing = 0
+		
+		scrollCollectionView = UICollectionView(frame: CGRectMake(0, 0, self.view.frame.width, 200), collectionViewLayout: scrollCollectionViewLayout)
+		scrollCollectionView!.dataSource = scrollCollectionViewDelegateAndDataSource
+		scrollCollectionView!.delegate = scrollCollectionViewDelegateAndDataSource
+		scrollCollectionView!.backgroundColor = UIColor.whiteColor()
+		scrollCollectionView!.delaysContentTouches = true
+		scrollCollectionView!.registerClass(ScrollCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+		self.view.addSubview(scrollCollectionView!)
+		
 		let mainCollectionViewLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-		mainCollectionViewLayout.itemSize = CGSize(width: self.view.frame.width, height: self.view.frame.height)
+		mainCollectionViewLayout.itemSize = CGSize(width: self.view.frame.width, height: self.view.frame.height-200)
 		mainCollectionViewLayout.scrollDirection = UICollectionViewScrollDirection.Horizontal
 		mainCollectionViewLayout.minimumLineSpacing = 0
 		mainCollectionViewLayout.minimumInteritemSpacing = 0
 		
-		self.mainCollectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: mainCollectionViewLayout)
-		self.mainCollectionView!.showsHorizontalScrollIndicator = false
-		self.mainCollectionView!.pagingEnabled = true;
-		self.mainCollectionView!.dataSource = delegateAndDataSource
-		self.mainCollectionView!.delegate = delegateAndDataSource
-		self.mainCollectionView!.backgroundColor = UIColor.whiteColor()
-		self.mainCollectionView!.registerClass(MainCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
-		self.view.addSubview(self.mainCollectionView!)
+		mainCollectionView = UICollectionView(frame: CGRectMake(0, 200, self.view.frame.width, self.view.frame.height-200), collectionViewLayout: mainCollectionViewLayout)
+		mainCollectionView!.showsHorizontalScrollIndicator = false
+		mainCollectionView!.pagingEnabled = true;
+		mainCollectionView!.dataSource = mainCollectionViewDelegateAndDataSource
+		mainCollectionView!.delegate = mainCollectionViewDelegateAndDataSource
+		mainCollectionView!.backgroundColor = UIColor.whiteColor()
+		mainCollectionView!.registerClass(MainCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+		self.view.addSubview(mainCollectionView!)
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -41,7 +52,8 @@ class ViewController: UIViewController {
 	
 	func loadImagesFromAssets()	{
 		let sourcePath = NSBundle.mainBundle().resourcePath?.stringByAppendingPathComponent("Assets")
-		self.dataArray = NSFileManager.defaultManager().contentsOfDirectoryAtPath(sourcePath!, error: nil)
+		dataArray = NSFileManager.defaultManager().contentsOfDirectoryAtPath(sourcePath!, error: nil)
+		println(dataArray?.count)
 	}
 }
 

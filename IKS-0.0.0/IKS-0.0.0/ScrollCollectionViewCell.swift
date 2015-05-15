@@ -1,5 +1,5 @@
 //
-//  mainCollectionViewCell.swift
+//  ScrollCollectionViewCell.swift
 //  IKS-0.0.0
 //
 //  Created by Christoph Labacher on 11.05.15.
@@ -8,26 +8,19 @@
 
 import UIKit
 
-class MainCollectionViewCell: UICollectionViewCell {
-	let textLabel: UILabel!
+class ScrollCollectionViewCell: UICollectionViewCell {
 	let imageView: UIImageView!
 	
 	override init(frame: CGRect) {
 		imageView = UIImageView()
-		imageView.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height*2/3)
+		imageView.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
 		imageView.contentMode = UIViewContentMode.ScaleAspectFill
 		imageView.clipsToBounds = true
 		imageView.backgroundColor = UIColor.redColor()
-
-		let textFrame = CGRect(x: 0, y: imageView.frame.size.height, width: frame.size.width, height: frame.size.height/3)
-		textLabel = UILabel(frame: textFrame)
-		textLabel.font = UIFont.systemFontOfSize(UIFont.smallSystemFontSize())
-		textLabel.textAlignment = .Center
 		
 		super.init(frame: frame)
 		
 		contentView.addSubview(imageView)
-		contentView.addSubview(textLabel)
 	}
 	
 	required init(coder aDecoder: NSCoder) {

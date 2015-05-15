@@ -8,6 +8,13 @@
 
 import UIKit
 
+var dataArray:NSArray?
+	var scrollCollectionView:UICollectionView?
+	var scrollCollectionViewDelegateAndDataSource = ScrollCollectionViewController()
+	
+	var mainCollectionView:UICollectionView?
+	var mainCollectionViewDelegateAndDataSource = MainCollectionViewController()
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

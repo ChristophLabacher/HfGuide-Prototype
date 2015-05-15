@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C01B6A21B052714003A2464 /* ScrollCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C01B6A11B052714003A2464 /* ScrollCollectionViewController.swift */; };
+		4C01B6A41B052752003A2464 /* ScrollCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C01B6A31B052752003A2464 /* ScrollCollectionViewCell.swift */; };
 		4CCFDBBB1B00E0A10085AD75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCFDBBA1B00E0A10085AD75 /* AppDelegate.swift */; };
 		4CCFDBBD1B00E0A10085AD75 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCFDBBC1B00E0A10085AD75 /* ViewController.swift */; };
 		4CCFDBC21B00E0A10085AD75 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CCFDBC11B00E0A10085AD75 /* Images.xcassets */; };
@@ -26,6 +28,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C01B6A11B052714003A2464 /* ScrollCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollCollectionViewController.swift; sourceTree = "<group>"; };
+		4C01B6A31B052752003A2464 /* ScrollCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollCollectionViewCell.swift; sourceTree = "<group>"; };
 		4CCFDBB51B00E0A10085AD75 /* IKS-0.0.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IKS-0.0.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CCFDBB91B00E0A10085AD75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CCFDBBA1B00E0A10085AD75 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -79,7 +83,9 @@
 			children = (
 				4CCFDBBA1B00E0A10085AD75 /* AppDelegate.swift */,
 				4CCFDBBC1B00E0A10085AD75 /* ViewController.swift */,
+				4C01B6A11B052714003A2464 /* ScrollCollectionViewController.swift */,
 				4CCFDBDA1B00E11B0085AD75 /* MainCollectionViewController.swift */,
+				4C01B6A31B052752003A2464 /* ScrollCollectionViewCell.swift */,
 				4CCFDBDC1B00E16C0085AD75 /* MainCollectionViewCell.swift */,
 				4CCFDBC11B00E0A10085AD75 /* Images.xcassets */,
 				4CCFDBB81B00E0A10085AD75 /* Supporting Files */,
@@ -210,6 +216,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C01B6A21B052714003A2464 /* ScrollCollectionViewController.swift in Sources */,
+				4C01B6A41B052752003A2464 /* ScrollCollectionViewCell.swift in Sources */,
 				4CCFDBBD1B00E0A10085AD75 /* ViewController.swift in Sources */,
 				4CCFDBDB1B00E11B0085AD75 /* MainCollectionViewController.swift in Sources */,
 				4CCFDBBB1B00E0A10085AD75 /* AppDelegate.swift in Sources */,
