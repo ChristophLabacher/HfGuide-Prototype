@@ -1,5 +1,5 @@
 //
-//  mainCollectionViewController.swift
+//  ScrollCollectionViewController.swift
 //  IKS-0.0.0
 //
 //  Created by Christoph Labacher on 11.05.15.
@@ -28,16 +28,25 @@ class ScrollCollectionViewController: NSObject, UICollectionViewDelegate, UIColl
 		return cell
 	}
 	
-	func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
+	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
 		let cell = collectionView.cellForItemAtIndexPath(indexPath)
 		cell?.backgroundColor = UIColor.greenColor()
-	}
-	
-	func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
-		let cell = collectionView.cellForItemAtIndexPath(indexPath)
-		cell?.backgroundColor = UIColor.whiteColor()
+		println(indexPath)
 		
 		collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: true)
 		mainCollectionView?.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: true)
 	}
+	
+//	func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
+//		let cell = collectionView.cellForItemAtIndexPath(indexPath)
+//		cell?.backgroundColor = UIColor.greenColor()
+//	}
+	
+//	func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
+//		let cell = collectionView.cellForItemAtIndexPath(indexPath)
+//		cell?.backgroundColor = UIColor.whiteColor()
+//		
+//		collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: true)
+//		mainCollectionView?.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: true)
+//	}
 }
