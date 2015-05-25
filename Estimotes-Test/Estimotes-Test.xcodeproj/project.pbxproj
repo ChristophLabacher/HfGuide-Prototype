@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		4C43E6291AED369E00EBA249 /* website.html in Resources */ = {isa = PBXBuildFile; fileRef = 4C43E6281AED369E00EBA249 /* website.html */; };
+		4CF6AF011B139E3D006CF116 /* EstimoteSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CF6AF001B139E3D006CF116 /* EstimoteSDK.framework */; };
 		4CFD28CC1AED1666005D6AAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD28CB1AED1666005D6AAE /* AppDelegate.swift */; };
 		4CFD28CE1AED1666005D6AAE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD28CD1AED1666005D6AAE /* ViewController.swift */; };
 		4CFD28D11AED1666005D6AAE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CFD28CF1AED1666005D6AAE /* Main.storyboard */; };
 		4CFD28D31AED1666005D6AAE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CFD28D21AED1666005D6AAE /* Images.xcassets */; };
 		4CFD28D61AED1666005D6AAE /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4CFD28D41AED1666005D6AAE /* LaunchScreen.xib */; };
 		4CFD28E21AED1666005D6AAE /* Estimotes_TestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFD28E11AED1666005D6AAE /* Estimotes_TestTests.swift */; };
-		4CFD28ED1AED167D005D6AAE /* EstimoteSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CFD28EC1AED1675005D6AAE /* EstimoteSDK.framework */; };
 		4CFD28EF1AED1687005D6AAE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CFD28EE1AED1687005D6AAE /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		4C43E6281AED369E00EBA249 /* website.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = website.html; sourceTree = "<group>"; };
+		4CF6AF001B139E3D006CF116 /* EstimoteSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EstimoteSDK.framework; path = "Estimotes-Test/EstimoteSDK/EstimoteSDK.framework"; sourceTree = SOURCE_ROOT; };
 		4CFD28C61AED1666005D6AAE /* Estimotes-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Estimotes-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CFD28CA1AED1666005D6AAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CFD28CB1AED1666005D6AAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -40,7 +41,6 @@
 		4CFD28DB1AED1666005D6AAE /* Estimotes-TestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Estimotes-TestTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CFD28E01AED1666005D6AAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CFD28E11AED1666005D6AAE /* Estimotes_TestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Estimotes_TestTests.swift; sourceTree = "<group>"; };
-		4CFD28EC1AED1675005D6AAE /* EstimoteSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EstimoteSDK.framework; sourceTree = "<group>"; };
 		4CFD28EE1AED1687005D6AAE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		4CFD28F11AED1782005D6AAE /* ObjCBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjCBridge.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -51,7 +51,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CFD28EF1AED1687005D6AAE /* SystemConfiguration.framework in Frameworks */,
-				4CFD28ED1AED167D005D6AAE /* EstimoteSDK.framework in Frameworks */,
+				4CF6AF011B139E3D006CF116 /* EstimoteSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,7 +127,7 @@
 		4CFD28EB1AED1675005D6AAE /* EstimoteSDK */ = {
 			isa = PBXGroup;
 			children = (
-				4CFD28EC1AED1675005D6AAE /* EstimoteSDK.framework */,
+				4CF6AF001B139E3D006CF116 /* EstimoteSDK.framework */,
 			);
 			name = EstimoteSDK;
 			path = "../iOS-SDK-master/EstimoteSDK";
@@ -374,6 +374,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/christophlabacher/Desktop/Estimotes/iOS-SDK-master/EstimoteSDK",
+					"/Users/christophlabacher/Downloads/iOS-SDK-master",
+					2/EstimoteSDK,
+					"$(PROJECT_DIR)/Estimotes-Test/EstimoteSDK",
 				);
 				INFOPLIST_FILE = "Estimotes-Test/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -389,6 +392,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"/Users/christophlabacher/Desktop/Estimotes/iOS-SDK-master/EstimoteSDK",
+					"/Users/christophlabacher/Downloads/iOS-SDK-master",
+					2/EstimoteSDK,
+					"$(PROJECT_DIR)/Estimotes-Test/EstimoteSDK",
 				);
 				INFOPLIST_FILE = "Estimotes-Test/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
