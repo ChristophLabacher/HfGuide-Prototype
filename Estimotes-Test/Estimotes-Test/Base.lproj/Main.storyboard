@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -24,16 +23,35 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xLh-MV-hh5" userLabel="Button">
-                                <rect key="frame" x="235" y="562" width="131" height="30"/>
-                                <state key="normal" title="Seach for Beacons">
+                                <rect key="frame" x="233" y="562" width="135" height="30"/>
+                                <state key="normal" title="Search for Beacons">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="searchButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="Pgb-x9-hse"/>
                                 </connections>
                             </button>
-                            <webView contentMode="scaleToFill" misplaced="YES" keyboardDisplayRequiresUserAction="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AeR-eW-KPJ">
-                                <rect key="frame" x="0.0" y="49" width="600" height="505"/>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="0.0" maxValue="2" translatesAutoresizingMaskIntoConstraints="NO" id="Bfq-49-u7C">
+                                <rect key="frame" x="187" y="524" width="226" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="222" id="Hn9-iX-gsl"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="adjustingInterval:" destination="vXZ-lx-hvc" eventType="valueChanged" id="FEF-OF-VtB"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1s" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6m2-jn-yoF">
+                                <rect key="frame" x="258" y="495" width="84" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Wag-yp-G02"/>
+                                    <constraint firstAttribute="width" constant="84" id="yGN-ab-izu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <webView contentMode="scaleToFill" keyboardDisplayRequiresUserAction="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AeR-eW-KPJ">
+                                <rect key="frame" x="0.0" y="63" width="600" height="418"/>
                                 <color key="backgroundColor" red="0.27166002389999999" green="0.69773065479999996" blue="0.047651351100000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="505" id="qaV-CR-Nri"/>
@@ -48,19 +66,24 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="xLh-MV-hh5" firstAttribute="top" secondItem="AeR-eW-KPJ" secondAttribute="bottom" constant="8" id="5PR-xT-u2B"/>
-                            <constraint firstItem="AeR-eW-KPJ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="6ET-VF-zIl"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="xLh-MV-hh5" secondAttribute="bottom" constant="8" id="DVK-WH-SPu"/>
-                            <constraint firstItem="Iem-TB-crz" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="GUk-8k-yQq"/>
-                            <constraint firstAttribute="centerX" secondItem="Iem-TB-crz" secondAttribute="centerX" id="Hwk-LQ-6bZ"/>
-                            <constraint firstItem="AeR-eW-KPJ" firstAttribute="top" secondItem="Iem-TB-crz" secondAttribute="bottom" constant="8" id="Mpr-fl-YI0"/>
-                            <constraint firstAttribute="centerX" secondItem="AeR-eW-KPJ" secondAttribute="centerX" id="P10-Hf-t6u"/>
-                            <constraint firstAttribute="centerX" secondItem="xLh-MV-hh5" secondAttribute="centerX" id="e6w-BW-zyP"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="AeR-eW-KPJ" secondAttribute="trailing" id="rsD-Dn-KXN"/>
+                            <constraint firstItem="Bfq-49-u7C" firstAttribute="centerX" secondItem="xLh-MV-hh5" secondAttribute="centerX" id="A9W-SF-Pau"/>
+                            <constraint firstItem="AeR-eW-KPJ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="RwH-Zk-YTI"/>
+                            <constraint firstItem="Bfq-49-u7C" firstAttribute="top" secondItem="6m2-jn-yoF" secondAttribute="bottom" constant="8" symbolic="YES" id="YKG-m7-NNU"/>
+                            <constraint firstItem="Iem-TB-crz" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="Za0-gR-IlX"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="xLh-MV-hh5" secondAttribute="bottom" constant="8" symbolic="YES" id="dWP-Ud-Usk"/>
+                            <constraint firstAttribute="trailing" secondItem="AeR-eW-KPJ" secondAttribute="trailing" id="e8g-Qa-exx"/>
+                            <constraint firstItem="AeR-eW-KPJ" firstAttribute="top" secondItem="Iem-TB-crz" secondAttribute="bottom" constant="22" id="hEO-AA-mEF"/>
+                            <constraint firstItem="AeR-eW-KPJ" firstAttribute="centerX" secondItem="Iem-TB-crz" secondAttribute="centerX" id="lJn-zN-m6k"/>
+                            <constraint firstItem="xLh-MV-hh5" firstAttribute="top" secondItem="Bfq-49-u7C" secondAttribute="bottom" constant="8" symbolic="YES" id="p3q-OM-yBY"/>
+                            <constraint firstItem="6m2-jn-yoF" firstAttribute="top" secondItem="AeR-eW-KPJ" secondAttribute="bottom" constant="14" id="rLa-mf-812"/>
+                            <constraint firstItem="AeR-eW-KPJ" firstAttribute="centerX" secondItem="6m2-jn-yoF" secondAttribute="centerX" id="ucg-cR-Pqg"/>
+                            <constraint firstItem="6m2-jn-yoF" firstAttribute="centerX" secondItem="Bfq-49-u7C" secondAttribute="centerX" id="x1M-wW-EEQ"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="beaconLabel" destination="Iem-TB-crz" id="fP7-D3-9RS"/>
+                        <outlet property="intervalLabel" destination="6m2-jn-yoF" id="8Dq-in-uxl"/>
+                        <outlet property="searchButton" destination="xLh-MV-hh5" id="BiO-G7-YEF"/>
                         <outlet property="webView" destination="AeR-eW-KPJ" id="0SK-Yb-a68"/>
                     </connections>
                 </viewController>

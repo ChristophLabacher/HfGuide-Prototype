@@ -11,22 +11,44 @@ import UIKit
 class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDelegate {
 	
 	@IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var beaconLabel: UILabel!
+    @IBOutlet weak var intervalLabel: UILabel!
+    @IBOutlet weak var searchButton: UIButton!
+    
+    
+    var searchingBeacons = false;
+    var hasChanged = false;
+    var searchingInterval = 1.0
 	
-	@IBOutlet weak var beaconLabel: UILabel!
-	@IBAction func searchButton(sender: AnyObject) {
-		searchForBeacon()
-	}
+    @IBAction func searchButton(sender: AnyObject) {
 
+        var searchingTimer = NSTimer.scheduledTimerWithTimeInterval(searchingInterval, target: self, selector: "searchForBeacon", userInfo: nil, repeats: true)
+        
+        if !searchingBeacons || hasChanged {
+            searchButton.setTitle("Searching Beacons …", forState: UIControlState.Normal)
+        }
+        
+	}
+    
+    @IBAction func adjustingInterval(sender: UISlider) {
+        searchingInterval = Double(sender.value)
+        intervalLabel.text = "\(searchingInterval)s"
+        
+        if searchingBeacons {
+            searchButton.setTitle("Update Interval …", forState: UIControlState.Normal)
+            hasChanged = true;
+        }
+    }
+    
 	let beaconManager = ESTBeaconManager()
 	
 	let beaconRegion = CLBeaconRegion(
-		proximityUUID: NSUUID(UUIDString: "F58B894E-A44F-450A-9DCC-82A125249137"),
-		identifier: "Test")
+		proximityUUID: NSUUID(UUIDString: "B60F3FAE-04B4-4367-9DD5-0B9B5CA759ED"),
+		identifier: "beaconTestRegion")
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		beaconManager.delegate = self
-		
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -40,21 +62,58 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
 	}
 	
 	func beaconManager(manager: AnyObject!,
-		didRangeBeacons beacons: [AnyObject]!,
-		inRegion region: CLBeaconRegion!) {
-			if let nearestBeacon = beacons.first as? CLBeacon {
-				beaconManager.stopRangingBeaconsInRegion(region)
-				beaconLabel.text = "Found Beacon! \(nearestBeacon.major.integerValue) - \(nearestBeacon.minor.integerValue)"
-				loadWebpage(nearestBeacon.minor.integerValue)
-			}
+        didRangeBeacons beacons: [AnyObject]!,
+        inRegion region: CLBeaconRegion!) {
+            
+            //listing all available beacons
+            beaconLabel.text = listAvailableBeacons(didRangeBeacons: beacons);
+            
+            //starting to check for different commodities
+            checkForWebpage(didRangeBeacons: beacons)
+
+            
+            beaconManager.stopRangingBeaconsInRegion(region)
+            
 	}
+    
+    
+    //returns a string of all available beacons with major and minor
+    func listAvailableBeacons(didRangeBeacons beacons: [AnyObject]!) -> String{
+        
+        var returnString = "No Beacons found!"
+        
+        if !beacons.isEmpty{
+            returnString = "Following Beacons were found: "
+            for index in 0..<beacons.count {
+                var followingText : String
+                var beacon = beacons[index] as! CLBeacon
+                followingText = "[\(beacon.major.integerValue).\(beacon.minor.integerValue)] "
+                returnString += followingText
+            }
+        }
+        
+        return returnString
+    }
+
+    
+    func checkForWebpage(didRangeBeacons beacons: [AnyObject]!){
+        //this function checks if the nearest is 1.1
+        if let nearestBeacon = beacons.first as? CLBeacon {
+            loadWebpage(nearestBeacon.minor.integerValue)
+        }
+    }
+    
+    
 	
 	func loadWebpage(minorId: Int)	{
-		if (minorId == 1)	{
+		switch minorId{
+        case 1:
 			let localfilePath = NSBundle.mainBundle().URLForResource("website", withExtension: "html");
 			let requestObj = NSURLRequest(URL: localfilePath!)
 			webView.loadRequest(requestObj)
-		}
+        default:
+            break
+        }
 	}
 }
 
