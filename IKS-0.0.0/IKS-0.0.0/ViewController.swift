@@ -29,6 +29,10 @@ class ViewController: UIViewController {
 		scrollCollectionView!.registerClass(ScrollCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
 		self.view.addSubview(scrollCollectionView!)
 		
+		let scrubbingHandle : UIImageView = UIImageView(frame: CGRectMake(0, 200, self.view.frame.width, 20))
+		scrubbingHandle.backgroundColor = UIColor.redColor()
+		self.view.addSubview(scrubbingHandle)
+		
 		let mainCollectionViewLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
 		mainCollectionViewLayout.itemSize = CGSize(width: self.view.frame.width, height: self.view.frame.height-200)
 		mainCollectionViewLayout.scrollDirection = UICollectionViewScrollDirection.Horizontal
@@ -45,8 +49,12 @@ class ViewController: UIViewController {
 		self.view.addSubview(mainCollectionView!)
 		
 		let constrains : [NSLayoutConstraint] = [
-			NSLayoutConstraint(item: mainCollectionView!, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 1),
-			NSLayoutConstraint(item: mainCollectionView!, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: -100)
+			NSLayoutConstraint(item: scrollCollectionView!, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0),
+			NSLayoutConstraint(item: scrubbingHandle, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 1),
+			NSLayoutConstraint(item: scrubbingHandle, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: scrollCollectionView!, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 0),
+			NSLayoutConstraint(item: mainCollectionView!, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: scrubbingHandle, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 0),
+			NSLayoutConstraint(item: mainCollectionView!, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 0),
+			NSLayoutConstraint(item: mainCollectionView!, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 1)
 		]
 		
 		mainCollectionView!.setTranslatesAutoresizingMaskIntoConstraints(false)

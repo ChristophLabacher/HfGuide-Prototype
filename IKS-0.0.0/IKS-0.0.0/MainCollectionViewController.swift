@@ -29,10 +29,10 @@ class MainCollectionViewController: NSObject, UICollectionViewDelegate, UICollec
 		return cell
 	}
 	
-	func scrollViewDidEndDecelerating(scrollView: UIScrollView)	{
-		let page = ceil(scrollView.contentOffset.x / scrollView.frame.size.width);
-		let pageInt = Int(CGFloat(page))
-		let path = NSIndexPath(forRow: pageInt, inSection: 0)
-		scrollCollectionView?.scrollToItemAtIndexPath(path, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: true)
-	}
+//	func scrollViewDidEndDecelerating(scrollView: UIScrollView)	{
+//		let page = ceil(scrollView.contentOffset.x / scrollView.frame.size.width);
+//		let pageInt = Int(CGFloat(page))
+//		let path = NSIndexPath(forRow: pageInt, inSection: 0)
+//		scrollCollectionView?.scrollToItemAtIndexPath(path, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: true)
+//	}
 }
