@@ -43,6 +43,15 @@ class ViewController: UIViewController {
 		mainCollectionView!.backgroundColor = UIColor.whiteColor()
 		mainCollectionView!.registerClass(MainCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
 		self.view.addSubview(mainCollectionView!)
+		
+		let constrains : [NSLayoutConstraint] = [
+			NSLayoutConstraint(item: mainCollectionView!, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 1),
+			NSLayoutConstraint(item: mainCollectionView!, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: -100)
+		]
+		
+		mainCollectionView!.setTranslatesAutoresizingMaskIntoConstraints(false)
+		self.view.addConstraints(constrains)
+		
 	}
 
 	override func didReceiveMemoryWarning() {
