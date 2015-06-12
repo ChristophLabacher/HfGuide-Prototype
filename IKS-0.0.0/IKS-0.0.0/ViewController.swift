@@ -29,8 +29,9 @@ class ViewController: UIViewController {
 		scrollCollectionView!.registerClass(ScrollCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
 		self.view.addSubview(scrollCollectionView!)
 		
-		let scrubbingHandle : UIImageView = UIImageView(frame: CGRectMake(0, 0, self.view.frame.width, 20))
-		scrubbingHandle.backgroundColor = UIColor.blackColor()
+		let scrubbingHandle : UIImageView = UIImageView()
+		scrubbingHandle.contentMode = UIViewContentMode.Center
+		scrubbingHandle.image = UIImage(named: "handle")
 		self.view.addSubview(scrubbingHandle)
 		
 		let mainCollectionViewLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -63,33 +64,12 @@ class ViewController: UIViewController {
 		
 		let mainCollectionViewWidthContraint = NSLayoutConstraint.constraintsWithVisualFormat("H:|[mainCollectionView]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 
-		let verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[scrollCollectionView(100)][scrubbingHandle(20)][mainCollectionView]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+		let verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[scrollCollectionView(100)][scrubbingHandle(40)][mainCollectionView]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 		
 		self.view.addConstraints(scrollCollectionViewWidthContraint)
 		self.view.addConstraints(scrubbingHandleWidthContraint)
 		self.view.addConstraints(mainCollectionViewWidthContraint)
 		self.view.addConstraints(verticalContraint)
-
-			
-		
-//		let constraints : [NSLayoutConstraint] = [
-//			// scrollCollectionView Top
-//			NSLayoutConstraint(item: scrollCollectionView!, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: 0),
-//			// scrubbingHandle Top
-//			NSLayoutConstraint(item: scrubbingHandle, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: scrollCollectionView!, attribute: NSLayoutAttribue.Bottom, multiplier: 1, constant: 0),
-//			// mainCollectionView Top
-//			NSLayoutConstraint(item: mainCollectionView!, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: scrubbingHandle, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 0),
-//			// mainCollectionView Bottom
-//			NSLayoutConstraint(item: mainCollectionView!, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 0),
-//			
-//			// scrollCollectionView Width
-//			NSLayoutConstraint(item: scrollCollectionView!, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 1),
-//			// scrubbingHandle Width
-//			NSLayoutConstraint(item: scrubbingHandle, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 1),
-//			// mainCollectionView Width
-//			NSLayoutConstraint(item: mainCollectionView!, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 1)
-//		]
-		
 	}
 
 	override func didReceiveMemoryWarning() {
