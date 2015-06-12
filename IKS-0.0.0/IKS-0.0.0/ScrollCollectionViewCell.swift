@@ -19,6 +19,9 @@ class ScrollCollectionViewCell: UICollectionViewCell {
 		imageView.backgroundColor = UIColor.redColor()
 		imageView.layer.cornerRadius = 10;
 		
+		imageView.layer.borderColor = UIColor.redColor().CGColor
+		imageView.layer.borderWidth = 3
+		
 		super.init(frame: frame)
 		
 		contentView.addSubview(imageView)
