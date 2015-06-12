@@ -12,11 +12,12 @@ class ViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		super.view.backgroundColor = UIColor.blackColor()
 		
 		loadImagesFromAssets()
 		
 		let scrollCollectionViewLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-		scrollCollectionViewLayout.itemSize = CGSize(width: 120, height: 140)
+		scrollCollectionViewLayout.itemSize = CGSize(width: 120, height: 100)
 		scrollCollectionViewLayout.scrollDirection = UICollectionViewScrollDirection.Horizontal
 		scrollCollectionViewLayout.minimumLineSpacing = 20
 		scrollCollectionViewLayout.minimumInteritemSpacing = 10
@@ -24,13 +25,12 @@ class ViewController: UIViewController {
 		scrollCollectionView = UICollectionView(frame: CGRectMake(0, 0, self.view.frame.width, 160), collectionViewLayout: scrollCollectionViewLayout)
 		scrollCollectionView!.dataSource = scrollCollectionViewDelegateAndDataSource
 		scrollCollectionView!.delegate = scrollCollectionViewDelegateAndDataSource
-		scrollCollectionView!.backgroundColor = UIColor.whiteColor()
 		scrollCollectionView!.delaysContentTouches = true
 		scrollCollectionView!.registerClass(ScrollCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
 		self.view.addSubview(scrollCollectionView!)
 		
 		let scrubbingHandle : UIImageView = UIImageView(frame: CGRectMake(0, 0, self.view.frame.width, 20))
-		scrubbingHandle.backgroundColor = UIColor.redColor()
+		scrubbingHandle.backgroundColor = UIColor.blackColor()
 		self.view.addSubview(scrubbingHandle)
 		
 		let mainCollectionViewLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
@@ -39,12 +39,11 @@ class ViewController: UIViewController {
 		mainCollectionViewLayout.minimumLineSpacing = 0
 		mainCollectionViewLayout.minimumInteritemSpacing = 0
 		
-		mainCollectionView = UICollectionView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height-200), collectionViewLayout: mainCollectionViewLayout)
+		mainCollectionView = UICollectionView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height-100), collectionViewLayout: mainCollectionViewLayout)
 		mainCollectionView!.showsHorizontalScrollIndicator = false
 		mainCollectionView!.pagingEnabled = true;
 		mainCollectionView!.dataSource = mainCollectionViewDelegateAndDataSource
 		mainCollectionView!.delegate = mainCollectionViewDelegateAndDataSource
-		mainCollectionView!.backgroundColor = UIColor.whiteColor()
 		mainCollectionView!.registerClass(MainCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
 		self.view.addSubview(mainCollectionView!)
 		

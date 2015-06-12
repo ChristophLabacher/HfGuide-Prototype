@@ -23,8 +23,8 @@ class MainCollectionViewController: NSObject, UICollectionViewDelegate, UICollec
 		
 		//cell.imageView.image = UIImage(named: String(viewController.dataArray![indexPath.item] as! NSString))
 		let path = String(dataArray![indexPath.item] as! NSString);
-		cell.imageView.image = UIImage(named: path)
-		cell.textLabel.text = String(path)
+		cell.backgroundImage.image = UIImage(named: path)
+//		cell.textLabel.text = String(path)
 		
 		return cell
 	}

@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		4C01B6A21B052714003A2464 /* ScrollCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C01B6A11B052714003A2464 /* ScrollCollectionViewController.swift */; };
 		4C01B6A41B052752003A2464 /* ScrollCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C01B6A31B052752003A2464 /* ScrollCollectionViewCell.swift */; };
+		4CC72D2D1B2B0A1B00895616 /* MainCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC72D2C1B2B0A1B00895616 /* MainCollectionViewController.swift */; };
 		4CCFDBBB1B00E0A10085AD75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCFDBBA1B00E0A10085AD75 /* AppDelegate.swift */; };
 		4CCFDBBD1B00E0A10085AD75 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCFDBBC1B00E0A10085AD75 /* ViewController.swift */; };
 		4CCFDBC21B00E0A10085AD75 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CCFDBC11B00E0A10085AD75 /* Images.xcassets */; };
 		4CCFDBD11B00E0A10085AD75 /* IKS_0_0_0Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCFDBD01B00E0A10085AD75 /* IKS_0_0_0Tests.swift */; };
-		4CCFDBDB1B00E11B0085AD75 /* MainCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCFDBDA1B00E11B0085AD75 /* MainCollectionViewController.swift */; };
 		4CCFDBDD1B00E16C0085AD75 /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCFDBDC1B00E16C0085AD75 /* MainCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +30,7 @@
 /* Begin PBXFileReference section */
 		4C01B6A11B052714003A2464 /* ScrollCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollCollectionViewController.swift; sourceTree = "<group>"; };
 		4C01B6A31B052752003A2464 /* ScrollCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollCollectionViewCell.swift; sourceTree = "<group>"; };
+		4CC72D2C1B2B0A1B00895616 /* MainCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectionViewController.swift; sourceTree = "<group>"; };
 		4CCFDBB51B00E0A10085AD75 /* IKS-0.0.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IKS-0.0.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CCFDBB91B00E0A10085AD75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CCFDBBA1B00E0A10085AD75 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -38,7 +39,6 @@
 		4CCFDBCA1B00E0A10085AD75 /* IKS-0.0.0Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "IKS-0.0.0Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CCFDBCF1B00E0A10085AD75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CCFDBD01B00E0A10085AD75 /* IKS_0_0_0Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IKS_0_0_0Tests.swift; sourceTree = "<group>"; };
-		4CCFDBDA1B00E11B0085AD75 /* MainCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectionViewController.swift; sourceTree = "<group>"; };
 		4CCFDBDC1B00E16C0085AD75 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,7 +84,7 @@
 				4CCFDBBA1B00E0A10085AD75 /* AppDelegate.swift */,
 				4CCFDBBC1B00E0A10085AD75 /* ViewController.swift */,
 				4C01B6A11B052714003A2464 /* ScrollCollectionViewController.swift */,
-				4CCFDBDA1B00E11B0085AD75 /* MainCollectionViewController.swift */,
+				4CC72D2C1B2B0A1B00895616 /* MainCollectionViewController.swift */,
 				4C01B6A31B052752003A2464 /* ScrollCollectionViewCell.swift */,
 				4CCFDBDC1B00E16C0085AD75 /* MainCollectionViewCell.swift */,
 				4CCFDBC11B00E0A10085AD75 /* Images.xcassets */,
@@ -217,9 +217,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C01B6A21B052714003A2464 /* ScrollCollectionViewController.swift in Sources */,
+				4CC72D2D1B2B0A1B00895616 /* MainCollectionViewController.swift in Sources */,
 				4C01B6A41B052752003A2464 /* ScrollCollectionViewCell.swift in Sources */,
 				4CCFDBBD1B00E0A10085AD75 /* ViewController.swift in Sources */,
-				4CCFDBDB1B00E11B0085AD75 /* MainCollectionViewController.swift in Sources */,
 				4CCFDBBB1B00E0A10085AD75 /* AppDelegate.swift in Sources */,
 				4CCFDBDD1B00E16C0085AD75 /* MainCollectionViewCell.swift in Sources */,
 			);
