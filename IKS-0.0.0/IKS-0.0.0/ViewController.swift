@@ -35,7 +35,7 @@ class ViewController: UIViewController {
 		self.view.addSubview(scrubbingHandle)
 		
 		let mainCollectionViewLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-		mainCollectionViewLayout.itemSize = CGSize(width: self.view.frame.width, height: self.view.frame.height-200)
+		mainCollectionViewLayout.itemSize = CGSize(width: self.view.frame.width, height: self.view.frame.height-250)
 		mainCollectionViewLayout.scrollDirection = UICollectionViewScrollDirection.Horizontal
 		mainCollectionViewLayout.minimumLineSpacing = 0
 		mainCollectionViewLayout.minimumInteritemSpacing = 0
@@ -46,6 +46,9 @@ class ViewController: UIViewController {
 		mainCollectionView!.dataSource = mainCollectionViewDelegateAndDataSource
 		mainCollectionView!.delegate = mainCollectionViewDelegateAndDataSource
 		mainCollectionView!.registerClass(MainCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
+		
+		mainCollectionView?.backgroundColor = UIColor.greenColor()
+		
 		self.view.addSubview(mainCollectionView!)
 		
 		let viewsDictionary = [
@@ -64,7 +67,7 @@ class ViewController: UIViewController {
 		
 		let mainCollectionViewWidthContraint = NSLayoutConstraint.constraintsWithVisualFormat("H:|[mainCollectionView]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 
-		let verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[scrollCollectionView(100)][scrubbingHandle(40)][mainCollectionView]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+		let verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|-(20)-[scrollCollectionView(100)][scrubbingHandle(40)][mainCollectionView]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 		
 		self.view.addConstraints(scrollCollectionViewWidthContraint)
 		self.view.addConstraints(scrubbingHandleWidthContraint)

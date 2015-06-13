@@ -16,7 +16,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 		card = UIView();
 		card.backgroundColor = UIColor.whiteColor();
 		card.layer.cornerRadius = 10;
-		card.frame = CGRect(x: 20, y: 0, width: frame.size.width-40, height: frame.size.height)
+		card.frame = CGRect(x: 0, y: 0, width: frame.size.width-200, height: frame.size.height-200)
 		card.clipsToBounds = true
 		
 		backgroundImage = UIImageView()
@@ -54,6 +54,9 @@ class MainCollectionViewCell: UICollectionViewCell {
 		noteLabel.font = UIFont(name: "SourceSansPro-Regular", size: 12)
 		card.addSubview(noteLabel)
 		
+		super.init(frame: frame)
+		contentView.addSubview(card)
+		
 		// Constraints
 		
 		let viewsDictionary = [
@@ -61,7 +64,9 @@ class MainCollectionViewCell: UICollectionViewCell {
 			"readMoreButton": readMoreButton,
 			"readMoreButtonBorderTop": readMoreButtonBorderTop,
 			"categoryLabel": categoryLabel,
-			"noteLabel": noteLabel
+			"noteLabel": noteLabel,
+			"contentView":contentView,
+			"card":card
 		]
 		
 		backgroundImage.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -69,7 +74,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 		readMoreButtonBorderTop.setTranslatesAutoresizingMaskIntoConstraints(false)
 		categoryLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
 		noteLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
-
+		card.setTranslatesAutoresizingMaskIntoConstraints(false)
 		
 		let backgroundImageWidthContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|[backgroundImage]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 		
@@ -93,9 +98,12 @@ class MainCollectionViewCell: UICollectionViewCell {
 		card.addConstraints(horizontalCategoryLabelContraint)
 		card.addConstraints(verticalNoteLabelContraint)
 		card.addConstraints(horizontalNoteLabelContraint)
+		
+		let verticalCardContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[card]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+		let horizontalCardContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[card]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 
-		super.init(frame: frame)
-		contentView.addSubview(card)
+		contentView.addConstraints(verticalCardContraint)
+		contentView.addConstraints(horizontalCardContraint)
 	}
 	
 	required init(coder aDecoder: NSCoder) {
