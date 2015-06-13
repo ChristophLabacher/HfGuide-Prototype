@@ -16,6 +16,10 @@ class ViewController: UIViewController {
 		
 		loadImagesFromAssets()
 		
+		//
+		// ScrollCollectionView
+		//
+		
 		let scrollCollectionViewLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
 		scrollCollectionViewLayout.itemSize = CGSize(width: 120, height: 100)
 		scrollCollectionViewLayout.scrollDirection = UICollectionViewScrollDirection.Horizontal
@@ -29,10 +33,18 @@ class ViewController: UIViewController {
 		scrollCollectionView!.registerClass(ScrollCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
 		self.view.addSubview(scrollCollectionView!)
 		
+		//
+		// Scrubbing Handle
+		//
+		
 		let scrubbingHandle : UIImageView = UIImageView()
 		scrubbingHandle.contentMode = UIViewContentMode.Center
 		scrubbingHandle.image = UIImage(named: "handle")
 		self.view.addSubview(scrubbingHandle)
+		
+		//
+		// MainCollectionView
+		//
 		
 		let mainCollectionViewLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
 		mainCollectionViewLayout.itemSize = CGSize(width: self.view.frame.width, height: self.view.frame.height-250)
@@ -51,6 +63,10 @@ class ViewController: UIViewController {
 		
 		self.view.addSubview(mainCollectionView!)
 		
+		//
+		// Constraints
+		//
+		
 		let viewsDictionary = [
 				"scrollCollectionView": scrollCollectionView!,
 				"mainCollectionView": mainCollectionView!,
@@ -61,12 +77,16 @@ class ViewController: UIViewController {
 		scrubbingHandle.setTranslatesAutoresizingMaskIntoConstraints(false)
 		mainCollectionView!.setTranslatesAutoresizingMaskIntoConstraints(false)
 		
-		let scrollCollectionViewWidthContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|[scrollCollectionView]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+		// ScrollCollectionView - Width
+		let scrollCollectionViewWidthContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[scrollCollectionView]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 		
-		let scrubbingHandleWidthContraint = NSLayoutConstraint.constraintsWithVisualFormat("H:|[scrubbingHandle]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+		// ScrubbingHandle - Width
+		let scrubbingHandleWidthContraint = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[scrubbingHandle]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 		
-		let mainCollectionViewWidthContraint = NSLayoutConstraint.constraintsWithVisualFormat("H:|[mainCollectionView]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+		// MainCollectionView - Width
+		let mainCollectionViewWidthContraint = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[mainCollectionView]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 
+		// ScrollCollectionView - Width
 		let verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|-(20)-[scrollCollectionView(100)][scrubbingHandle(40)][mainCollectionView]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 		
 		self.view.addConstraints(scrollCollectionViewWidthContraint)

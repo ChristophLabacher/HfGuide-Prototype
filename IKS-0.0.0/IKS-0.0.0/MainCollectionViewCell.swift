@@ -13,25 +13,46 @@ class MainCollectionViewCell: UICollectionViewCell {
 	let backgroundImage: UIImageView!
 	
 	override init(frame: CGRect) {
+		
+		//
+		// Card
+		//
+		
 		card = UIView();
 		card.backgroundColor = UIColor.whiteColor();
 		card.layer.cornerRadius = 10;
 		card.frame = CGRect(x: 0, y: 0, width: frame.size.width-200, height: frame.size.height-200)
 		card.clipsToBounds = true
 		
+		//
+		// BackgroundImage
+		//
+		
 		backgroundImage = UIImageView()
 		backgroundImage.contentMode = UIViewContentMode.ScaleAspectFill
 		backgroundImage.clipsToBounds = true
 		card.addSubview(backgroundImage)
+		
+		//
+		// BlurEffect
+		//
 		
 		let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
 		let blurEffectView = UIVisualEffectView(effect: blurEffect)
 		blurEffectView.frame = card.bounds
 		//card.addSubview(blurEffectView)
 		
+		//
+		// ReadMoreButtonBorderTop
+		//
+		
 		let readMoreButtonBorderTop = UIView()
 		readMoreButtonBorderTop.backgroundColor = UIColor.redColor()
 		card.addSubview(readMoreButtonBorderTop)
+		
+		//
+		// ReadMoreButton
+		//
 		
 		let readMoreButton = UIButton()
 		readMoreButton.setTitle("Weiterlesen".uppercaseString, forState: UIControlState.Normal)
@@ -40,16 +61,28 @@ class MainCollectionViewCell: UICollectionViewCell {
 		readMoreButton.titleLabel!.font =  UIFont(name: "SourceSansPro-Regular", size: 12);
 		card.addSubview(readMoreButton)
 		
+		//
+		// CategoryLabel
+		//
+		
 		let categoryLabel = UILabel()
-//		let text : NSMutableAttributedString = NSMutableAttributedString(string: "Frage")
-//		text.addAttribute(NSKernAttributeName, value: CGFloat(1.4), range: NSRange(location: 0, length: 9))
-		categoryLabel.text = "Frage".uppercaseString
+		let categoryLabelText = "Frage".uppercaseString
+		let categoryLabelAttributedText : NSMutableAttributedString = NSMutableAttributedString(string: categoryLabelText)
+		categoryLabelAttributedText.addAttribute(NSKernAttributeName, value: CGFloat(0.9), range: NSRange(location: 0, length: count(categoryLabelText)))
+		categoryLabel.attributedText = categoryLabelAttributedText
 		categoryLabel.textColor = UIColor.whiteColor()
 		categoryLabel.font = UIFont(name: "SourceSansPro-Regular", size: 12)
 		card.addSubview(categoryLabel)
 		
+		//
+		// NoteLabel
+		//
+		
 		let noteLabel = UILabel()
-		noteLabel.text = "Notizen 5".uppercaseString
+		let noteLabelText = "5 Notizen".uppercaseString
+		let noteLabelAttributedText : NSMutableAttributedString = NSMutableAttributedString(string: noteLabelText)
+		noteLabelAttributedText.addAttribute(NSKernAttributeName, value: CGFloat(0.9), range: NSRange(location: 0, length: count(noteLabelText)))
+		noteLabel.attributedText = noteLabelAttributedText
 		noteLabel.textColor = UIColor.whiteColor()
 		noteLabel.font = UIFont(name: "SourceSansPro-Regular", size: 12)
 		card.addSubview(noteLabel)
@@ -57,7 +90,9 @@ class MainCollectionViewCell: UICollectionViewCell {
 		super.init(frame: frame)
 		contentView.addSubview(card)
 		
+		//
 		// Constraints
+		//
 		
 		let viewsDictionary = [
 			"backgroundImage": backgroundImage,
