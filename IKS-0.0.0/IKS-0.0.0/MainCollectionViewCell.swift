@@ -14,6 +14,10 @@ class MainCollectionViewCell: UICollectionViewCell {
 	
 	override init(frame: CGRect) {
 		
+		//////
+		// TODO: Cleanup
+		//////
+		
 		//
 		// Card
 		//
@@ -55,36 +59,39 @@ class MainCollectionViewCell: UICollectionViewCell {
 		//
 		
 		let readMoreButton = UIButton()
-		readMoreButton.setTitle("Weiterlesen".uppercaseString, forState: UIControlState.Normal)
 		readMoreButton.backgroundColor = UIColor.whiteColor()
-		readMoreButton.setTitleColor(appColorRed, forState:UIControlState.Normal)
-		readMoreButton.titleLabel!.font =  UIFont(name: "SourceSansPro-Regular", size: 12);
 		card.addSubview(readMoreButton)
 		
+		let readMoreButtonLabel = CLLabel()
+		readMoreButtonLabel.setLabelText("Weiterlesen")
+		readMoreButtonLabel.textColor = appColorRed
+		readMoreButtonLabel.textAlignment = NSTextAlignment.Center
+		readMoreButtonLabel.userInteractionEnabled = false;
+		
+		readMoreButton.addSubview(readMoreButtonLabel)
+		readMoreButtonLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+		
+		let readMoreButtonLabelWidthContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-[v1]-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(readMoreButtonLabel))
+		
+		let readMoreButtonLabelHeightContraint = NSLayoutConstraint.constraintsWithVisualFormat("V:|-[v1]-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(readMoreButtonLabel))
+		
+		readMoreButton.addConstraints(readMoreButtonLabelWidthContraint)
+		readMoreButton.addConstraints(readMoreButtonLabelHeightContraint)
+
 		//
 		// CategoryLabel
 		//
 		
-		let categoryLabel = UILabel()
-		let categoryLabelText = "Frage".uppercaseString
-		let categoryLabelAttributedText : NSMutableAttributedString = NSMutableAttributedString(string: categoryLabelText)
-		categoryLabelAttributedText.addAttribute(NSKernAttributeName, value: CGFloat(0.9), range: NSRange(location: 0, length: count(categoryLabelText)))
-		categoryLabel.attributedText = categoryLabelAttributedText
-		categoryLabel.textColor = UIColor.whiteColor()
-		categoryLabel.font = UIFont(name: "SourceSansPro-Regular", size: 12)
+		let categoryLabel = CLLabel()
+		categoryLabel.setLabelText("Frage")
 		card.addSubview(categoryLabel)
 		
 		//
 		// NoteLabel
 		//
 		
-		let noteLabel = UILabel()
-		let noteLabelText = "5 Notizen".uppercaseString
-		let noteLabelAttributedText : NSMutableAttributedString = NSMutableAttributedString(string: noteLabelText)
-		noteLabelAttributedText.addAttribute(NSKernAttributeName, value: CGFloat(0.9), range: NSRange(location: 0, length: count(noteLabelText)))
-		noteLabel.attributedText = noteLabelAttributedText
-		noteLabel.textColor = UIColor.whiteColor()
-		noteLabel.font = UIFont(name: "SourceSansPro-Regular", size: 12)
+		let noteLabel = CLLabel()
+		noteLabel.setLabelText("5 Notizen")
 		card.addSubview(noteLabel)
 		
 		super.init(frame: frame)
@@ -117,12 +124,12 @@ class MainCollectionViewCell: UICollectionViewCell {
 		
 		let readMoreButtonTopBorderWidthContraint = NSLayoutConstraint.constraintsWithVisualFormat("H:|[readMoreButtonBorderTop]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 		
-		let verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage][readMoreButtonBorderTop(5)][readMoreButton(50)]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+		let verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage][readMoreButtonBorderTop(5)][readMoreButton(45)]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 		
-		let verticalCategoryLabelContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|-13-[categoryLabel]", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
-		let horizontalCategoryLabelContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-20-[categoryLabel]", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
-		let verticalNoteLabelContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|-13-[noteLabel]", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
-		let horizontalNoteLabelContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:[noteLabel]-20-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+		let verticalCategoryLabelContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[categoryLabel]", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+		let horizontalCategoryLabelContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-15-[categoryLabel]", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+		let verticalNoteLabelContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[noteLabel]", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+		let horizontalNoteLabelContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:[noteLabel]-15-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 
 		card.addConstraints(backgroundImageWidthContraint)
 		card.addConstraints(readMoreButtonWidthContraint)

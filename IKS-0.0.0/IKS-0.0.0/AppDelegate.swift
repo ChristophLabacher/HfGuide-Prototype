@@ -19,7 +19,7 @@ var dataArray:NSArray?
 	var mainCollectionViewDelegateAndDataSource = MainCollectionViewController()
 	
 	// COLORS
-	let appColorRed : UIColor = UIColor(hue: 1.0/360, saturation: 60.0/100, brightness: 93.0/100, alpha: 1.0)
+	let appColorRed : UIColor = UIColor(hue: 3.0/360, saturation: 63.0/100, brightness: 95.0/100, alpha: 1.0)
 	let appColorYellow : UIColor = UIColor(hue: 55.0/360, saturation: 85.0/100, brightness: 99.0/100, alpha: 1.0)
 	let appColorGreen : UIColor = UIColor(hue: 90.0/360, saturation: 67.0/100, brightness: 79.0/100, alpha: 1.0)
 	let appColorBlue : UIColor = UIColor(hue: 192.0/360, saturation: 85.0/100, brightness: 78.0/100, alpha: 1.0)
@@ -68,4 +68,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
+	
+	func dictionaryOfNames(arr:UIView...) -> Dictionary<String,UIView> {
+		var d = Dictionary<String,UIView>()
+		for (ix,v) in enumerate(arr) {
+			d["v\(ix+1)"] = v
+		}
+		return d
+	}
 

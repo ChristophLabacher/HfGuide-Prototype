@@ -13,6 +13,7 @@
 		4C12B3B61B2B6F76008D30C7 /* SourceSansPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4C12B3B21B2B6F14008D30C7 /* SourceSansPro-Regular.otf */; };
 		4C12B3B71B2B6F76008D30C7 /* SourceSansPro-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 4C12B3B31B2B6F14008D30C7 /* SourceSansPro-Semibold.otf */; };
 		4C12B3B91B2B8A3E008D30C7 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C12B3B81B2B8A3E008D30C7 /* Card.swift */; };
+		4CABB0861B2F7658002FF93C /* CLLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CABB0851B2F7658002FF93C /* CLLabel.swift */; };
 		4CC72D2D1B2B0A1B00895616 /* MainCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC72D2C1B2B0A1B00895616 /* MainCollectionViewController.swift */; };
 		4CCFDBBB1B00E0A10085AD75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCFDBBA1B00E0A10085AD75 /* AppDelegate.swift */; };
 		4CCFDBBD1B00E0A10085AD75 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCFDBBC1B00E0A10085AD75 /* ViewController.swift */; };
@@ -38,6 +39,7 @@
 		4C12B3B21B2B6F14008D30C7 /* SourceSansPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.otf"; sourceTree = "<group>"; };
 		4C12B3B31B2B6F14008D30C7 /* SourceSansPro-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Semibold.otf"; sourceTree = "<group>"; };
 		4C12B3B81B2B8A3E008D30C7 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		4CABB0851B2F7658002FF93C /* CLLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLabel.swift; sourceTree = "<group>"; };
 		4CC72D2C1B2B0A1B00895616 /* MainCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectionViewController.swift; sourceTree = "<group>"; };
 		4CCFDBB51B00E0A10085AD75 /* IKS-0.0.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IKS-0.0.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CCFDBB91B00E0A10085AD75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 				4CCFDBBA1B00E0A10085AD75 /* AppDelegate.swift */,
 				4CCFDBBC1B00E0A10085AD75 /* ViewController.swift */,
 				4C01B6A11B052714003A2464 /* ScrollCollectionViewController.swift */,
+				4CABB0851B2F7658002FF93C /* CLLabel.swift */,
 				4CC72D2C1B2B0A1B00895616 /* MainCollectionViewController.swift */,
 				4C01B6A31B052752003A2464 /* ScrollCollectionViewCell.swift */,
 				4CCFDBDC1B00E16C0085AD75 /* MainCollectionViewCell.swift */,
@@ -245,6 +248,7 @@
 				4CCFDBBD1B00E0A10085AD75 /* ViewController.swift in Sources */,
 				4CCFDBBB1B00E0A10085AD75 /* AppDelegate.swift in Sources */,
 				4C12B3B91B2B8A3E008D30C7 /* Card.swift in Sources */,
+				4CABB0861B2F7658002FF93C /* CLLabel.swift in Sources */,
 				4CCFDBDD1B00E16C0085AD75 /* MainCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

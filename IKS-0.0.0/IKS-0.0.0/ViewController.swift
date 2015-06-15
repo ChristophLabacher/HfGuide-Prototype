@@ -22,29 +22,75 @@ class ViewController: UIViewController {
 		
 		let topView : UIView = UIView()
 		topView.setTranslatesAutoresizingMaskIntoConstraints(false)
-
 	
 		view.self.addSubview(topView)
 		
-		// ScrollCollectionView
+		let backgroundImage = UIImageView()
+		backgroundImage.image = UIImage(named: "overlay")
+		backgroundImage.contentMode = UIViewContentMode.ScaleAspectFill
+		backgroundImage.clipsToBounds = true
+		backgroundImage.setTranslatesAutoresizingMaskIntoConstraints(false)
+
+		topView.addSubview(backgroundImage)
+		
+		// TopView > StatisticView
+		//////////////////////////
+		
+		let statisticView : UIView = UIView()
+		//statisticView.backgroundColor = appColorViolet
+		statisticView.setTranslatesAutoresizingMaskIntoConstraints(false)
+		
+		topView.addSubview(statisticView)
+		
+		// TopView > ScrollCollectionView
 		//////////////////////////
 		
 		let scrollCollectionViewLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-		scrollCollectionViewLayout.itemSize = CGSize(width: 100, height: 100)
+		scrollCollectionViewLayout.itemSize = CGSize(width: 90, height: 90)
 		scrollCollectionViewLayout.scrollDirection = UICollectionViewScrollDirection.Horizontal
-		scrollCollectionViewLayout.minimumLineSpacing = 20
+		scrollCollectionViewLayout.minimumLineSpacing = 14
 		
-		scrollCollectionView = UICollectionView(frame: CGRectMake(0, 0, self.view.frame.width, 160), collectionViewLayout: scrollCollectionViewLayout)
+		scrollCollectionView = UICollectionView(frame: CGRectMake(0, 0, 0, 0), collectionViewLayout: scrollCollectionViewLayout)
 		scrollCollectionView!.dataSource = scrollCollectionViewDelegateAndDataSource
 		scrollCollectionView!.delegate = scrollCollectionViewDelegateAndDataSource
 		scrollCollectionView!.delaysContentTouches = true
 		scrollCollectionView!.showsHorizontalScrollIndicator = false
+		scrollCollectionView!.backgroundColor = UIColor.clearColor()
 		scrollCollectionView!.registerClass(ScrollCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
-		scrollCollectionView!.contentInset = UIEdgeInsetsMake(0, 20, 10, 20)
+		scrollCollectionView!.contentInset = UIEdgeInsetsMake(0, 14, 0, 14)
 
 		scrollCollectionView!.setTranslatesAutoresizingMaskIntoConstraints(false)
 
 		topView.addSubview(scrollCollectionView!)
+		
+		//////////////////////////
+		// CONSTRAINTS (to topView)
+		//////////////////////////
+		
+		// BackgroundImage - Width
+		let backgroundImageWidthContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[v1]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(backgroundImage))
+		topView.addConstraints(backgroundImageWidthContraint)
+		
+		// BackgroundImage - Height
+		let backgroundImageHeightContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[v1]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(backgroundImage))
+		topView.addConstraints(backgroundImageHeightContraint)
+		
+		// StatisticView - Width
+		let statisticViewWidthContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[v1]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(statisticView))
+		topView.addConstraints(statisticViewWidthContraint)
+		
+		// ScrollCollectionView - Width
+		let scrollCollectionViewWidthContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[v1]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(scrollCollectionView!))
+		topView.addConstraints(scrollCollectionViewWidthContraint)
+		
+		let topViewsDictionary = [
+			"statisticView": statisticView,
+			"scrollCollectionView" : scrollCollectionView!
+		]
+		
+		// Vertical
+		let topViewVerticalConstraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|-40-[statisticView(20)]-10-[scrollCollectionView(90)]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: topViewsDictionary)
+		topView.addConstraints(topViewVerticalConstraint)
 		
 		//////////////////////////
 		// SCRUBBING HANDLE
@@ -66,37 +112,29 @@ class ViewController: UIViewController {
 		//////////////////////////
 		
 		let mainCollectionViewLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-		mainCollectionViewLayout.itemSize = CGSize(width: self.view.frame.width, height: self.view.frame.height-250)
+		mainCollectionViewLayout.itemSize = CGSize(width: self.view.frame.width - 90, height: self.view.frame.height-240)
 		mainCollectionViewLayout.scrollDirection = UICollectionViewScrollDirection.Horizontal
-		mainCollectionViewLayout.minimumLineSpacing = 0
-		mainCollectionViewLayout.minimumInteritemSpacing = 0
+		mainCollectionViewLayout.minimumLineSpacing = 22
 		
-		mainCollectionView = UICollectionView(frame: CGRectMake(0, 0, self.view.frame.width, self.view.frame.height-100), collectionViewLayout: mainCollectionViewLayout)
+		mainCollectionView = UICollectionView(frame: CGRectMake(0, 0, 0, 0), collectionViewLayout: mainCollectionViewLayout)
 		mainCollectionView!.showsHorizontalScrollIndicator = false
 		mainCollectionView!.pagingEnabled = true;
 		mainCollectionView!.dataSource = mainCollectionViewDelegateAndDataSource
 		mainCollectionView!.delegate = mainCollectionViewDelegateAndDataSource
 		mainCollectionView!.registerClass(MainCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
-		mainCollectionView?.backgroundColor = UIColor.greenColor()
+		//mainCollectionView?.backgroundColor = appColorGreen
 		mainCollectionView!.setTranslatesAutoresizingMaskIntoConstraints(false)
+		mainCollectionView!.contentInset = UIEdgeInsetsMake(0, 45, 0, 45)
 		
 		self.view.addSubview(mainCollectionView!)
 		
 		//////////////////////////
-		// CONSTRAINTS
+		// CONSTRAINTS (to Superview)
 		//////////////////////////
 		
 		// topView - Width
 		let topViewWidthContraint = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[v1]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(topView))
 		self.view.addConstraints(topViewWidthContraint)
-		
-		// ScrollCollectionView - Width
-		let scrollCollectionViewWidthContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[v1]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(scrollCollectionView!))
-		topView.addConstraints(scrollCollectionViewWidthContraint)
-
-		// ScrollCollectionView - Height
-		let scrollCollectionViewHeightContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[v1]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(scrollCollectionView!))
-		topView.addConstraints(scrollCollectionViewHeightContraint)
 
 		// ScrubbingHandle - Width
 		let scrubbingHandleWidthContraint = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[v1]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(scrubbingHandle))
@@ -113,7 +151,7 @@ class ViewController: UIViewController {
 		]
 		
 		// Vertical
-		let verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|-(30)-[topView(110)][scrubbingHandle(40)][mainCollectionView]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+		let verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|-(0)-[topView(160)]-5-[scrubbingHandle(40)]-5-[mainCollectionView]-30-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 		self.view.addConstraints(verticalContraint)
 	}
 
@@ -127,14 +165,5 @@ class ViewController: UIViewController {
 		dataArray = NSFileManager.defaultManager().contentsOfDirectoryAtPath(sourcePath!, error: nil)
 		println(dataArray?.count)
 	}
-	
-	func dictionaryOfNames(arr:UIView...) -> Dictionary<String,UIView> {
-		var d = Dictionary<String,UIView>()
-		for (ix,v) in enumerate(arr) {
-			d["v\(ix+1)"] = v
-		}
-		return d
-	}
-
 }
 

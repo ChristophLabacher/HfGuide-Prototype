@@ -10,7 +10,7 @@ import UIKit
 
 class MainCollectionViewController: NSObject, UICollectionViewDelegate, UICollectionViewDataSource  {
 	override init() {
-		print("test")
+	//	print("test")
 	}
 	
 	func collectionView(collectionView: UICollectionView, numberOfSectionsInCollectionView section: Int) -> Int {
