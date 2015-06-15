@@ -8,17 +8,17 @@
 
 import UIKit
 
+
 class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDelegate {
 	
 	@IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var beaconLabel: UILabel!
-    @IBOutlet weak var intervalLabel: UILabel!
     @IBOutlet weak var searchButton: UIButton!
     
     
     var searchingBeacons = false;
     var hasChanged = false;
-    var searchingInterval = 1.0
+    var searchingInterval = 0.2
 	
     @IBAction func searchButton(sender: AnyObject) {
 
@@ -28,17 +28,11 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
             searchButton.setTitle("Searching Beacons …", forState: UIControlState.Normal)
         }
         
+        searchingBeacons = true
+
 	}
     
-    @IBAction func adjustingInterval(sender: UISlider) {
-        searchingInterval = Double(sender.value)
-        intervalLabel.text = "\(searchingInterval)s"
-        
-        if searchingBeacons {
-            searchButton.setTitle("Update Interval …", forState: UIControlState.Normal)
-            hasChanged = true;
-        }
-    }
+
     
 	let beaconManager = ESTBeaconManager()
 	
@@ -87,7 +81,7 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
             for index in 0..<beacons.count {
                 var followingText : String
                 var beacon = beacons[index] as! CLBeacon
-                followingText = "[\(beacon.major.integerValue).\(beacon.minor.integerValue)] "
+                followingText = "[\(beacon.major.integerValue).\(beacon.minor.integerValue)] + \(beacon.rssi)"
                 returnString += followingText
             }
         }
