@@ -62,6 +62,7 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
 	}
 	
 	func searchForBeacon()	{
+        consoleLabel.text = (consoleLabel.text ?? "") + "testing ";
 		beaconManager.requestWhenInUseAuthorization()
 		beaconManager.startRangingBeaconsInRegion(beaconRegion)
 	}
@@ -75,19 +76,13 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
             sortBeacons(didRangeBeacons: beacons)
             
             
-            
             //checkBeacons()
             //hier müsste der check geschehen, der zusammen mit den XML-Dateien überprüft ob ein Beacon neu ist und daraufhin auch etwas getriggert werden muss > reden mit labi
-            
-            
-            
             
 
             //Writing all available beacons
             //allBeacons
             writeBeaconsToLabel(didRangeBeacons: beacons as! [CLBeacon], labelToWriteTo: beaconLabel)
-            
-            
             
             //only new Beacons which were found for the first time
             writeBeaconsToLabel(didRangeBeacons: newBeaconsArray, labelToWriteTo: newBeaconsLabel)
@@ -126,10 +121,13 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
                 for index in 0..<beacons.count{
                     
                     //hier muss jetzt für jedes beacon[] Element überprüft werden, ob er in tempBeaconArray gesetzt ist
-                    //das find funktioniert jedoch nicht so richtig - ich weiß aber nicht warum.
-                    //kann mir das aber auch nicht richtig ausgeben lassen.
+                    // ### das find() funktioniert jedoch nicht so richtig - ich weiß aber nicht warum.
+                    // ### kann mir das aber auch nicht richtig ausgeben lassen.
+                    
+                    
                     if (find(tempBeaconArray, beacons[index] as! CLBeacon) != nil){
-
+                        consoleLabel.text = (consoleLabel.text ?? "") + "yes ";
+                        
                         //wenn ja > copy to nearBeacon
                         nearBeaconsArray.append(beacons[index] as! CLBeacon)
                         
