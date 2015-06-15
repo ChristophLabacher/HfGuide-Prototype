@@ -12,12 +12,12 @@ import UIKit
 class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDelegate {
 	
 	@IBOutlet weak var webView: UIWebView!
-    @IBOutlet weak var beaconLabel: UILabel!
     @IBOutlet weak var searchButton: UIButton!
-    
-    @IBOutlet weak var newBeacons: UILabel!
-    @IBOutlet weak var nearBeacons: UILabel!
-    @IBOutlet weak var goneBeacons: UILabel!
+
+    @IBOutlet weak var beaconLabel: UILabel!
+    @IBOutlet weak var newBeaconsLabel: UILabel!
+    @IBOutlet weak var nearBeaconsLabel: UILabel!
+    @IBOutlet weak var goneBeaconsLabel: UILabel!
     
     var searchingBeacons = false
     var searchingInterval = 0.2
@@ -81,9 +81,22 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
             
             
             
-            //writing all available beacons
-            //todo: umschreiben, dass die labels einzeln aktiviert werden (dazu übergabe der verschiedenen labels und jeweiligen arrays)
-            beaconLabel.text = listAvailableBeacons(didRangeBeacons: beacons)
+            
+
+            //Writing all available beacons
+            //allBeacons
+            writeBeaconsToLabel(didRangeBeacons: beacons as! [CLBeacon], labelToWriteTo: beaconLabel)
+            
+            //only new Beacons which were found for the first time
+            writeBeaconsToLabel(didRangeBeacons: newBeaconsArray, labelToWriteTo: newBeaconsLabel)
+            
+            //only nearBeacons who were there already at the last check and are still there
+            writeBeaconsToLabel(didRangeBeacons: nearBeaconsArray, labelToWriteTo: nearBeaconsLabel)
+            
+            //only goneBeacons who were there at the latest check but not anymore
+            writeBeaconsToLabel(didRangeBeacons: goneBeaconsArray, labelToWriteTo: goneBeaconsLabel)
+            
+            
 
             //starting to check for different commodities
             checkForWebpage(didRangeBeacons: beacons)
@@ -140,12 +153,12 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
     
     
     //returns a string of all available beacons with major and minor and writes into the specific label
-    func listAvailableBeacons(didRangeBeacons beacons: [AnyObject]!) -> String{
+    func writeBeaconsToLabel(didRangeBeacons beacons: [CLBeacon]!, labelToWriteTo: UILabel!){
         
-        var returnString = "No Beacons found!"
+        var returnString = "No Beacons here."
         
         if !beacons.isEmpty{
-            returnString = "Following Beacons were found: "
+            returnString = ""
             for index in 0..<beacons.count {
                 var followingText : String
                 var beacon = beacons[index] as! CLBeacon
@@ -154,7 +167,8 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
             }
         }
         
-        return returnString
+        labelToWriteTo.text = returnString
+        
     }
 
     
