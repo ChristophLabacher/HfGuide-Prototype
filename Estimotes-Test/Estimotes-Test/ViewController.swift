@@ -73,7 +73,7 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
             
             
             //sort the Beacons
-            sortBeacons(didRangeBeacons: beacons)
+            sortBeaconsIntoArrays(didRangeBeacons: beacons)
             
             
             //checkBeacons()
@@ -105,9 +105,10 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
             
 	}
 
-    //sortBeacons sorts the available Beacons into three Arrays (new/near/old)
-    func sortBeacons(didRangeBeacons beacons: [AnyObject]!){
+    //sortBeaconsIntoArrays sorts the available Beacons into three Arrays (new/near/old)
+    func sortBeaconsIntoArrays(didRangeBeacons beacons: [AnyObject]!){
         
+        //reset der arrays
         newBeaconsArray = []
         nearBeaconsArray = []
         goneBeaconsArray = []
