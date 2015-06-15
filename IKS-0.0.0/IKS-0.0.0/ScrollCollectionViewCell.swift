@@ -16,10 +16,9 @@ class ScrollCollectionViewCell: UICollectionViewCell {
 		imageView.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
 		imageView.contentMode = UIViewContentMode.ScaleAspectFill
 		imageView.clipsToBounds = true
-		imageView.backgroundColor = UIColor.redColor()
 		imageView.layer.cornerRadius = 10;
 		
-		imageView.layer.borderColor = UIColor.redColor().CGColor
+		imageView.layer.borderColor = appColorBlue.CGColor
 		imageView.layer.borderWidth = 3
 		
 		super.init(frame: frame)

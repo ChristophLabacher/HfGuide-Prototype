@@ -47,7 +47,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 		//
 		
 		let readMoreButtonBorderTop = UIView()
-		readMoreButtonBorderTop.backgroundColor = UIColor.redColor()
+		readMoreButtonBorderTop.backgroundColor = appColorRed
 		card.addSubview(readMoreButtonBorderTop)
 		
 		//
@@ -57,7 +57,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 		let readMoreButton = UIButton()
 		readMoreButton.setTitle("Weiterlesen".uppercaseString, forState: UIControlState.Normal)
 		readMoreButton.backgroundColor = UIColor.whiteColor()
-		readMoreButton.setTitleColor(UIColor.redColor(), forState:UIControlState.Normal)
+		readMoreButton.setTitleColor(appColorRed, forState:UIControlState.Normal)
 		readMoreButton.titleLabel!.font =  UIFont(name: "SourceSansPro-Regular", size: 12);
 		card.addSubview(readMoreButton)
 		
@@ -117,7 +117,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 		
 		let readMoreButtonTopBorderWidthContraint = NSLayoutConstraint.constraintsWithVisualFormat("H:|[readMoreButtonBorderTop]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 		
-		let verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage][readMoreButtonBorderTop(4)][readMoreButton(50)]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+		let verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage][readMoreButtonBorderTop(5)][readMoreButton(50)]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 		
 		let verticalCategoryLabelContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|-13-[categoryLabel]", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 		let horizontalCategoryLabelContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-20-[categoryLabel]", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)

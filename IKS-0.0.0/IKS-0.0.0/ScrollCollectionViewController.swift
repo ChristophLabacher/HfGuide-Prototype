@@ -30,23 +30,7 @@ class ScrollCollectionViewController: NSObject, UICollectionViewDelegate, UIColl
 	
 	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
 		let cell = collectionView.cellForItemAtIndexPath(indexPath)
-		cell?.backgroundColor = UIColor.greenColor()
-		println(indexPath)
-		
 		collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: true)
 		mainCollectionView?.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: true)
 	}
-	
-//	func collectionView(collectionView: UICollectionView, didHighlightItemAtIndexPath indexPath: NSIndexPath) {
-//		let cell = collectionView.cellForItemAtIndexPath(indexPath)
-//		cell?.backgroundColor = UIColor.greenColor()
-//	}
-	
-//	func collectionView(collectionView: UICollectionView, didUnhighlightItemAtIndexPath indexPath: NSIndexPath) {
-//		let cell = collectionView.cellForItemAtIndexPath(indexPath)
-//		cell?.backgroundColor = UIColor.whiteColor()
-//		
-//		collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: true)
-//		mainCollectionView?.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: true)
-//	}
 }
