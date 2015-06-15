@@ -13,8 +13,10 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
 	
 	@IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var consoleLabel: UILabel!
 
     @IBOutlet weak var beaconLabel: UILabel!
+
     @IBOutlet weak var newBeaconsLabel: UILabel!
     @IBOutlet weak var nearBeaconsLabel: UILabel!
     @IBOutlet weak var goneBeaconsLabel: UILabel!
@@ -34,10 +36,8 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
 
 	
     @IBAction func searchButton(sender: AnyObject) {
-
-        var searchingTimer = NSTimer.scheduledTimerWithTimeInterval(searchingInterval, target: self, selector: "searchForBeacon", userInfo: nil, repeats: true)
-        
         if !searchingBeacons {
+            var searchingTimer = NSTimer.scheduledTimerWithTimeInterval(searchingInterval, target: self, selector: "searchForBeacon", userInfo: nil, repeats: true)
             searchButton.setTitle("Searching Beacons …", forState: UIControlState.Normal)
         }
         
@@ -87,6 +87,8 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
             //allBeacons
             writeBeaconsToLabel(didRangeBeacons: beacons as! [CLBeacon], labelToWriteTo: beaconLabel)
             
+            
+            
             //only new Beacons which were found for the first time
             writeBeaconsToLabel(didRangeBeacons: newBeaconsArray, labelToWriteTo: newBeaconsLabel)
             
@@ -110,14 +112,24 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
 
     //sortBeacons sorts the available Beacons into three Arrays (new/near/old)
     func sortBeacons(didRangeBeacons beacons: [AnyObject]!){
+        
+        newBeaconsArray = []
+        nearBeaconsArray = []
+        goneBeaconsArray = []
+        
+        
         if !beacons.isEmpty{
+            
             if tempBeaconArraySet {
-
-                //hier muss jetzt für jedes beacon[] Element überprüft werden, ob er in tempBeaconArray gesetzt ist
 
 
                 for index in 0..<beacons.count{
-                    if contains(tempBeaconArray, beacons[index] as! CLBeacon){
+                    
+                    //hier muss jetzt für jedes beacon[] Element überprüft werden, ob er in tempBeaconArray gesetzt ist
+                    //das find funktioniert jedoch nicht so richtig - ich weiß aber nicht warum.
+                    //kann mir das aber auch nicht richtig ausgeben lassen.
+                    if (find(tempBeaconArray, beacons[index] as! CLBeacon) != nil){
+
                         //wenn ja > copy to nearBeacon
                         nearBeaconsArray.append(beacons[index] as! CLBeacon)
                         
@@ -125,6 +137,8 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
                         tempBeaconArray.removeAtIndex(find(tempBeaconArray, beacons[index] as! CLBeacon)!)
                         
                     }else{
+                        consoleLabel.text = (consoleLabel.text ?? "") + "no ";
+
                         //wenn nein > copy to newBeacon
                         newBeaconsArray.append(beacons[index] as! CLBeacon)
                         
@@ -145,6 +159,8 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
                 tempBeaconArraySet = true
                 newBeaconsArray = beacons as! [CLBeacon]
             }
+
+            
         }
     }
     
@@ -153,7 +169,7 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
     
     
     //returns a string of all available beacons with major and minor and writes into the specific label
-    func writeBeaconsToLabel(didRangeBeacons beacons: [CLBeacon]!, labelToWriteTo: UILabel!){
+    func writeBeaconsToLabel(didRangeBeacons beacons: [AnyObject]!, labelToWriteTo: UILabel!){
         
         var returnString = "No Beacons here."
         
@@ -161,8 +177,8 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
             returnString = ""
             for index in 0..<beacons.count {
                 var followingText : String
-                var beacon = beacons[index] as! CLBeacon
-                followingText = "[\(beacon.major.integerValue).\(beacon.minor.integerValue)]"
+                var beacon = beacons[index] as? CLBeacon
+                followingText = "[\(beacon!.major.integerValue).\(beacon!.minor.integerValue)]"
                 returnString += followingText
             }
         }

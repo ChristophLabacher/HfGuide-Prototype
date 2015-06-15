@@ -50,14 +50,20 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="goneBeacons" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRP-qs-HID">
+                                <rect key="frame" x="247" y="189" width="106" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nearBeacons" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gt8-Fi-DMt">
                                 <rect key="frame" x="250" y="134" width="101" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="goneBeacons" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRP-qs-HID">
-                                <rect key="frame" x="247" y="189" width="106" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="console" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7X-k7-pkw">
+                                <rect key="frame" x="270" y="509" width="60" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -65,27 +71,30 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Iem-TB-crz" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="2Zh-RH-bug"/>
-                            <constraint firstItem="tRP-qs-HID" firstAttribute="top" secondItem="gt8-Fi-DMt" secondAttribute="bottom" constant="34" id="5Jv-gE-H8A"/>
-                            <constraint firstItem="gt8-Fi-DMt" firstAttribute="top" secondItem="9J7-o4-Y09" secondAttribute="bottom" constant="31" id="5md-WE-Kda"/>
-                            <constraint firstItem="AeR-eW-KPJ" firstAttribute="top" secondItem="tRP-qs-HID" secondAttribute="bottom" constant="51" id="GGe-tD-VHH"/>
-                            <constraint firstAttribute="trailing" secondItem="AeR-eW-KPJ" secondAttribute="trailing" id="IdZ-6d-2FI"/>
-                            <constraint firstItem="AeR-eW-KPJ" firstAttribute="centerX" secondItem="xLh-MV-hh5" secondAttribute="centerX" id="Pu0-8R-GkT"/>
-                            <constraint firstItem="tRP-qs-HID" firstAttribute="centerX" secondItem="AeR-eW-KPJ" secondAttribute="centerX" id="bhw-Bm-gOk"/>
-                            <constraint firstItem="xLh-MV-hh5" firstAttribute="top" secondItem="AeR-eW-KPJ" secondAttribute="bottom" constant="81" id="c57-iZ-xfa"/>
-                            <constraint firstItem="9J7-o4-Y09" firstAttribute="top" secondItem="Iem-TB-crz" secondAttribute="bottom" constant="41" id="geS-oP-tr0"/>
-                            <constraint firstItem="AeR-eW-KPJ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="h4J-8T-Mci"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="xLh-MV-hh5" secondAttribute="bottom" constant="8" symbolic="YES" id="n6i-Eb-LQL"/>
-                            <constraint firstItem="gt8-Fi-DMt" firstAttribute="centerX" secondItem="9J7-o4-Y09" secondAttribute="centerX" id="sAR-3Y-hkn"/>
-                            <constraint firstItem="gt8-Fi-DMt" firstAttribute="centerX" secondItem="tRP-qs-HID" secondAttribute="centerX" id="tf3-8R-WkJ"/>
-                            <constraint firstItem="Iem-TB-crz" firstAttribute="centerX" secondItem="9J7-o4-Y09" secondAttribute="centerX" id="zIP-QU-rj9"/>
+                            <constraint firstItem="xLh-MV-hh5" firstAttribute="centerX" secondItem="e7X-k7-pkw" secondAttribute="centerX" id="1CW-GJ-y9b"/>
+                            <constraint firstItem="AeR-eW-KPJ" firstAttribute="top" secondItem="tRP-qs-HID" secondAttribute="bottom" constant="51" id="1ps-jb-hXF"/>
+                            <constraint firstItem="9J7-o4-Y09" firstAttribute="top" secondItem="Iem-TB-crz" secondAttribute="bottom" constant="41" id="8pX-X9-ujH"/>
+                            <constraint firstItem="9J7-o4-Y09" firstAttribute="centerX" secondItem="Iem-TB-crz" secondAttribute="centerX" id="BH7-mw-fNx"/>
+                            <constraint firstItem="tRP-qs-HID" firstAttribute="centerX" secondItem="gt8-Fi-DMt" secondAttribute="centerX" id="D8L-Ju-YgR"/>
+                            <constraint firstItem="AeR-eW-KPJ" firstAttribute="centerX" secondItem="tRP-qs-HID" secondAttribute="centerX" id="UiW-1D-iO8"/>
+                            <constraint firstItem="gt8-Fi-DMt" firstAttribute="centerX" secondItem="9J7-o4-Y09" secondAttribute="centerX" id="UsB-MV-jRU"/>
+                            <constraint firstItem="gt8-Fi-DMt" firstAttribute="top" secondItem="9J7-o4-Y09" secondAttribute="bottom" constant="31" id="b8z-sZ-sU3"/>
+                            <constraint firstItem="e7X-k7-pkw" firstAttribute="top" secondItem="AeR-eW-KPJ" secondAttribute="bottom" constant="28" id="bLp-Sp-BIz"/>
+                            <constraint firstItem="xLh-MV-hh5" firstAttribute="top" secondItem="e7X-k7-pkw" secondAttribute="bottom" constant="32" id="iJk-0E-b8H"/>
+                            <constraint firstItem="tRP-qs-HID" firstAttribute="top" secondItem="gt8-Fi-DMt" secondAttribute="bottom" constant="34" id="ilg-b1-1am"/>
+                            <constraint firstItem="AeR-eW-KPJ" firstAttribute="centerX" secondItem="e7X-k7-pkw" secondAttribute="centerX" id="oPs-KC-Jsy"/>
+                            <constraint firstAttribute="trailing" secondItem="AeR-eW-KPJ" secondAttribute="trailing" id="pY9-Lo-iST"/>
+                            <constraint firstItem="Iem-TB-crz" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="q7q-zT-tcG"/>
+                            <constraint firstItem="AeR-eW-KPJ" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="tyT-Kq-6fY"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="xLh-MV-hh5" secondAttribute="bottom" constant="8" symbolic="YES" id="u8U-jl-ZnV"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="beaconLabel" destination="Iem-TB-crz" id="fP7-D3-9RS"/>
-                        <outlet property="goneBeacons" destination="tRP-qs-HID" id="Qw6-ku-MOi"/>
-                        <outlet property="nearBeacons" destination="gt8-Fi-DMt" id="kff-5C-IUy"/>
-                        <outlet property="newbeacons" destination="9J7-o4-Y09" id="hU9-YD-F76"/>
+                        <outlet property="consoleLabel" destination="e7X-k7-pkw" id="PfD-9b-aKG"/>
+                        <outlet property="goneBeaconsLabel" destination="tRP-qs-HID" id="Oht-go-bPN"/>
+                        <outlet property="nearBeaconsLabel" destination="gt8-Fi-DMt" id="m96-vk-r8c"/>
+                        <outlet property="newBeaconsLabel" destination="9J7-o4-Y09" id="mCz-4D-Zt4"/>
                         <outlet property="searchButton" destination="xLh-MV-hh5" id="BiO-G7-YEF"/>
                         <outlet property="webView" destination="AeR-eW-KPJ" id="0SK-Yb-a68"/>
                     </connections>
