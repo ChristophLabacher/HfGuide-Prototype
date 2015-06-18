@@ -9,6 +9,12 @@
 import UIKit
 
 class ViewController: UIViewController {
+	
+	var topView : UIView? = nil
+	var scrubbingHandle: UIImageView? = nil
+	var viewsDictionary : [String : UIView]? = nil
+	
+	var verticalConstraint : [AnyObject]? = nil
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -20,10 +26,10 @@ class ViewController: UIViewController {
 		// TOPVIEW
 		//////////////////////////
 		
-		let topView : UIView = UIView()
-		topView.setTranslatesAutoresizingMaskIntoConstraints(false)
+		topView = UIView()
+		topView!.setTranslatesAutoresizingMaskIntoConstraints(false)
 	
-		view.self.addSubview(topView)
+		view.self.addSubview(topView!)
 		
 		let backgroundImage = UIImageView()
 		backgroundImage.image = UIImage(named: "overlay")
@@ -31,7 +37,7 @@ class ViewController: UIViewController {
 		backgroundImage.clipsToBounds = true
 		backgroundImage.setTranslatesAutoresizingMaskIntoConstraints(false)
 
-		topView.addSubview(backgroundImage)
+		topView!.addSubview(backgroundImage)
 		
 		// TopView > StatisticView
 		//////////////////////////
@@ -117,7 +123,7 @@ class ViewController: UIViewController {
 		statisticView.addConstraint(NSLayoutConstraint(item: statisticLabel_3_3, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: statisticView, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
 
 		
-		topView.addSubview(statisticView)
+		topView!.addSubview(statisticView)
 		
 		// TopView > ScrollCollectionView
 		//////////////////////////
@@ -138,7 +144,7 @@ class ViewController: UIViewController {
 
 		scrollCollectionView!.setTranslatesAutoresizingMaskIntoConstraints(false)
 
-		topView.addSubview(scrollCollectionView!)
+		topView!.addSubview(scrollCollectionView!)
 		
 		//////////////////////////
 		// CONSTRAINTS (to topView)
@@ -146,19 +152,19 @@ class ViewController: UIViewController {
 		
 		// BackgroundImage - Width
 		let backgroundImageWidthContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[v1]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(backgroundImage))
-		topView.addConstraints(backgroundImageWidthContraint)
+		topView!.addConstraints(backgroundImageWidthContraint)
 		
 		// BackgroundImage - Height
 		let backgroundImageHeightContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[v1]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(backgroundImage))
-		topView.addConstraints(backgroundImageHeightContraint)
+		topView!.addConstraints(backgroundImageHeightContraint)
 		
 		// StatisticView - Width
 		let statisticViewWidthContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[v1]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(statisticView))
-		topView.addConstraints(statisticViewWidthContraint)
+		topView!.addConstraints(statisticViewWidthContraint)
 		
 		// ScrollCollectionView - Width
 		let scrollCollectionViewWidthContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[v1]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(scrollCollectionView!))
-		topView.addConstraints(scrollCollectionViewWidthContraint)
+		topView!.addConstraints(scrollCollectionViewWidthContraint)
 		
 		let topViewDictionary = [
 			"statisticView": statisticView,
@@ -167,18 +173,22 @@ class ViewController: UIViewController {
 		
 		// Vertical
 		let topViewVerticalConstraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|-35-[statisticView(20)]-15-[scrollCollectionView(90)]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: topViewDictionary)
-		topView.addConstraints(topViewVerticalConstraint)
+		topView!.addConstraints(topViewVerticalConstraint)
 		
 		//////////////////////////
 		// SCRUBBING HANDLE
 		//////////////////////////
 		
-		let scrubbingHandle : UIImageView = UIImageView()
-		scrubbingHandle.contentMode = UIViewContentMode.Center
-		scrubbingHandle.image = UIImage(named: "handle")
-		scrubbingHandle.setTranslatesAutoresizingMaskIntoConstraints(false)
+		scrubbingHandle = UIImageView()
+		scrubbingHandle!.contentMode = UIViewContentMode.Center
+		scrubbingHandle!.image = UIImage(named: "handle")
+		scrubbingHandle!.setTranslatesAutoresizingMaskIntoConstraints(false)
+		scrubbingHandle!.userInteractionEnabled = true
 		
-		self.view.addSubview(scrubbingHandle)
+		let scrubbingHandleGestureRecognizer = UIPanGestureRecognizer(target: self, action: "panOnScrubbingHandle:")
+		scrubbingHandle!.addGestureRecognizer(scrubbingHandleGestureRecognizer)
+		
+		self.view.addSubview(scrubbingHandle!)
 		
 		//////////////////////////
 		// MAINVIEW
@@ -189,7 +199,6 @@ class ViewController: UIViewController {
 		//////////////////////////
 		
 		let mainCollectionViewLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-		mainCollectionViewLayout.itemSize = CGSize(width: self.view.frame.width - 90, height: self.view.frame.height-240)
 		mainCollectionViewLayout.scrollDirection = UICollectionViewScrollDirection.Horizontal
 		mainCollectionViewLayout.minimumLineSpacing = 22
 		
@@ -210,26 +219,26 @@ class ViewController: UIViewController {
 		//////////////////////////
 		
 		// topView - Width
-		let topViewWidthContraint = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[v1]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(topView))
+		let topViewWidthContraint = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[v1]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(topView!))
 		self.view.addConstraints(topViewWidthContraint)
 
 		// ScrubbingHandle - Width
-		let scrubbingHandleWidthContraint = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[v1]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(scrubbingHandle))
+		let scrubbingHandleWidthContraint = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[v1]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(scrubbingHandle!))
 		self.view.addConstraints(scrubbingHandleWidthContraint)
 		
 		// MainCollectionView - Width
 		let mainCollectionViewWidthContraint = NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[v1]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(mainCollectionView!))
 		self.view.addConstraints(mainCollectionViewWidthContraint)
 		
-		let viewsDictionary = [
-			"topView": topView,
-			"scrubbingHandle" : scrubbingHandle,
+		viewsDictionary = [
+			"topView": topView!,
+			"scrubbingHandle" : scrubbingHandle!,
 			"mainCollectionView": mainCollectionView!
 		]
-		
+	
 		// Vertical
-		let verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|-(0)-[topView(160)]-5-[scrubbingHandle(40)]-5-[mainCollectionView]-30-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
-		self.view.addConstraints(verticalContraint)
+		verticalConstraint = NSLayoutConstraint.constraintsWithVisualFormat("V:|-(0)-[topView(160)]-5-[scrubbingHandle(40)]-5-[mainCollectionView]-30-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary!)
+		self.view.addConstraints(verticalConstraint!)
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -241,6 +250,19 @@ class ViewController: UIViewController {
 		let sourcePath = NSBundle.mainBundle().resourcePath?.stringByAppendingPathComponent("Assets")
 		dataArray = NSFileManager.defaultManager().contentsOfDirectoryAtPath(sourcePath!, error: nil)
 		println(dataArray?.count)
+	}
+	
+	func panOnScrubbingHandle(sender: UIPanGestureRecognizer)	{
+		self.view.removeConstraints(verticalConstraint!)
+		
+		let constraintString : String = "V:|-(\(sender.translationInView(self.view).y))-[topView(160)]-5-[scrubbingHandle(40)]-5-[mainCollectionView]-30-|"
+		
+		verticalConstraint = NSLayoutConstraint.constraintsWithVisualFormat(constraintString, options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary!)
+		self.view.addConstraints(verticalConstraint!)
+
+		mainCollectionView!.reloadData()
+		
+		println(sender.translationInView(self.view).y)
 	}
 }
 
