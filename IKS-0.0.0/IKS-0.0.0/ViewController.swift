@@ -10,11 +10,10 @@ import UIKit
 
 class ViewController: UIViewController {
 	
-	var topView : UIView? = nil
-	var scrubbingHandle: UIImageView? = nil
-	var viewsDictionary : [String : UIView]? = nil
-	
-	var verticalConstraint : [AnyObject]? = nil
+	let topView : UIView! = UIView()
+	let scrubbingHandle: UIImageView! = UIImageView()
+	var viewsDictionary : [String : UIView]!
+	var mainViewVerticalConstraint : [AnyObject]! = nil
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -26,10 +25,8 @@ class ViewController: UIViewController {
 		// TOPVIEW
 		//////////////////////////
 		
-		topView = UIView()
-		topView!.setTranslatesAutoresizingMaskIntoConstraints(false)
-	
-		view.self.addSubview(topView!)
+		topView.setTranslatesAutoresizingMaskIntoConstraints(false)
+		view.self.addSubview(topView)
 		
 		let backgroundImage = UIImageView()
 		backgroundImage.image = UIImage(named: "overlay")
@@ -37,7 +34,7 @@ class ViewController: UIViewController {
 		backgroundImage.clipsToBounds = true
 		backgroundImage.setTranslatesAutoresizingMaskIntoConstraints(false)
 
-		topView!.addSubview(backgroundImage)
+		topView.addSubview(backgroundImage)
 		
 		// TopView > StatisticView
 		//////////////////////////
@@ -172,14 +169,13 @@ class ViewController: UIViewController {
 		]
 		
 		// Vertical
-		let topViewVerticalConstraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|-35-[statisticView(20)]-15-[scrollCollectionView(90)]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: topViewDictionary)
+		let topViewVerticalConstraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|-35-[scrollCollectionView(90)]-15-[statisticView(20)]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: topViewDictionary)
 		topView!.addConstraints(topViewVerticalConstraint)
 		
 		//////////////////////////
 		// SCRUBBING HANDLE
 		//////////////////////////
 		
-		scrubbingHandle = UIImageView()
 		scrubbingHandle!.contentMode = UIViewContentMode.Center
 		scrubbingHandle!.image = UIImage(named: "handle")
 		scrubbingHandle!.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -208,9 +204,8 @@ class ViewController: UIViewController {
 		mainCollectionView!.dataSource = mainCollectionViewDelegateAndDataSource
 		mainCollectionView!.delegate = mainCollectionViewDelegateAndDataSource
 		mainCollectionView!.registerClass(MainCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
-		//mainCollectionView?.backgroundColor = appColorGreen
 		mainCollectionView!.setTranslatesAutoresizingMaskIntoConstraints(false)
-		mainCollectionView!.contentInset = UIEdgeInsetsMake(0, 45, 0, 45)
+		//mainCollectionView!.contentInset = UIEdgeInsetsMake(0, 45, 0, 45)
 		
 		self.view.addSubview(mainCollectionView!)
 		
@@ -237,8 +232,8 @@ class ViewController: UIViewController {
 		]
 	
 		// Vertical
-		verticalConstraint = NSLayoutConstraint.constraintsWithVisualFormat("V:|-(0)-[topView(160)]-5-[scrubbingHandle(40)]-5-[mainCollectionView]-30-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary!)
-		self.view.addConstraints(verticalConstraint!)
+		mainViewVerticalConstraint = NSLayoutConstraint.constraintsWithVisualFormat("V:|-(0)-[topView(160)]-5-[scrubbingHandle(40)]-5-[mainCollectionView]-30-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary!)
+		self.view.addConstraints(mainViewVerticalConstraint!)
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -253,12 +248,12 @@ class ViewController: UIViewController {
 	}
 	
 	func panOnScrubbingHandle(sender: UIPanGestureRecognizer)	{
-		self.view.removeConstraints(verticalConstraint!)
+		self.view.removeConstraints(mainViewVerticalConstraint)
 		
 		let constraintString : String = "V:|-(\(sender.translationInView(self.view).y))-[topView(160)]-5-[scrubbingHandle(40)]-5-[mainCollectionView]-30-|"
 		
-		verticalConstraint = NSLayoutConstraint.constraintsWithVisualFormat(constraintString, options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary!)
-		self.view.addConstraints(verticalConstraint!)
+		mainViewVerticalConstraint = NSLayoutConstraint.constraintsWithVisualFormat(constraintString, options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary!)
+		self.view.addConstraints(mainViewVerticalConstraint!)
 
 		mainCollectionView!.reloadData()
 	}

@@ -11,6 +11,12 @@ import UIKit
 class MainCollectionViewCell: UICollectionViewCell {
 	let card: UIView!
 	let backgroundImage: UIImageView!
+	let blurEffectView : UIVisualEffectView!
+	let readMoreButtonBorderTop : UIView!
+	let readMoreButton : UIButton!
+	
+	var verticalContraint : [AnyObject]!
+	var viewsDictionary : [String : UIView]!
 	
 	override init(frame: CGRect) {
 		
@@ -41,14 +47,14 @@ class MainCollectionViewCell: UICollectionViewCell {
 		//////////////////////////
 		
 		let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
-		let blurEffectView = UIVisualEffectView(effect: blurEffect)
+		blurEffectView = UIVisualEffectView(effect: blurEffect)
 		blurEffectView.frame = card.bounds
 		//card.addSubview(blurEffectView)
 		
 		// Card > ReadMoreButtonBorderTop
 		//////////////////////////
 		
-		let readMoreButtonBorderTop = UIView()
+		readMoreButtonBorderTop = UIView()
 		readMoreButtonBorderTop.backgroundColor = appColorRed
 		readMoreButtonBorderTop.setTranslatesAutoresizingMaskIntoConstraints(false)
 
@@ -60,7 +66,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 		// Card > ReadMore
 		//////////////////////////
 		
-		let readMoreButton = UIButton()
+		readMoreButton = UIButton()
 		readMoreButton.backgroundColor = UIColor.whiteColor()
 		readMoreButton.setTranslatesAutoresizingMaskIntoConstraints(false)
 
@@ -132,7 +138,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 		contentView.addConstraints(verticalCardContraint)
 		contentView.addConstraints(horizontalCardContraint)
 		
-		let viewsDictionary = [
+		viewsDictionary = [
 			"backgroundImage": backgroundImage,
 			"readMoreButton": readMoreButton,
 			"readMoreButtonBorderTop": readMoreButtonBorderTop,
@@ -142,11 +148,39 @@ class MainCollectionViewCell: UICollectionViewCell {
 			"card":card
 		]
 
-		let verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage][readMoreButtonBorderTop(5)][readMoreButton(45)]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+		verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage][readMoreButtonBorderTop(5)][readMoreButton(45)]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 		card.addConstraints(verticalContraint)
+		
+		//////////////////////////
+		// Actions
+		//////////////////////////
+		readMoreButton.addTarget(self, action: "readMoreButtonTap:", forControlEvents: UIControlEvents.TouchUpInside)
+
 	}
 	
 	required init(coder aDecoder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
+	}
+	
+	func readMoreButtonTap(sender: UIButton)	{
+		viewsDictionary = [
+			"backgroundImage": backgroundImage,
+			"readMoreButton": readMoreButton,
+			"readMoreButtonBorderTop": readMoreButtonBorderTop,
+			"contentView":contentView,
+		]
+		
+		card.removeConstraints(verticalContraint!)
+		verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage(100)][readMoreButtonBorderTop(5)][readMoreButton(45)]-(>=0)-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+		card.addConstraints(verticalContraint!)
+		
+		let mainView = window?.rootViewController
+		//var constraint = mainView.mainViewVerticalConstraint
+
+
+		
+		UIView.animateWithDuration(0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.01, options: nil, animations: {
+			self.card.layoutIfNeeded()
+		}, completion: nil)
 	}
 }
