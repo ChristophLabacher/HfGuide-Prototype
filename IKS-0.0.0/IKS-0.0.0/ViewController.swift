@@ -37,8 +37,85 @@ class ViewController: UIViewController {
 		//////////////////////////
 		
 		let statisticView : UIView = UIView()
-		//statisticView.backgroundColor = appColorViolet
 		statisticView.setTranslatesAutoresizingMaskIntoConstraints(false)
+		
+		let statisticLabel_1_1 : CLLabel = CLLabel()
+		statisticLabel_1_1.setLabelText("Fragen")
+		statisticLabel_1_1.setTranslatesAutoresizingMaskIntoConstraints(false)
+		statisticView.addSubview(statisticLabel_1_1)
+		
+		let statisticLabel_1_2 : CLLabel = CLLabel()
+		statisticLabel_1_2.setLabelText("0")
+		statisticLabel_1_2.textColor = appColorBlue
+		statisticLabel_1_2.setTranslatesAutoresizingMaskIntoConstraints(false)
+		statisticView.addSubview(statisticLabel_1_2)
+		
+		let statisticLabel_1_3 : CLLabel = CLLabel()
+		statisticLabel_1_3.setLabelText("/3")
+		statisticLabel_1_3.setTranslatesAutoresizingMaskIntoConstraints(false)
+		statisticView.addSubview(statisticLabel_1_3)
+		
+		let statisticLabel_2_1 : CLLabel = CLLabel()
+		statisticLabel_2_1.setLabelText("Räume")
+		statisticLabel_2_1.setTranslatesAutoresizingMaskIntoConstraints(false)
+		statisticView.addSubview(statisticLabel_2_1)
+		
+		let statisticLabel_2_2 : CLLabel = CLLabel()
+		statisticLabel_2_2.setLabelText("3")
+		statisticLabel_2_2.textColor = appColorYellow
+		statisticLabel_2_2.setTranslatesAutoresizingMaskIntoConstraints(false)
+		statisticView.addSubview(statisticLabel_2_2)
+		
+		let statisticLabel_2_3 : CLLabel = CLLabel()
+		statisticLabel_2_3.setLabelText("/5")
+		statisticLabel_2_3.setTranslatesAutoresizingMaskIntoConstraints(false)
+		statisticView.addSubview(statisticLabel_2_3)
+		
+		let statisticLabel_3_1 : CLLabel = CLLabel()
+		statisticLabel_3_1.setLabelText("Projekte")
+		statisticLabel_3_1.setTranslatesAutoresizingMaskIntoConstraints(false)
+		statisticView.addSubview(statisticLabel_3_1)
+		
+		let statisticLabel_3_2 : CLLabel = CLLabel()
+		statisticLabel_3_2.setLabelText("2")
+		statisticLabel_3_2.textColor = appColorRed
+		statisticLabel_3_2.setTranslatesAutoresizingMaskIntoConstraints(false)
+		statisticView.addSubview(statisticLabel_3_2)
+		
+		let statisticLabel_3_3 : CLLabel = CLLabel()
+		statisticLabel_3_3.setLabelText("/4")
+		statisticLabel_3_3.setTranslatesAutoresizingMaskIntoConstraints(false)
+		statisticView.addSubview(statisticLabel_3_3)
+		
+		let statisticViewDictionary = [
+			"statisticLabel_1_1": statisticLabel_1_1,
+			"statisticLabel_1_2": statisticLabel_1_2,
+			"statisticLabel_1_3": statisticLabel_1_3,
+			"statisticLabel_2_1": statisticLabel_2_1,
+			"statisticLabel_2_2": statisticLabel_2_2,
+			"statisticLabel_2_3": statisticLabel_2_3,
+			"statisticLabel_3_1": statisticLabel_3_1,
+			"statisticLabel_3_2": statisticLabel_3_2,
+			"statisticLabel_3_3": statisticLabel_3_3
+		]
+		
+		// Horizontal
+		let statisticViewHorizontalConstraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-30-[statisticLabel_1_1]-5-[statisticLabel_1_2]-0-[statisticLabel_1_3]-(>=0)-[statisticLabel_2_1]-5-[statisticLabel_2_2]-0-[statisticLabel_2_3]-(>=0)-[statisticLabel_3_1]-5-[statisticLabel_3_2]-0-[statisticLabel_3_3]-30-|", options: NSLayoutFormatOptions(0), metrics: nil, views: statisticViewDictionary)
+		statisticView.addConstraints(statisticViewHorizontalConstraint)
+
+		statisticView.addConstraint(NSLayoutConstraint(item: statisticLabel_2_1, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: statisticView, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: -15))
+
+		// Vertical
+		statisticView.addConstraint(NSLayoutConstraint(item: statisticLabel_1_1, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: statisticView, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
+		statisticView.addConstraint(NSLayoutConstraint(item: statisticLabel_1_2, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: statisticView, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
+		statisticView.addConstraint(NSLayoutConstraint(item: statisticLabel_1_3, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: statisticView, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
+		statisticView.addConstraint(NSLayoutConstraint(item: statisticLabel_2_1, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: statisticView, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
+		statisticView.addConstraint(NSLayoutConstraint(item: statisticLabel_2_2, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: statisticView, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
+		statisticView.addConstraint(NSLayoutConstraint(item: statisticLabel_2_3, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: statisticView, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
+		statisticView.addConstraint(NSLayoutConstraint(item: statisticLabel_3_1, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: statisticView, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
+		statisticView.addConstraint(NSLayoutConstraint(item: statisticLabel_3_2, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: statisticView, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
+		statisticView.addConstraint(NSLayoutConstraint(item: statisticLabel_3_3, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: statisticView, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
+
 		
 		topView.addSubview(statisticView)
 		
@@ -83,13 +160,13 @@ class ViewController: UIViewController {
 		let scrollCollectionViewWidthContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[v1]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(scrollCollectionView!))
 		topView.addConstraints(scrollCollectionViewWidthContraint)
 		
-		let topViewsDictionary = [
+		let topViewDictionary = [
 			"statisticView": statisticView,
 			"scrollCollectionView" : scrollCollectionView!
 		]
 		
 		// Vertical
-		let topViewVerticalConstraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|-40-[statisticView(20)]-10-[scrollCollectionView(90)]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: topViewsDictionary)
+		let topViewVerticalConstraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|-35-[statisticView(20)]-15-[scrollCollectionView(90)]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: topViewDictionary)
 		topView.addConstraints(topViewVerticalConstraint)
 		
 		//////////////////////////
