@@ -261,8 +261,6 @@ class ViewController: UIViewController {
 		self.view.addConstraints(verticalConstraint!)
 
 		mainCollectionView!.reloadData()
-		
-		println(sender.translationInView(self.view).y)
 	}
 }
 

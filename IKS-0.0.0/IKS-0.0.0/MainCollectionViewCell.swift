@@ -14,53 +14,63 @@ class MainCollectionViewCell: UICollectionViewCell {
 	
 	override init(frame: CGRect) {
 		
-		//////
-		// TODO: Cleanup
-		//////
-		
-		//
+		//////////////////////////
 		// Card
-		//
+		//////////////////////////
 		
 		card = UIView();
 		card.backgroundColor = UIColor.whiteColor();
 		card.layer.cornerRadius = 10;
-		card.frame = CGRect(x: 0, y: 0, width: frame.size.width-200, height: frame.size.height-200)
 		card.clipsToBounds = true
+		card.setTranslatesAutoresizingMaskIntoConstraints(false)
 		
-		//
-		// BackgroundImage
-		//
+		// Card > BackgroundImage
+		//////////////////////////
 		
 		backgroundImage = UIImageView()
 		backgroundImage.contentMode = UIViewContentMode.ScaleAspectFill
 		backgroundImage.clipsToBounds = true
+		backgroundImage.setTranslatesAutoresizingMaskIntoConstraints(false)
+
 		card.addSubview(backgroundImage)
 		
-		//
-		// BlurEffect
-		//
+		let backgroundImageWidthContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|[v1]|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(backgroundImage))
+		card.addConstraints(backgroundImageWidthContraint)
+		
+		// Card > BlurEffect
+		//////////////////////////
 		
 		let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
 		let blurEffectView = UIVisualEffectView(effect: blurEffect)
 		blurEffectView.frame = card.bounds
 		//card.addSubview(blurEffectView)
 		
-		//
-		// ReadMoreButtonBorderTop
-		//
+		// Card > ReadMoreButtonBorderTop
+		//////////////////////////
 		
 		let readMoreButtonBorderTop = UIView()
 		readMoreButtonBorderTop.backgroundColor = appColorRed
+		readMoreButtonBorderTop.setTranslatesAutoresizingMaskIntoConstraints(false)
+
 		card.addSubview(readMoreButtonBorderTop)
 		
-		//
-		// ReadMoreButton
-		//
+		let readMoreButtonTopBorderWidthContraint = NSLayoutConstraint.constraintsWithVisualFormat("H:|[v1]|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(readMoreButtonBorderTop))
+		card.addConstraints(readMoreButtonTopBorderWidthContraint)
+		
+		// Card > ReadMore
+		//////////////////////////
 		
 		let readMoreButton = UIButton()
 		readMoreButton.backgroundColor = UIColor.whiteColor()
+		readMoreButton.setTranslatesAutoresizingMaskIntoConstraints(false)
+
 		card.addSubview(readMoreButton)
+		
+		let readMoreButtonWidthContraint = NSLayoutConstraint.constraintsWithVisualFormat("H:|[v1]|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(readMoreButton))
+		card.addConstraints(readMoreButtonWidthContraint)
+		
+		// Card > ReadMore > ReadMoreButtonLabel
+		//////////////////////////
 		
 		let readMoreButtonLabel = CLLabel()
 		readMoreButtonLabel.setLabelText("Weiterlesen")
@@ -78,28 +88,49 @@ class MainCollectionViewCell: UICollectionViewCell {
 		readMoreButton.addConstraints(readMoreButtonLabelWidthContraint)
 		readMoreButton.addConstraints(readMoreButtonLabelHeightContraint)
 
-		//
-		// CategoryLabel
-		//
+		// Card > CategoryLabel
+		//////////////////////////
 		
 		let categoryLabel = CLLabel()
 		categoryLabel.setLabelText("Frage")
+		categoryLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+
 		card.addSubview(categoryLabel)
 		
-		//
-		// NoteLabel
-		//
+		let verticalCategoryLabelContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[v1]", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(categoryLabel))
+		card.addConstraints(verticalCategoryLabelContraint)
+		
+		let horizontalCategoryLabelContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-15-[v1]", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(categoryLabel))
+		card.addConstraints(horizontalCategoryLabelContraint)
+		
+		// Card > NoteLabel
+		//////////////////////////
 		
 		let noteLabel = CLLabel()
 		noteLabel.setLabelText("5 Notizen")
+		noteLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+
 		card.addSubview(noteLabel)
+		
+		let verticalNoteLabelContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[v1]", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(noteLabel))
+		card.addConstraints(verticalNoteLabelContraint)
+		
+		let horizontalNoteLabelContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:[v1]-15-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(noteLabel))
+		card.addConstraints(horizontalNoteLabelContraint)
+		
+		
 		
 		super.init(frame: frame)
 		contentView.addSubview(card)
 		
-		//
-		// Constraints
-		//
+		//////////////////////////
+		// CONSTRAINTS (to card)
+		//////////////////////////
+		
+		let verticalCardContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[v1]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(card))
+		let horizontalCardContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[v1]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(card))
+		contentView.addConstraints(verticalCardContraint)
+		contentView.addConstraints(horizontalCardContraint)
 		
 		let viewsDictionary = [
 			"backgroundImage": backgroundImage,
@@ -110,42 +141,9 @@ class MainCollectionViewCell: UICollectionViewCell {
 			"contentView":contentView,
 			"card":card
 		]
-		
-		backgroundImage.setTranslatesAutoresizingMaskIntoConstraints(false)
-		readMoreButton.setTranslatesAutoresizingMaskIntoConstraints(false)
-		readMoreButtonBorderTop.setTranslatesAutoresizingMaskIntoConstraints(false)
-		categoryLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
-		noteLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
-		card.setTranslatesAutoresizingMaskIntoConstraints(false)
-		
-		let backgroundImageWidthContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|[backgroundImage]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
-		
-		let readMoreButtonWidthContraint = NSLayoutConstraint.constraintsWithVisualFormat("H:|[readMoreButton]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
-		
-		let readMoreButtonTopBorderWidthContraint = NSLayoutConstraint.constraintsWithVisualFormat("H:|[readMoreButtonBorderTop]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
-		
+
 		let verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage][readMoreButtonBorderTop(5)][readMoreButton(45)]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
-		
-		let verticalCategoryLabelContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[categoryLabel]", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
-		let horizontalCategoryLabelContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-15-[categoryLabel]", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
-		let verticalNoteLabelContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|-20-[noteLabel]", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
-		let horizontalNoteLabelContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:[noteLabel]-15-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
-
-		card.addConstraints(backgroundImageWidthContraint)
-		card.addConstraints(readMoreButtonWidthContraint)
-		card.addConstraints(readMoreButtonTopBorderWidthContraint)
 		card.addConstraints(verticalContraint)
-		
-		card.addConstraints(verticalCategoryLabelContraint)
-		card.addConstraints(horizontalCategoryLabelContraint)
-		card.addConstraints(verticalNoteLabelContraint)
-		card.addConstraints(horizontalNoteLabelContraint)
-		
-		let verticalCardContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[card]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
-		let horizontalCardContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[card]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
-
-		contentView.addConstraints(verticalCardContraint)
-		contentView.addConstraints(horizontalCardContraint)
 	}
 	
 	required init(coder aDecoder: NSCoder) {
