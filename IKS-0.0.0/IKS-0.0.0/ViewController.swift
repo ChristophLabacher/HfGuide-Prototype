@@ -257,5 +257,16 @@ class ViewController: UIViewController {
 
 		mainCollectionView!.reloadData()
 	}
+	
+	func hugeMainView()	{
+		self.view.removeConstraints(mainViewVerticalConstraint)
+		
+		let constraintString : String = "V:|-(-210)-[topView(160)]-5-[scrubbingHandle(40)]-5-[mainCollectionView]-30-|"
+		
+		mainViewVerticalConstraint = NSLayoutConstraint.constraintsWithVisualFormat(constraintString, options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary!)
+		self.view.addConstraints(mainViewVerticalConstraint!)
+		
+		mainCollectionView!.reloadData()
+	}
 }
 

@@ -9,21 +9,51 @@
 import UIKit
 
 class ScrollCollectionViewCell: UICollectionViewCell {
+	let card : UIView!
 	let imageView: UIImageView!
 	
 	override init(frame: CGRect) {
+		
+		card = UIView();
+		card.backgroundColor = UIColor.whiteColor();
+		card.layer.cornerRadius = 5;
+		card.clipsToBounds = true
+		card.setTranslatesAutoresizingMaskIntoConstraints(false)
+		card.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
+		
 		imageView = UIImageView()
 		imageView.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
 		imageView.contentMode = UIViewContentMode.ScaleAspectFill
 		imageView.clipsToBounds = true
-		imageView.layer.cornerRadius = 10;
+		card.addSubview(imageView)
 		
-		imageView.layer.borderColor = appColorBlue.CGColor
-		imageView.layer.borderWidth = 3
+		let borderWidth : CGFloat = 5.0
+		
+		let borderTop = UIView()
+		borderTop.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: borderWidth)
+		borderTop.backgroundColor = appColorBlue
+		card.addSubview(borderTop)
+		
+		let borderRight = UIView()
+		borderRight.frame = CGRect(x: frame.size.width - borderWidth, y: borderWidth, width: borderWidth, height: frame.size.height - (borderWidth*2))
+		borderRight.backgroundColor = appColorBlue
+		card.addSubview(borderRight)
+		
+		let borderBottom = UIView()
+		borderBottom.frame = CGRect(x: 0, y: frame.size.height - borderWidth, width: frame.size.width, height: borderWidth)
+		borderBottom.backgroundColor = appColorBlue
+		card.addSubview(borderBottom)
+		
+		let borderLeft = UIView()
+		borderLeft.frame = CGRect(x: 0, y: borderWidth, width: borderWidth, height: frame.size.height - (borderWidth*2))
+		borderLeft.backgroundColor = appColorBlue
+		card.addSubview(borderLeft)
+		
+		borderLeft.backgroundColor = UIColor.clearColor()
+		borderRight.backgroundColor = UIColor.clearColor()
 		
 		super.init(frame: frame)
-		
-		contentView.addSubview(imageView)
+		contentView.addSubview(card)
 	}
 	
 	required init(coder aDecoder: NSCoder) {
