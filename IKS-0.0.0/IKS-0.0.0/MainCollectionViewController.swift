@@ -31,6 +31,6 @@ class MainCollectionViewController: NSObject, UICollectionViewDelegate, UICollec
 	}
 	
 	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
-		return CGSizeMake(collectionView.frame.size.width-90, collectionView.frame.size.height)
+		return CGSizeMake(collectionView.frame.size.width-80, collectionView.frame.size.height)
 	}
 }

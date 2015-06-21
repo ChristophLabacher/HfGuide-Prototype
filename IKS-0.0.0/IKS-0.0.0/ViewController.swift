@@ -8,12 +8,14 @@
 
 import UIKit
 
+// TODO: Test
+
 class ViewController: UIViewController {
 	
 	let topView : UIView! = UIView()
 	let scrubbingHandle: UIImageView! = UIImageView()
 	var viewsDictionary : [String : UIView]!
-	var mainViewVerticalConstraint : [AnyObject]! = nil
+	var mainViewTopVerticalConstraint : NSLayoutConstraint!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -22,7 +24,7 @@ class ViewController: UIViewController {
 		loadImagesFromAssets()
 		
 		//////////////////////////
-		// TOPVIEW
+		// MARK: TOPVIEW
 		//////////////////////////
 		
 		topView.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -144,7 +146,7 @@ class ViewController: UIViewController {
 		topView!.addSubview(scrollCollectionView!)
 		
 		//////////////////////////
-		// CONSTRAINTS (to topView)
+		// MARK: CONSTRAINTS (to topView)
 		//////////////////////////
 		
 		// BackgroundImage - Width
@@ -169,11 +171,11 @@ class ViewController: UIViewController {
 		]
 		
 		// Vertical
-		let topViewVerticalConstraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|-35-[scrollCollectionView(90)]-15-[statisticView(20)]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: topViewDictionary)
+		let topViewVerticalConstraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|-55-[scrollCollectionView(90)]-15-[statisticView(20)]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: topViewDictionary)
 		topView!.addConstraints(topViewVerticalConstraint)
 		
 		//////////////////////////
-		// SCRUBBING HANDLE
+		// MARK: SCRUBBING HANDLE
 		//////////////////////////
 		
 		scrubbingHandle!.contentMode = UIViewContentMode.Center
@@ -187,7 +189,7 @@ class ViewController: UIViewController {
 		self.view.addSubview(scrubbingHandle!)
 		
 		//////////////////////////
-		// MAINVIEW
+		// MARK: MAINVIEW
 		//////////////////////////
 		
 		
@@ -210,7 +212,7 @@ class ViewController: UIViewController {
 		self.view.addSubview(mainCollectionView!)
 		
 		//////////////////////////
-		// CONSTRAINTS (to Superview)
+		// MARK: CONSTRAINTS (to Superview)
 		//////////////////////////
 		
 		// topView - Width
@@ -232,8 +234,11 @@ class ViewController: UIViewController {
 		]
 	
 		// Vertical
-		mainViewVerticalConstraint = NSLayoutConstraint.constraintsWithVisualFormat("V:|-(0)-[topView(160)]-5-[scrubbingHandle(40)]-5-[mainCollectionView]-30-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary!)
-		self.view.addConstraints(mainViewVerticalConstraint!)
+		let mainViewVerticalConstraint = NSLayoutConstraint.constraintsWithVisualFormat("V:|-(-20)-[topView(180)]-10-[scrubbingHandle(80)]-0-[mainCollectionView]-40-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary!)
+		self.view.addConstraints(mainViewVerticalConstraint)
+		
+		mainViewTopVerticalConstraint = NSLayoutConstraint(item: topView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: -20)
+		self.view.addConstraint(mainViewTopVerticalConstraint!)
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -248,25 +253,36 @@ class ViewController: UIViewController {
 	}
 	
 	func panOnScrubbingHandle(sender: UIPanGestureRecognizer)	{
-		self.view.removeConstraints(mainViewVerticalConstraint)
+		// TODO: Recalculate
+		let top : CGFloat = -180.0;
+		let bottom : CGFloat = -20.0;
+		var currentPos = mainViewTopVerticalConstraint.constant
+		var touchPos = sender.locationInView(self.view).y - 180 - 80
+		var duration = 0.0
 		
-		let constraintString : String = "V:|-(\(sender.translationInView(self.view).y))-[topView(160)]-5-[scrubbingHandle(40)]-5-[mainCollectionView]-30-|"
 		
-		mainViewVerticalConstraint = NSLayoutConstraint.constraintsWithVisualFormat(constraintString, options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary!)
-		self.view.addConstraints(mainViewVerticalConstraint!)
-
+		if (touchPos <= 0 && touchPos >= -180)	{
+			currentPos = touchPos;
+		}
+		
+		if (sender.state == UIGestureRecognizerState.Ended || sender.state == UIGestureRecognizerState.Cancelled)	{
+			if (sender.velocityInView(self.view).y > 0)	{
+				// Down
+				currentPos = bottom
+			} else if (sender.velocityInView(self.view).y < 0)	{
+				// Up
+				currentPos = top
+			}
+			
+			duration = 0.9
+		}
+		
+		mainViewTopVerticalConstraint.constant = currentPos
 		mainCollectionView!.reloadData()
-	}
-	
-	func hugeMainView()	{
-		self.view.removeConstraints(mainViewVerticalConstraint)
 		
-		let constraintString : String = "V:|-(-210)-[topView(160)]-5-[scrubbingHandle(40)]-5-[mainCollectionView]-30-|"
-		
-		mainViewVerticalConstraint = NSLayoutConstraint.constraintsWithVisualFormat(constraintString, options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary!)
-		self.view.addConstraints(mainViewVerticalConstraint!)
-		
-		mainCollectionView!.reloadData()
+		UIView.animateWithDuration(duration, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.01, options: nil, animations: {
+			self.view.layoutIfNeeded()
+		}, completion: nil)
 	}
 }
 

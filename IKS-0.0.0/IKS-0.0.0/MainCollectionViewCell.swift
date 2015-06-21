@@ -155,6 +155,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 		// Actions
 		//////////////////////////
 		readMoreButton.addTarget(self, action: "readMoreButtonTap:", forControlEvents: UIControlEvents.TouchUpInside)
+		
 
 	}
 	
@@ -173,9 +174,6 @@ class MainCollectionViewCell: UICollectionViewCell {
 		card.removeConstraints(verticalContraint!)
 		verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage(100)][readMoreButtonBorderTop(5)][readMoreButton(45)]-(>=0)-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 		card.addConstraints(verticalContraint!)
-		
-		let mainView = self.window!.rootViewController
-		//var constraint = mainView.mainViewVerticalConstraint
 		
 		UIView.animateWithDuration(0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.01, options: nil, animations: {
 			self.card.layoutIfNeeded()
