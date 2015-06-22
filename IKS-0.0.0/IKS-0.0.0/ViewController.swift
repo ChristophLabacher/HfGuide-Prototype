@@ -204,12 +204,12 @@ class ViewController: UIViewController {
 		
 		mainCollectionView = UICollectionView(frame: CGRectMake(0, 0, 0, 0), collectionViewLayout: mainCollectionViewLayout)
 		mainCollectionView!.showsHorizontalScrollIndicator = false
-		mainCollectionView!.pagingEnabled = true;
+		//mainCollectionView!.pagingEnabled = true;
 		mainCollectionView!.dataSource = mainCollectionViewDelegateAndDataSource
 		mainCollectionView!.delegate = mainCollectionViewDelegateAndDataSource
 		mainCollectionView!.registerClass(MainCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
 		mainCollectionView!.setTranslatesAutoresizingMaskIntoConstraints(false)
-		//mainCollectionView!.contentInset = UIEdgeInsetsMake(0, 45, 0, 45)
+		mainCollectionView!.contentInset = UIEdgeInsetsMake(0, 45, 0, 45)
 		
 		self.view.addSubview(mainCollectionView!)
 		
@@ -244,6 +244,22 @@ class ViewController: UIViewController {
 		
 		mainViewBottomVerticalConstraint = NSLayoutConstraint(item: mainCollectionView!, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: -40)
 		self.view.addConstraint(mainViewBottomVerticalConstraint!)
+
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: "cardTransitionToDetail", name: "cardTransitionToDetail", object: nil)
+	}
+	
+	func cardTransitionToDetail()	{
+		mainViewTopVerticalConstraint.constant = -180 - 90
+		mainViewBottomVerticalConstraint.constant = 0
+		
+		// TODO: Hier will ich drauf zugreifen
+		mainCollectionViewDelegateAndDataSource.cellMargin = 0
+		
+		mainCollectionView!.reloadData()
+		
+		UIView.animateWithDuration(0.8, animations: {
+			self.view.layoutIfNeeded()
+		}, completion: nil)
 	}
 
 	override func didReceiveMemoryWarning() {

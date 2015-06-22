@@ -9,6 +9,8 @@
 import UIKit
 
 class MainCollectionViewController: NSObject, UICollectionViewDelegate, UICollectionViewDataSource  {
+	var cellMargin : CGFloat = 80
+
 	override init() {
 	//	print("test")
 	}
@@ -24,6 +26,8 @@ class MainCollectionViewController: NSObject, UICollectionViewDelegate, UICollec
 	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! MainCollectionViewCell
 		
+		//let cell : MainCollectionViewCell = MainCollectionViewCell()
+		
 		let path = String(dataArray![indexPath.item] as! NSString);
 		cell.backgroundImage.image = UIImage(named: path)
 		
@@ -31,6 +35,10 @@ class MainCollectionViewController: NSObject, UICollectionViewDelegate, UICollec
 	}
 	
 	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
-		return CGSizeMake(collectionView.frame.size.width-80, collectionView.frame.size.height)
+		return CGSizeMake(collectionView.frame.size.width-cellMargin, collectionView.frame.size.height)
+	}
+	
+	func setMarginZero()	{
+		self.cellMargin = 0
 	}
 }

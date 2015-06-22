@@ -13,11 +13,12 @@ class MainCollectionViewCell: UICollectionViewCell {
 	let backgroundImage: UIImageView!
 	let blurEffectView : UIVisualEffectView!
 	let readMoreButtonBorderTop : UIView!
+	let readMoreButtonBorderTopProgress : UIView!
 	let readMoreButton : UIButton!
 	
 	var verticalContraint : [AnyObject]!
 	var viewsDictionary : [String : UIView]!
-	
+		
 	override init(frame: CGRect) {
 		
 		//////////////////////////
@@ -55,7 +56,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 		//////////////////////////
 		
 		readMoreButtonBorderTop = UIView()
-		readMoreButtonBorderTop.backgroundColor = appColorRed
+		readMoreButtonBorderTop.backgroundColor = appColorGrey
 		readMoreButtonBorderTop.setTranslatesAutoresizingMaskIntoConstraints(false)
 
 		card.addSubview(readMoreButtonBorderTop)
@@ -63,6 +64,10 @@ class MainCollectionViewCell: UICollectionViewCell {
 		let readMoreButtonTopBorderWidthContraint = NSLayoutConstraint.constraintsWithVisualFormat("H:|[v1]|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(readMoreButtonBorderTop))
 		card.addConstraints(readMoreButtonTopBorderWidthContraint)
 		
+		readMoreButtonBorderTopProgress = UIView()
+		readMoreButtonBorderTopProgress.backgroundColor = appColorRed
+		readMoreButtonBorderTop.addSubview(readMoreButtonBorderTopProgress)
+
 		// Card > ReadMore
 		//////////////////////////
 		
@@ -164,18 +169,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 	}
 	
 	func readMoreButtonTap(sender: UIButton)	{
-		if let root = self.window!.rootViewController as? ViewController {
-			
-			root.mainViewTopVerticalConstraint.constant = -180 - 90;
-			root.mainViewBottomVerticalConstraint.constant = 0;
-
-			mainCollectionView!.reloadData()
-			
-			UIView.animateWithDuration(0.8, animations: {
-				root.view.layoutIfNeeded()
-			}, completion: nil)
-
-		}
+		NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "cardTransitionToDetail", object: self))
 		
 		viewsDictionary = [
 			"backgroundImage": backgroundImage,
@@ -184,9 +178,9 @@ class MainCollectionViewCell: UICollectionViewCell {
 			"contentView":contentView,
 		]
 		
-		card.removeConstraints(verticalContraint!)
-		verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage(120)][readMoreButtonBorderTop(5)][readMoreButton(45)]-(>=0)-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
-		card.addConstraints(verticalContraint!)
+		self.card.removeConstraints(self.verticalContraint!)
+		self.verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage(120)][readMoreButtonBorderTop(5)][readMoreButton(45)]-(>=0)-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+		self.card.addConstraints(self.verticalContraint!)
 		
 		UIView.animateWithDuration(0.8, animations: {
 			self.card.layoutIfNeeded()
