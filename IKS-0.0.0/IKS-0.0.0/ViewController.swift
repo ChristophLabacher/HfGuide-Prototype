@@ -15,7 +15,9 @@ class ViewController: UIViewController {
 	let topView : UIView! = UIView()
 	let scrubbingHandle: UIImageView! = UIImageView()
 	var viewsDictionary : [String : UIView]!
+	var mainViewVerticalConstraint : [AnyObject]! = nil
 	var mainViewTopVerticalConstraint : NSLayoutConstraint!
+	var mainViewBottomVerticalConstraint : NSLayoutConstraint!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -234,11 +236,14 @@ class ViewController: UIViewController {
 		]
 	
 		// Vertical
-		let mainViewVerticalConstraint = NSLayoutConstraint.constraintsWithVisualFormat("V:|-(-20)-[topView(180)]-10-[scrubbingHandle(80)]-0-[mainCollectionView]-40-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary!)
-		self.view.addConstraints(mainViewVerticalConstraint)
+		mainViewVerticalConstraint = NSLayoutConstraint.constraintsWithVisualFormat("V:[topView(180)]-10-[scrubbingHandle(80)]-0-[mainCollectionView]", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary!)
+		self.view.addConstraints(mainViewVerticalConstraint!)
 		
 		mainViewTopVerticalConstraint = NSLayoutConstraint(item: topView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: -20)
 		self.view.addConstraint(mainViewTopVerticalConstraint!)
+		
+		mainViewBottomVerticalConstraint = NSLayoutConstraint(item: mainCollectionView!, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: -40)
+		self.view.addConstraint(mainViewBottomVerticalConstraint!)
 	}
 
 	override func didReceiveMemoryWarning() {

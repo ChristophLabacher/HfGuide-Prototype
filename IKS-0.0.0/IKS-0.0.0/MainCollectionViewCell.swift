@@ -164,6 +164,19 @@ class MainCollectionViewCell: UICollectionViewCell {
 	}
 	
 	func readMoreButtonTap(sender: UIButton)	{
+		if let root = self.window!.rootViewController as? ViewController {
+			
+			root.mainViewTopVerticalConstraint.constant = -180 - 90;
+			root.mainViewBottomVerticalConstraint.constant = 0;
+
+			mainCollectionView!.reloadData()
+			
+			UIView.animateWithDuration(0.8, animations: {
+				root.view.layoutIfNeeded()
+			}, completion: nil)
+
+		}
+		
 		viewsDictionary = [
 			"backgroundImage": backgroundImage,
 			"readMoreButton": readMoreButton,
@@ -172,11 +185,12 @@ class MainCollectionViewCell: UICollectionViewCell {
 		]
 		
 		card.removeConstraints(verticalContraint!)
-		verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage(100)][readMoreButtonBorderTop(5)][readMoreButton(45)]-(>=0)-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+		verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage(120)][readMoreButtonBorderTop(5)][readMoreButton(45)]-(>=0)-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 		card.addConstraints(verticalContraint!)
 		
-		UIView.animateWithDuration(0.8, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.01, options: nil, animations: {
+		UIView.animateWithDuration(0.8, animations: {
 			self.card.layoutIfNeeded()
+			self.card.layer.cornerRadius = 0;
 		}, completion: nil)
 	}
 }
