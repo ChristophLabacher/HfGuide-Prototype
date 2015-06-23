@@ -12,6 +12,7 @@ import UIKit
 class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDelegate {
 	
     @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var clearButton: UIButton!
     @IBOutlet weak var consoleLabel: UITextView!
 
     @IBOutlet weak var beaconLabel: UILabel!
@@ -19,9 +20,23 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
     @IBOutlet weak var newBeaconsLabel: UILabel!
     @IBOutlet weak var nearBeaconsLabel: UILabel!
     @IBOutlet weak var goneBeaconsLabel: UILabel!
+
+    @IBOutlet weak var rssiFilteringSwitch: UISwitch!
+    @IBOutlet weak var printIntervalSwitch: UISwitch!
+    @IBOutlet weak var printOnRangeScanSwitch: UISwitch!
+    @IBOutlet weak var printFoundGoneSwitch: UISwitch!
+
     
-    var searchingBeacons = false
+    var rssiFiltering = true
+    var printInterval = true
+    var printRange = true
+    var printFoundGone = true;
+
+    
     var searchingInterval = 0.2
+    var searchingTimer = NSTimer()
+    var searchingBeacons = false
+    
     
     //saveBeaconArray ist dafür da
     var saveBeaconArray: [Int]!
@@ -38,13 +53,28 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
 	
     @IBAction func searchButton(sender: AnyObject) {
         if !searchingBeacons {
-            var searchingTimer = NSTimer.scheduledTimerWithTimeInterval(searchingInterval, target: self, selector: "searchForBeacon", userInfo: nil, repeats: true)
+            searchingTimer = NSTimer.scheduledTimerWithTimeInterval(searchingInterval, target: self, selector: "searchForBeacon", userInfo: nil, repeats: true)
+
             searchButton.setTitle("Searching Beacons …", forState: UIControlState.Normal)
+
+            searchingBeacons = true
+            
+        } else {
+            searchButton.setTitle("Searching is paused.",forState: UIControlState.Normal)
+            
+            searchingTimer.invalidate()
+
+            searchingBeacons = false
+            
         }
         
-        searchingBeacons = true
+        
 
 	}
+    
+    @IBAction func clearButton(sender: AnyObject){
+        consoleLabel.text = ""
+    }
     
 	let beaconManager = ESTBeaconManager()
 	
@@ -54,7 +84,17 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        consoleLabel.text = ""
+        
 		beaconManager.delegate = self
+        
+        rssiFilteringSwitch.addTarget(self, action: Selector("rssiSwitch"), forControlEvents: UIControlEvents.ValueChanged)
+
+        printIntervalSwitch.addTarget(self, action: Selector("intervalSwitch"), forControlEvents: UIControlEvents.ValueChanged)
+
+        printOnRangeScanSwitch.addTarget(self, action: Selector("scanSwitch"), forControlEvents: UIControlEvents.ValueChanged)
+        
+        printFoundGoneSwitch.addTarget(self, action: Selector("foundGoneSwitch"), forControlEvents: UIControlEvents.ValueChanged)
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -63,8 +103,9 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
 	}
 	
 	func searchForBeacon()	{
-
-        consoleLabel.text = "." + (consoleLabel.text ?? "");
+        if printInterval{
+            consoleLabel.text = "." + (consoleLabel.text ?? "");
+        }
         
         //reset der arrays
         newBeaconsArray = []
@@ -83,7 +124,9 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
         didRangeBeacons beacons: [AnyObject]!,
         inRegion region: CLBeaconRegion!) {
             
-            consoleLabel.text = "|" + (consoleLabel.text ?? "");
+            if printRange {
+                consoleLabel.text = "|" + (consoleLabel.text ?? "");
+            }
 
             
             
@@ -95,7 +138,7 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
                     var beacon = beacons[index] as? CLBeacon
                     var beaconMinor = beacon!.minor.integerValue
                     var beaconRssi = beacon!.rssi
-                    if beaconRssi < -10 {
+                    if beaconRssi < -10 || !rssiFiltering {
                             //dies muss in evtl. ausstellungssituationen angepasst werden mit der stärke des broadcasting
                             // hier könnten auch weitere berechnungen zur entfernung stattfinden
                         saveBeaconArray.append(beaconMinor)
@@ -173,6 +216,9 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
                         //wenn nein > copy to newBeacon
                         newBeaconsArray.append(sortArray[index])
                         
+                        if printFoundGone {
+                            consoleLabel.text = "X" + (consoleLabel.text ?? "");
+                        }
                     }
                 }
                 
@@ -188,11 +234,27 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
                 tempBeaconArray = sortArray
                 tempBeaconArraySet = true
                 newBeaconsArray = sortArray
+                
+                if printFoundGone {
+                    for index in 0..<newBeaconsArray.count{
+                        consoleLabel.text = "X" + (consoleLabel.text ?? "");
+                    }
+                }
+                
             }
-        } else if !tempBeaconArray.isEmpty {
-            goneBeaconsArray = tempBeaconArray
-            tempBeaconArray = []
+        } else if tempBeaconArraySet {
+            if !tempBeaconArray.isEmpty{
+                goneBeaconsArray = tempBeaconArray
+                tempBeaconArray = []
+            }
         }
+        
+        if !goneBeaconsArray.isEmpty && printFoundGone {
+            for index in 0..<goneBeaconsArray.count{
+                consoleLabel.text = "O" + (consoleLabel.text ?? "");
+            }
+        }
+        
     }
     
     
@@ -218,6 +280,39 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
         
     }
 
+    
+    
+    func rssiSwitch() {
+        if !rssiFiltering {
+            rssiFiltering = true
+        } else {
+            rssiFiltering = false
+        }
+    }
+   
+    func intervalSwitch() {
+        if !printInterval {
+            printInterval = true
+        } else {
+            printInterval = false
+        }
+    }
+    
+    func scanSwitch() {
+        if !printRange {
+            printRange = true
+        } else {
+            printRange = false
+        }
+    }
+    
+    func foundGoneSwitch() {
+        if !printFoundGone {
+            printFoundGone = true
+        } else {
+            printFoundGone = false
+        }
+    }
     
     
     
