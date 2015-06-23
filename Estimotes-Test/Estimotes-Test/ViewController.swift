@@ -11,9 +11,8 @@ import UIKit
 
 class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDelegate {
 	
-	@IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var searchButton: UIButton!
-    @IBOutlet weak var consoleLabel: UILabel!
+    @IBOutlet weak var consoleLabel: UITextView!
 
     @IBOutlet weak var beaconLabel: UILabel!
 
@@ -64,7 +63,7 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
 	}
 	
 	func searchForBeacon()	{
-        
+
         consoleLabel.text = "." + (consoleLabel.text ?? "");
         
         //reset der arrays
@@ -133,7 +132,7 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
             
 
             //starting to check for different commodities
-            checkForWebpage(didRangeBeacons: beacons)
+            //checkForWebpage(didRangeBeacons: beacons)
 
             
             
@@ -234,7 +233,8 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
         case 1:
 			let localfilePath = NSBundle.mainBundle().URLForResource("website", withExtension: "html");
 			let requestObj = NSURLRequest(URL: localfilePath!)
-			webView.loadRequest(requestObj)
+			//webView.loadRequest(requestObj)
+            //kicked the webView
         default:
             break
         }
