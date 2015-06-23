@@ -64,7 +64,18 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
 	}
 	
 	func searchForBeacon()	{
-        consoleLabel.text = (consoleLabel.text ?? "") + ". ";
+        
+        consoleLabel.text = "." + (consoleLabel.text ?? "");
+        
+        //reset der arrays
+        newBeaconsArray = []
+        nearBeaconsArray = []
+        goneBeaconsArray = []
+        
+        
+        //reset saveBeaconArray
+        saveBeaconArray = []
+
 		beaconManager.requestWhenInUseAuthorization()
 		beaconManager.startRangingBeaconsInRegion(beaconRegion)
 	}
@@ -73,23 +84,28 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
         didRangeBeacons beacons: [AnyObject]!,
         inRegion region: CLBeaconRegion!) {
             
+            consoleLabel.text = "|" + (consoleLabel.text ?? "");
+
             
-            //davor evtl. noch überprüfen über signal Strenght welche überhaupt relevant sind und daraufhin aussortieren
             
-            
-            //reset saveBeaconArray
-            saveBeaconArray = []
             
             //Kopie aller available minors erstellen und in saveBeaconArray speichern
+            //gleichzeitig rssis auslesen und für eine höhere responsivnes über einem bestimmten wert kicken
             if !beacons.isEmpty{
                 for index in 0..<beacons.count {
                     var beacon = beacons[index] as? CLBeacon
                     var beaconMinor = beacon!.minor.integerValue
-                    saveBeaconArray.append(beaconMinor)
+                    var beaconRssi = beacon!.rssi
+                    if beaconRssi < -10 {
+                            //dies muss in evtl. ausstellungssituationen angepasst werden mit der stärke des broadcasting
+                            // hier könnten auch weitere berechnungen zur entfernung stattfinden
+                        saveBeaconArray.append(beaconMinor)
+                    }
+
                 }
             }
             
-            
+
             
             //sort the Beacons - dann nur die minor
             sortBeaconsIntoArrays(saveBeaconArray)
@@ -130,10 +146,7 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
     func sortBeaconsIntoArrays(sortArray: [Int]!){
         
 
-        //reset der arrays
-        newBeaconsArray = []
-        nearBeaconsArray = []
-        goneBeaconsArray = []
+
         
         
         if !sortArray.isEmpty{
@@ -173,13 +186,13 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
             } else {
                 //wenn tempBeaconArray noch nicht gesetzt wurde wird es gesetzt und alle vorhandenen beacons sind neu
                 //im prinzip die initialisierung
-                
                 tempBeaconArray = sortArray
                 tempBeaconArraySet = true
                 newBeaconsArray = sortArray
             }
-
-            
+        } else if !tempBeaconArray.isEmpty {
+            goneBeaconsArray = tempBeaconArray
+            tempBeaconArray = []
         }
     }
     
@@ -197,7 +210,7 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
             for index in 0..<writeArray.count {
                 var followingText : String
                 var beaconMinor = writeArray[index]
-                followingText = "[\(beaconMinor), "
+                followingText = "[\(beaconMinor)]"
                 returnString += followingText
             }
         }
