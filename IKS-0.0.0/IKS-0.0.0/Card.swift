@@ -12,30 +12,30 @@ class Card	{
 	
 	let id : Int;
 
-	// Check meine hippe Enumeration
 	let type : CardType
-	// Muss bei Fragen (vorläufig) false sein
-	let hasDetail : Bool
-	
-	// Große Karte ist da
-	var visible : Bool = false
-	// Details können angeschaut werden
-	var active : Bool = false
-	// Details wurden gelesen
-	var read : Bool = false
+	let minorIds : [Int]
 
-	// Bis jetzt erstmal nur imagniäre Pfade zu imaginären Webviews
-	let detailSlide1 : String?
-	let detailSlide2 : String?
+	let title : String
+	let subtitle : String
+	let detailSlides : [String]
 	
-	init(id : Int)	{
+	var visible : Bool = false
+	var active : Bool = false
+	var read : Bool = false
+	
+	var noteCount : Int = 0;
+
+	
+	init(id : Int, type : String, title : String, subtitle : String, detailSlides : [String], minorIds : [Int])	{
 		self.id = id;
-		
-		self.hasDetail = true
-		self.type = CardType.Projekt
+		self.title = title;
+		self.subtitle = subtitle;
+		self.detailSlides = detailSlides;
+		self.minorIds = minorIds;
+		self.type = CardType.Projekt;
 		
 		// Wandelt den Wert der Enumartion in einen String um den wir für das label benutzen können.
-		var typeString = self.type.rawValue
+		//var typeString = self.type.rawValue
 	}
 	
 }
