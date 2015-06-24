@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>id</key>
+		<integer>1</integer>
+		<key>minorIds</key>
+		<array>
+			<string>4</string>
+			<integer>2</integer>
+		</array>
+		<key>title</key>
+		<string>Muss ich programmieren können?</string>
+		<key>subtitle</key>
+		<string>Viele Fragen sich diese Frage.</string>
+		<key>type</key>
+		<string>Frage</string>
+		<key>detailSlides</key>
+		<array/>
+	</dict>
+	<dict>
+		<key>id</key>
+		<integer>2</integer>
+		<key>minorIds</key>
+		<array>
+			<string>3</string>
+			<integer>1</integer>
+		</array>
+		<key>title</key>
+		<string>Application Design</string>
+		<key>subtitle</key>
+		<string>Ein Projekt von Moritz und Manuel</string>
+		<key>type</key>
+		<string>Projekt</string>
+		<key>detailSlides</key>
+		<array/>
+	</dict>
+	<dict>
+		<key>id</key>
+		<integer>3</integer>
+		<key>minorIds</key>
+		<array>
+			<string>6</string>
+			<integer>7</integer>
+		</array>
+		<key>title</key>
+		<string>Medienlabor</string>
+		<key>subtitle</key>
+		<string>Herzlich Willkommen in unserem zweiten Zuhause</string>
+		<key>type</key>
+		<string>Ausstattung</string>
+		<key>detailSlides</key>
+		<array/>
+	</dict>
+	<dict>
+		<key>id</key>
+		<integer>4</integer>
+		<key>minorIds</key>
+		<array>
+			<string>10</string>
+			<integer>11</integer>
+		</array>
+		<key>title</key>
+		<string>Interface Design</string>
+		<key>subtitle</key>
+		<string>Ein Interface Design Projekt aus dem dritten Semester</string>
+		<key>type</key>
+		<string>Projekt</string>
+		<key>detailSlides</key>
+		<array/>
+	</dict>
+</array>
+</plist>

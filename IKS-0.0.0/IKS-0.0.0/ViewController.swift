@@ -24,6 +24,13 @@ class ViewController: UIViewController {
 		super.view.backgroundColor = UIColor.blackColor()
 		
 		loadImagesFromAssets()
+        
+        var path = NSBundle.mainBundle().pathForResource("cards", ofType: "plist")
+        var cards = NSArray(contentsOfFile: path!)!
+        
+        for card in cards {
+            print(card as! NSDictionary)
+        }
 		
 		//////////////////////////
 		// MARK: TOPVIEW
