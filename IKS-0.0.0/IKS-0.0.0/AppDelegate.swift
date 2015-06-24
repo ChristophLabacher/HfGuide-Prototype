@@ -70,11 +70,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 	
-	func dictionaryOfNames(arr:UIView...) -> Dictionary<String,UIView> {
-		var d = Dictionary<String,UIView>()
-		for (ix,v) in enumerate(arr) {
-			d["v\(ix+1)"] = v
-		}
-		return d
+func dictionaryOfNames(arr:UIView...) -> Dictionary<String,UIView> {
+	var d = Dictionary<String,UIView>()
+	for (ix,v) in enumerate(arr) {
+		d["v\(ix+1)"] = v
 	}
+	return d
+}
 

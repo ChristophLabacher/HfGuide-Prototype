@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>07F0142F-7929-4CA0-AF91-86082310801D</string>
 	<key>IDESourceControlProjectName</key>
-	<string>project</string>
+	<string>Estimotes-Test</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>6B6C9B470483E05519F8CF5B92D0D0FE4E058BDA</key>
 		<string>https://github.com/ChristophLabacher/IKS2.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>Estimotes-Test/Estimotes-Test.xcodeproj/project.xcworkspace</string>
+	<string>Estimotes-Test/Estimotes-Test.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>6B6C9B470483E05519F8CF5B92D0D0FE4E058BDA</key>
