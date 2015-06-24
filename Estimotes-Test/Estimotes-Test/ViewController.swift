@@ -93,7 +93,7 @@ class ViewController: UIViewController, UIWebViewDelegate, ESTBeaconManagerDeleg
         printIntervalSwitch.addTarget(self, action: Selector("intervalSwitch"), forControlEvents: UIControlEvents.ValueChanged)
 
         printOnRangeScanSwitch.addTarget(self, action: Selector("scanSwitch"), forControlEvents: UIControlEvents.ValueChanged)
-        
+        self
         printFoundGoneSwitch.addTarget(self, action: Selector("foundGoneSwitch"), forControlEvents: UIControlEvents.ValueChanged)
 	}
 

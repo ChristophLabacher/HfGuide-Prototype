@@ -10,6 +10,7 @@ import UIKit
 
 var dataArray:NSArray?
 	
+	// COLLECTIONVIEWS
 	// ScrollCollectionView
 	var scrollCollectionView:UICollectionView?
 	var scrollCollectionViewDelegateAndDataSource = ScrollCollectionViewController()
@@ -27,6 +28,27 @@ var dataArray:NSArray?
 	let appColorGrey : UIColor = UIColor(hue: 0.0/360, saturation: 0.0/100, brightness: 60.0/100, alpha: 1.0)
 	
 	var cards : [Card] = []
+	
+	// BEACONS
+	var searchingInterval = 0.2
+	var searchingTimer = NSTimer()
+	var searchingBeacons = false
+	
+	var saveBeaconArray: [Int]!
+	
+	var tempBeaconArray: [Int]!
+	var tempBeaconArraySet = false
+	
+	var newBeaconsArray: [Int]!
+	var nearBeaconsArray: [Int]!
+	var goneBeaconsArray: [Int]!
+	
+	let beaconManager = ESTBeaconManager()
+	let beaconManagerDelegate = BeaconDelegate()
+	
+	let beaconRegion = CLBeaconRegion(
+		proximityUUID: NSUUID(UUIDString: "B60F3FAE-04B4-4367-9DD5-0B9B5CA759ED"),
+		identifier: "hfgBeaconsRegion")
 
 
 @UIApplicationMain
@@ -37,6 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		// Override point for customization after application launch.
 		
+		// Setup Window & ViewController
 		UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
 		
 		window = UIWindow(frame: UIScreen.mainScreen().bounds)
@@ -44,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		window!.rootViewController = ViewController()
 		window!.makeKeyAndVisible()
 		
-
+		// Load Data
 		var path = NSBundle.mainBundle().pathForResource("cards", ofType: "plist")
 		var data = NSArray(contentsOfFile: path!)!
 		
@@ -52,9 +75,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			cards.append(Card(card: card as! NSDictionary))
 		}
 		
+		// Beacons
+		beaconManager.delegate = beaconManagerDelegate
+		searchingTimer = NSTimer.scheduledTimerWithTimeInterval(searchingInterval, target: self, selector: "searchForBeacon", userInfo: nil, repeats: true)
+		
+		searchingBeacons = true
+		
 		return true
 	}
 
+	func searchForBeacon()	{
+		//reset der arrays
+		newBeaconsArray = []
+		nearBeaconsArray = []
+		goneBeaconsArray = []
+		
+		//reset saveBeaconArray
+		saveBeaconArray = []
+		
+		beaconManager.requestWhenInUseAuthorization()
+		beaconManager.startRangingBeaconsInRegion(beaconRegion)
+		print(".")
+	}
+	
 	func applicationWillResignActive(application: UIApplication) {
 		// Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
 		// Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
