@@ -25,9 +25,7 @@ class MainCollectionViewController: NSObject, UICollectionViewDelegate, UICollec
  
 	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! MainCollectionViewCell
-		
-		//let cell : MainCollectionViewCell = MainCollectionViewCell()
-		
+				
 		let path = String(dataArray![indexPath.item] as! NSString);
 		cell.backgroundImage.image = UIImage(named: path)
 		

@@ -270,7 +270,6 @@ class ViewController: UIViewController {
 	func loadImagesFromAssets()	{
 		let sourcePath = NSBundle.mainBundle().resourcePath?.stringByAppendingPathComponent("Assets")
 		dataArray = NSFileManager.defaultManager().contentsOfDirectoryAtPath(sourcePath!, error: nil)
-		println(dataArray?.count)
 	}
 	
 	func panOnScrubbingHandle(sender: UIPanGestureRecognizer)	{
