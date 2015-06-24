@@ -7,7 +7,7 @@
 		<integer>1</integer>
 		<key>minorIds</key>
 		<array>
-			<string>4</string>
+			<integer>4</integer>
 			<integer>2</integer>
 		</array>
 		<key>title</key>
@@ -24,7 +24,7 @@
 		<integer>2</integer>
 		<key>minorIds</key>
 		<array>
-			<string>3</string>
+			<integer>3</integer>
 			<integer>1</integer>
 		</array>
 		<key>title</key>
@@ -41,7 +41,7 @@
 		<integer>3</integer>
 		<key>minorIds</key>
 		<array>
-			<string>6</string>
+			<integer>6</integer>
 			<integer>7</integer>
 		</array>
 		<key>title</key>
@@ -58,7 +58,7 @@
 		<integer>4</integer>
 		<key>minorIds</key>
 		<array>
-			<string>10</string>
+			<integer>10</integer>
 			<integer>11</integer>
 		</array>
 		<key>title</key>

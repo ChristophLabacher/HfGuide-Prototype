@@ -25,6 +25,8 @@ var dataArray:NSArray?
 	let appColorBlue : UIColor = UIColor(hue: 192.0/360, saturation: 85.0/100, brightness: 78.0/100, alpha: 1.0)
 	let appColorViolet : UIColor = UIColor(hue: 270.0/360, saturation: 45.0/100, brightness: 72.0/100, alpha: 1.0)
 	let appColorGrey : UIColor = UIColor(hue: 0.0/360, saturation: 0.0/100, brightness: 60.0/100, alpha: 1.0)
+	
+	var cards : [Card] = []
 
 
 @UIApplicationMain
@@ -41,6 +43,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		window!.backgroundColor = UIColor.whiteColor()
 		window!.rootViewController = ViewController()
 		window!.makeKeyAndVisible()
+		
+
+		var path = NSBundle.mainBundle().pathForResource("cards", ofType: "plist")
+		var data = NSArray(contentsOfFile: path!)!
+		
+		for card in data {
+			cards.append(Card(card: card as! NSDictionary))
+		}
 		
 		return true
 	}

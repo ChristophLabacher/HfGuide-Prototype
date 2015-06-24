@@ -26,12 +26,12 @@ class Card	{
 	var noteCount : Int = 0;
 
 	
-	init(id : Int, type : String, title : String, subtitle : String, detailSlides : [String], minorIds : [Int])	{
-		self.id = id;
-		self.title = title;
-		self.subtitle = subtitle;
-		self.detailSlides = detailSlides;
-		self.minorIds = minorIds;
+	init(card : NSDictionary)	{
+		self.id = card["id"] as! Int
+		self.title = card["title"] as! String
+		self.subtitle = card["subtitle"] as! String
+		self.detailSlides = card["detailSlides"] as! [String]
+		self.minorIds = card["minorIds"] as! [Int]
 		self.type = CardType.Projekt;
 		
 		// Wandelt den Wert der Enumartion in einen String um den wir für das label benutzen können.
