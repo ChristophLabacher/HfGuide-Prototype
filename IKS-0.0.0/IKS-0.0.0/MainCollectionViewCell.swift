@@ -13,11 +13,19 @@ class MainCollectionViewCell: UICollectionViewCell {
 	let backgroundImage: UIImageView!
 	let blurEffectView : UIVisualEffectView!
 	let readMoreButtonBorderTop : UIView!
-	let readMoreButtonBorderTopProgress : UIView!
+//	let readMoreButtonBorderTopProgress : UIView!
 	let readMoreButton : UIButton!
+	let readMoreButtonLabel : CLLabel!
+	let categoryLabel : CLLabel!
+	let noteLabel : CLLabel!
+	let titelLabel : CLLabel;
 	
 	var verticalContraint : [AnyObject]!
 	var viewsDictionary : [String : UIView]!
+	
+	var data : Card!
+	
+	var cardColor : UIColor = UIColor.grayColor()
 		
 	override init(frame: CGRect) {
 		
@@ -56,7 +64,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 		//////////////////////////
 		
 		readMoreButtonBorderTop = UIView()
-		readMoreButtonBorderTop.backgroundColor = appColorGrey
+		readMoreButtonBorderTop.backgroundColor = cardColor
 		readMoreButtonBorderTop.setTranslatesAutoresizingMaskIntoConstraints(false)
 
 		card.addSubview(readMoreButtonBorderTop)
@@ -64,9 +72,9 @@ class MainCollectionViewCell: UICollectionViewCell {
 		let readMoreButtonTopBorderWidthContraint = NSLayoutConstraint.constraintsWithVisualFormat("H:|[v1]|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(readMoreButtonBorderTop))
 		card.addConstraints(readMoreButtonTopBorderWidthContraint)
 		
-		readMoreButtonBorderTopProgress = UIView()
-		readMoreButtonBorderTopProgress.backgroundColor = appColorRed
-		readMoreButtonBorderTop.addSubview(readMoreButtonBorderTopProgress)
+//		readMoreButtonBorderTopProgress = UIView()
+//		readMoreButtonBorderTopProgress.backgroundColor = cardColor
+//		readMoreButtonBorderTop.addSubview(readMoreButtonBorderTopProgress)
 
 		// Card > ReadMore
 		//////////////////////////
@@ -83,9 +91,9 @@ class MainCollectionViewCell: UICollectionViewCell {
 		// Card > ReadMore > ReadMoreButtonLabel
 		//////////////////////////
 		
-		let readMoreButtonLabel = CLLabel()
+		readMoreButtonLabel = CLLabel()
 		readMoreButtonLabel.setLabelText("Weiterlesen")
-		readMoreButtonLabel.textColor = appColorRed
+		readMoreButtonLabel.textColor = cardColor
 		readMoreButtonLabel.textAlignment = NSTextAlignment.Center
 		readMoreButtonLabel.userInteractionEnabled = false;
 		
@@ -102,8 +110,8 @@ class MainCollectionViewCell: UICollectionViewCell {
 		// Card > CategoryLabel
 		//////////////////////////
 		
-		let categoryLabel = CLLabel()
-		categoryLabel.setLabelText("Frage")
+		categoryLabel = CLLabel()
+		categoryLabel.setLabelText("")
 		categoryLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
 
 		card.addSubview(categoryLabel)
@@ -117,8 +125,8 @@ class MainCollectionViewCell: UICollectionViewCell {
 		// Card > NoteLabel
 		//////////////////////////
 		
-		let noteLabel = CLLabel()
-		noteLabel.setLabelText("5 Notizen")
+		noteLabel = CLLabel()
+		noteLabel.setLabelText("Keine Notizen")
 		noteLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
 
 		card.addSubview(noteLabel)
@@ -130,6 +138,15 @@ class MainCollectionViewCell: UICollectionViewCell {
 		card.addConstraints(horizontalNoteLabelContraint)
 		
 		
+		
+		titelLabel = CLLabel()
+		titelLabel.font = UIFont(name: "SourceSansPro-SemiBold", size: 24)
+		titelLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+		
+		card.addSubview(titelLabel)
+		
+		card.addConstraint(NSLayoutConstraint(item: titelLabel, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: card, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
+		card.addConstraint(NSLayoutConstraint(item: titelLabel, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: card, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: -40))
 		
 		super.init(frame: frame)
 		contentView.addSubview(card)
@@ -149,6 +166,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 			"readMoreButtonBorderTop": readMoreButtonBorderTop,
 			"categoryLabel": categoryLabel,
 			"noteLabel": noteLabel,
+			"titelLabel" : titelLabel,
 			"contentView":contentView,
 			"card":card
 		]
@@ -162,6 +180,17 @@ class MainCollectionViewCell: UICollectionViewCell {
 		readMoreButton.addTarget(self, action: "readMoreButtonTap:", forControlEvents: UIControlEvents.TouchUpInside)
 		
 
+	}
+	
+	func initCard()	{
+		cardColor = colors[data!.type]!
+		
+		titelLabel.text = data!.title
+		backgroundImage.image = UIImage(named: data!.coverImage)
+		categoryLabel.setLabelText(data!.type)
+		
+		readMoreButtonBorderTop.backgroundColor = cardColor
+		self.readMoreButtonLabel.textColor = cardColor
 	}
 	
 	required init(coder aDecoder: NSCoder) {

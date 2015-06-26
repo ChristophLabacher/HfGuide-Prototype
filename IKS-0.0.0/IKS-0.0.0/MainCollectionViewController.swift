@@ -12,7 +12,7 @@ class MainCollectionViewController: NSObject, UICollectionViewDelegate, UICollec
 	var cellMargin : CGFloat = 80
 
 	override init() {
-	//	print("test")
+
 	}
 	
 	func collectionView(collectionView: UICollectionView, numberOfSectionsInCollectionView section: Int) -> Int {
@@ -20,14 +20,14 @@ class MainCollectionViewController: NSObject, UICollectionViewDelegate, UICollec
 	}
 	
 	func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return dataArray!.count
+		return cards.count
 	}
  
 	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! MainCollectionViewCell
-				
-		let path = String(dataArray![indexPath.item] as! NSString);
-		cell.backgroundImage.image = UIImage(named: path)
+		
+		cell.data = cards[indexPath.item]
+		cell.initCard()
 		
 		return cell
 	}

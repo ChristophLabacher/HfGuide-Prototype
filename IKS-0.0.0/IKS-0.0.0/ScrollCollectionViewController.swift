@@ -15,7 +15,7 @@ class ScrollCollectionViewController: NSObject, UICollectionViewDelegate, UIColl
 	}
 	
 	func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return dataArray!.count
+		return cards.count
 	}
  
 	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {

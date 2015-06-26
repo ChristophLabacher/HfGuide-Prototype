@@ -12,38 +12,32 @@ class Card	{
 	
 	let id : Int;
 
-	let type : CardType
+	let type : String
 	let minorIds : [Int]
 
 	let title : String
 	let subtitle : String
+	let coverImage : String
 	let detailSlides : [String]
 	
 	var visible : Bool = false
 	var active : Bool = false
 	var read : Bool = false
 	
-	var noteCount : Int = 0;
+	var noteCount : Int = 0
+	
+	let data : NSDictionary
 
 	
 	init(card : NSDictionary)	{
+		self.data = card
 		self.id = card["id"] as! Int
 		self.title = card["title"] as! String
 		self.subtitle = card["subtitle"] as! String
+		self.coverImage = card["coverImage"] as! String
 		self.detailSlides = card["detailSlides"] as! [String]
 		self.minorIds = card["minorIds"] as! [Int]
-		self.type = CardType.Projekt;
-		
-		// Wandelt den Wert der Enumartion in einen String um den wir für das label benutzen können.
-		//var typeString = self.type.rawValue
+		self.type = card["type"] as! String;
 	}
 	
-}
-
-enum CardType : String	{
-	case Projekt = "Projekt"
-	case Frage = "Frage"
-	case Ausstattung = "Ausstattung"
-	case Bewerbung = "Bewerbung"
-	case Persönliches = "Persönliches"
 }

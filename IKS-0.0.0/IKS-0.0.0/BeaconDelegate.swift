@@ -14,7 +14,7 @@ class BeaconDelegate: NSObject, ESTBeaconManagerDelegate {
 		didRangeBeacons beacons: [AnyObject]!,
 		inRegion region: CLBeaconRegion!) {
 		
-		print("|")
+//		print("|")
 			
 		//Kopie aller available minors erstellen und in saveBeaconArray speichern
 		//gleichzeitig rssis auslesen und für eine höhere responsivnes über einem bestimmten wert kicken
@@ -35,7 +35,7 @@ class BeaconDelegate: NSObject, ESTBeaconManagerDelegate {
 		//sort the Beacons - dann nur die minor
 		sortBeaconsIntoArrays(saveBeaconArray)
 			
-			println(newBeaconsArray)
+//			println(newBeaconsArray)
 		
 		//checkBeacons()
 		//hier müsste der check geschehen, der zusammen mit den XML-Dateien überprüft ob ein Beacon neu ist und daraufhin auch etwas getriggert werden muss > reden mit labi
