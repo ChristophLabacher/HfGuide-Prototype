@@ -117,7 +117,7 @@ class BeaconDelegate: NSObject, ESTBeaconManagerDelegate {
                             if !currentCard.near {
                                 currentCard.near = true
                                 //send NSNotification
-                                //let foundCard = NSNotification()
+                                NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "foundNewCard", object: self))
                             }
                         }
                     }
@@ -148,7 +148,7 @@ class BeaconDelegate: NSObject, ESTBeaconManagerDelegate {
                             // if true, set currentCard.near on true and send NSNotification
                             if currentCard.near && !currentCard.nearAndGone {
                                 currentCard.nearAndGone = true
-                                //send NSNotification
+                                NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "foundCardIsGone", object: self))
                             }
                         }
                     }
