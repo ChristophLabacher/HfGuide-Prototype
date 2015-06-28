@@ -19,14 +19,13 @@ class Card	{
 	let subtitle : String
 	let detailSlides : [String]
 	
+    // visible if a beacon is close, but not gone away again
 	var visible : Bool = false
+
+    // active when a beacon was close and gone away
 	var active : Bool = false
-	var read : Bool = false
-    
-    // near = if a card has been near a beacon
-    var near : Bool = false
-    // nearAndGone = if a card has been near a beacon and gone away from it
-    var nearAndGone : Bool = false
+
+    var read : Bool = false
 	
 	var noteCount : Int = 0;
 

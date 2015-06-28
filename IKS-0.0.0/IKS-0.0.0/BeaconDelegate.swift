@@ -113,9 +113,9 @@ class BeaconDelegate: NSObject, ESTBeaconManagerDelegate {
                         // and check if newBeaconsArray contains the minor
                         if contains(newBeaconsArray, currentMinor){
                             
-                            // if true, set currentCard.near on true and send NSNotification
-                            if !currentCard.near {
-                                currentCard.near = true
+                            // if true, set currentCard.visible on true and send NSNotification
+                            if !currentCard.visible {
+                                currentCard.visible = true
                                 //send NSNotification
                                 NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "foundNewCard", object: self))
                             }
@@ -145,10 +145,10 @@ class BeaconDelegate: NSObject, ESTBeaconManagerDelegate {
                         // and check if goneBeaconsArray contains the minor
                         if contains(goneBeaconsArray, currentMinor){
                             
-                            // if true, set currentCard.near on true and send NSNotification
-                            if currentCard.near && !currentCard.nearAndGone {
-                                currentCard.nearAndGone = true
-                                NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "foundCardIsGone", object: self))
+                            // if true, set currentCard.active on true and send NSNotification
+                            if currentCard.visible && !currentCard.active {
+                                currentCard.active = true
+                                NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "foundCardIsActive", object: self))
                             }
                         }
                     }
