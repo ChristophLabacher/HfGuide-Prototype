@@ -35,9 +35,10 @@ class BeaconDelegate: NSObject, ESTBeaconManagerDelegate {
 		//sort the Beacons - dann nur die minor
 		sortBeaconsIntoArrays(saveBeaconArray)
 			
-			println(newBeaconsArray)
+
 		
-		//checkBeacons()
+		checkForNewBeacons()
+        checkForGoneBeacons()
 		//hier müsste der check geschehen, der zusammen mit den XML-Dateien überprüft ob ein Beacon neu ist und daraufhin auch etwas getriggert werden muss > reden mit labi
 		manager.stopRangingBeaconsInRegion(region)
 			
@@ -92,4 +93,68 @@ class BeaconDelegate: NSObject, ESTBeaconManagerDelegate {
 		}
 		
 	}
+    
+    func checkForNewBeacons(){
+        
+        // only if newBeacons are there and cards is not empty continue
+        if !newBeaconsArray.isEmpty && !cards.isEmpty {
+
+            // iterate through all cards
+            for indexCards in 0..<cards.count {
+                let currentCard = cards[indexCards]
+                
+                // get the minorId-Array from the currentCard
+                if !currentCard.minorIds.isEmpty {
+                    
+                    // iterate through all minoriIds
+                    for indexMinorIds in 0..<currentCard.minorIds.count {
+                        let currentMinor = currentCard.minorIds[indexMinorIds]
+                        
+                        // and check if newBeaconsArray contains the minor
+                        if contains(newBeaconsArray, currentMinor){
+                            
+                            // if true, set currentCard.near on true and send NSNotification
+                            if !currentCard.near {
+                                currentCard.near = true
+                                //send NSNotification
+                                //let foundCard = NSNotification()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func checkForGoneBeacons(){
+        
+        // only if newBeacons are there and cards is not empty continue
+        if !goneBeaconsArray.isEmpty && !cards.isEmpty {
+
+            // iterate through all cards
+            for indexCards in 0..<cards.count {
+                let currentCard = cards[indexCards]
+                
+                // get the minorId-Array from the currentCard
+                if !currentCard.minorIds.isEmpty {
+                    
+                    // iterate through all minoriIds
+                    for indexMinorIds in 0..<currentCard.minorIds.count {
+                        let currentMinor = currentCard.minorIds[indexMinorIds]
+                        
+                        // and check if goneBeaconsArray contains the minor
+                        if contains(goneBeaconsArray, currentMinor){
+                            
+                            // if true, set currentCard.near on true and send NSNotification
+                            if currentCard.near && !currentCard.nearAndGone {
+                                currentCard.nearAndGone = true
+                                //send NSNotification
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
 }
