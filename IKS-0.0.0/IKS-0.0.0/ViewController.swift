@@ -23,8 +23,6 @@ class ViewController: UIViewController {
 		super.viewDidLoad()
 		super.view.backgroundColor = UIColor.blackColor()
 		
-		loadImagesFromAssets()
-		
 		//////////////////////////
 		// MARK: TOPVIEW
 		//////////////////////////
@@ -260,7 +258,28 @@ class ViewController: UIViewController {
 		mainViewBottomVerticalConstraint = NSLayoutConstraint(item: mainCollectionView!, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: -40)
 		self.view.addConstraint(mainViewBottomVerticalConstraint!)
 
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: "cardTransitionToDetail", name: "cardTransitionToDetail", object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: "cardTransitionToDetail:", name: "cardTransitionToDetail", object: nil)
+		
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: "cardBecameActive:", name: "cardBecameActive", object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: "cardBecameVisible:", name: "cardBecameVisible", object: nil)
+	}
+	
+	func cardBecameActive(notification: NSNotification)	{
+		let info : NSDictionary = notification.userInfo!
+		let cardIndex = info.valueForKey("index") as! Int
+		
+		cards[cardIndex].active = true
+		
+		println("Card became active \(cardIndex)")
+	}
+	
+	func cardBecameVisible(notification: NSNotification)	{
+		let info : NSDictionary = notification.userInfo!
+		let cardIndex = info.valueForKey("index") as! Int
+		
+		cards[cardIndex].visible = true
+		
+		println("Card became visible \(cardIndex)")
 	}
 	
 	func cardTransitionToDetail()	{
@@ -280,11 +299,6 @@ class ViewController: UIViewController {
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 		// Dispose of any resources that can be recreated.
-	}
-	
-	func loadImagesFromAssets()	{
-		let sourcePath = NSBundle.mainBundle().resourcePath?.stringByAppendingPathComponent("Assets")
-		dataArray = NSFileManager.defaultManager().contentsOfDirectoryAtPath(sourcePath!, error: nil)
 	}
 	
 	func panOnScrubbingHandle(sender: UIPanGestureRecognizer)	{

@@ -97,7 +97,7 @@ class BeaconDelegate: NSObject, ESTBeaconManagerDelegate {
     
     func checkForNewBeacons(){
         
-        // only if newBeacons are there and cards is not empty continue
+        // Only if newBeacons are there and cards is not empty continue
         if !newBeaconsArray.isEmpty && !cards.isEmpty {
 
             // iterate through all cards
@@ -116,9 +116,8 @@ class BeaconDelegate: NSObject, ESTBeaconManagerDelegate {
                             
                             // if true, set currentCard.visible on true and send NSNotification
                             if !currentCard.visible {
-                                currentCard.visible = true
-                                //send NSNotification
-                                NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "foundNewCard", object: self))
+								NSNotificationCenter.defaultCenter().postNotificationName("cardBecameVisible", object: nil, userInfo: ["index" : indexCards as Int])
+
                             }
                         }
                     }
@@ -148,8 +147,7 @@ class BeaconDelegate: NSObject, ESTBeaconManagerDelegate {
                             
                             // if true, set currentCard.active on true and send NSNotification
                             if currentCard.visible && !currentCard.active {
-                                currentCard.active = true
-                                NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "foundCardIsActive", object: self))
+								NSNotificationCenter.defaultCenter().postNotificationName("cardBecameActive", object: nil, userInfo: ["index" : indexCards as Int])
                             }
                         }
                     }
