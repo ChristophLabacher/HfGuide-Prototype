@@ -162,8 +162,9 @@ class MainCollectionViewCell: UICollectionViewCell {
 		//////////////////////////
         detailWebView = UIWebView()
         detailWebView.setTranslatesAutoresizingMaskIntoConstraints(false)
-        
-        detailWebView.backgroundColor = UIColor.greenColor()
+		detailWebView.loadRequest(NSURLRequest(URL: NSURL(string: "http://www.florian-ludwig.de/iks")!))
+        detailWebView.backgroundColor = UIColor.whiteColor()
+		detailWebView.scrollView.bounces = false
         
         card.addSubview(detailWebView)
 
@@ -226,6 +227,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 			"readMoreButton": readMoreButton,
 			"readMoreButtonBorderTop": readMoreButtonBorderTop,
 			"contentView":contentView,
+			"detailWebView":detailWebView
 		]
 		
 		self.card.removeConstraints(self.verticalContraint!)
