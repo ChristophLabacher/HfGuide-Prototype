@@ -13,7 +13,6 @@ class MainCollectionViewCell: UICollectionViewCell {
 	var cardColor : UIColor = UIColor.grayColor()
 	
 	let card: UIView!
-	let overlay: UIView!
 	let backgroundImage: UIImageView!
 	let blurEffectView : UIVisualEffectView!
 	let readMoreButtonBorderTop : UIView!
@@ -28,15 +27,6 @@ class MainCollectionViewCell: UICollectionViewCell {
 	var viewsDictionary : [String : UIView]!
 		
 	override init(frame: CGRect) {
-		
-		//////////////////////////
-		// Overlay
-		//////////////////////////
-		
-		overlay = UIView()
-		overlay.backgroundColor = UIColor.blackColor()
-		overlay.alpha = 0.5
-		overlay.setTranslatesAutoresizingMaskIntoConstraints(false)
 		
 		//////////////////////////
 		// Card
@@ -105,7 +95,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 		//////////////////////////
 		
 		readMoreButtonLabel = CLLabel()
-		readMoreButtonLabel.setLabelText("Weiterlesen")
+		readMoreButtonLabel.setLabelTextWithKerning("Weiterlesen")
 		readMoreButtonLabel.textColor = cardColor
 		readMoreButtonLabel.textAlignment = NSTextAlignment.Center
 		readMoreButtonLabel.userInteractionEnabled = false;
@@ -124,7 +114,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 		//////////////////////////
 		
 		categoryLabel = CLLabel()
-		categoryLabel.setLabelText("")
+		categoryLabel.setLabelTextWithKerning("")
 		categoryLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
 
 		card.addSubview(categoryLabel)
@@ -139,7 +129,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 		//////////////////////////
 		
 		noteLabel = CLLabel()
-		noteLabel.setLabelText("Keine Notizen")
+		noteLabel.setLabelTextWithKerning("Keine Notizen")
 		noteLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
 
 		card.addSubview(noteLabel)
@@ -169,7 +159,6 @@ class MainCollectionViewCell: UICollectionViewCell {
 		
 		super.init(frame: frame)
 		contentView.addSubview(card)
-		contentView.addSubview(overlay)
 		
 		//////////////////////////
 		// CONSTRAINTS (to card)
@@ -179,13 +168,6 @@ class MainCollectionViewCell: UICollectionViewCell {
 		let horizontalCardContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[v1]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(card))
 		contentView.addConstraints(verticalCardContraint)
 		contentView.addConstraints(horizontalCardContraint)
-		
-		
-		// Overlay
-//		let verticalOverlayContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[v1]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(overlay))
-//		let horizontalOverlayContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[v1]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(overlay))
-//		contentView.addConstraints(verticalOverlayContraint)
-//		contentView.addConstraints(horizontalOverlayContraint)
 		
 		viewsDictionary = [
 			"backgroundImage": backgroundImage,
@@ -212,9 +194,9 @@ class MainCollectionViewCell: UICollectionViewCell {
 	func initCard()	{
 		cardColor = colors[data!.type]!
 		
-		titelLabel.text = data!.title
+		titelLabel.setLabelTextWithLineHeight(data!.title)
 		backgroundImage.image = UIImage(named: data!.coverImage)
-		categoryLabel.setLabelText(data!.type)
+		categoryLabel.setLabelTextWithKerning(data!.type)
 		
 		readMoreButtonBorderTop.backgroundColor = cardColor
 		self.readMoreButtonLabel.textColor = cardColor

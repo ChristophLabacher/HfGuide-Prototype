@@ -20,17 +20,26 @@ class CLLabel: UILabel {
 		super.init(coder: aDecoder)
 	}
 	
-	func setLabelText(string: NSString)	{
+	func setLabelTextWithKerning(string: NSString)	{
 		let labelText = string.uppercaseString
 		let labelAttributedText : NSMutableAttributedString = NSMutableAttributedString(string: labelText)
 		
 		labelAttributedText.addAttribute(NSKernAttributeName, value: CGFloat(0.6), range: NSRange(location: 0, length: count(labelText)))
 		
+		self.attributedText = labelAttributedText
+	}
+	
+	func setLabelTextWithLineHeight(string: NSString)	{
+		let labelText : String = string as String
+		let labelAttributedText : NSMutableAttributedString = NSMutableAttributedString(string: labelText)
+		
 		var paragraphStyle = NSMutableParagraphStyle()
-		paragraphStyle.lineSpacing = 10
+		//paragraphStyle.lineSpacing = -10.0
+		paragraphStyle.lineHeightMultiple = 0.9
+		paragraphStyle.alignment = NSTextAlignment.Center
 		
 		labelAttributedText.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSRange(location: 0, length: count(labelText)))
-
+		
 		
 		self.attributedText = labelAttributedText
 	}

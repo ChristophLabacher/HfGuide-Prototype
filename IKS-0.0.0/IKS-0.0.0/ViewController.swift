@@ -47,50 +47,50 @@ class ViewController: UIViewController {
 		statisticView.setTranslatesAutoresizingMaskIntoConstraints(false)
 		
 		let statisticLabel_1_1 : CLLabel = CLLabel()
-		statisticLabel_1_1.setLabelText("Fragen")
+		statisticLabel_1_1.setLabelTextWithKerning("Fragen")
 		statisticLabel_1_1.setTranslatesAutoresizingMaskIntoConstraints(false)
 		statisticView.addSubview(statisticLabel_1_1)
 		
 		let statisticLabel_1_2 : CLLabel = CLLabel()
-		statisticLabel_1_2.setLabelText("0")
+		statisticLabel_1_2.setLabelTextWithKerning("0")
 		statisticLabel_1_2.textColor = appColorBlue
 		statisticLabel_1_2.setTranslatesAutoresizingMaskIntoConstraints(false)
 		statisticView.addSubview(statisticLabel_1_2)
 		
 		let statisticLabel_1_3 : CLLabel = CLLabel()
-		statisticLabel_1_3.setLabelText("/3")
+		statisticLabel_1_3.setLabelTextWithKerning("/3")
 		statisticLabel_1_3.setTranslatesAutoresizingMaskIntoConstraints(false)
 		statisticView.addSubview(statisticLabel_1_3)
 		
 		let statisticLabel_2_1 : CLLabel = CLLabel()
-		statisticLabel_2_1.setLabelText("Räume")
+		statisticLabel_2_1.setLabelTextWithKerning("Räume")
 		statisticLabel_2_1.setTranslatesAutoresizingMaskIntoConstraints(false)
 		statisticView.addSubview(statisticLabel_2_1)
 		
 		let statisticLabel_2_2 : CLLabel = CLLabel()
-		statisticLabel_2_2.setLabelText("3")
+		statisticLabel_2_2.setLabelTextWithKerning("3")
 		statisticLabel_2_2.textColor = appColorYellow
 		statisticLabel_2_2.setTranslatesAutoresizingMaskIntoConstraints(false)
 		statisticView.addSubview(statisticLabel_2_2)
 		
 		let statisticLabel_2_3 : CLLabel = CLLabel()
-		statisticLabel_2_3.setLabelText("/5")
+		statisticLabel_2_3.setLabelTextWithKerning("/5")
 		statisticLabel_2_3.setTranslatesAutoresizingMaskIntoConstraints(false)
 		statisticView.addSubview(statisticLabel_2_3)
 		
 		let statisticLabel_3_1 : CLLabel = CLLabel()
-		statisticLabel_3_1.setLabelText("Projekte")
+		statisticLabel_3_1.setLabelTextWithKerning("Projekte")
 		statisticLabel_3_1.setTranslatesAutoresizingMaskIntoConstraints(false)
 		statisticView.addSubview(statisticLabel_3_1)
 		
 		let statisticLabel_3_2 : CLLabel = CLLabel()
-		statisticLabel_3_2.setLabelText("2")
+		statisticLabel_3_2.setLabelTextWithKerning("2")
 		statisticLabel_3_2.textColor = appColorRed
 		statisticLabel_3_2.setTranslatesAutoresizingMaskIntoConstraints(false)
 		statisticView.addSubview(statisticLabel_3_2)
 		
 		let statisticLabel_3_3 : CLLabel = CLLabel()
-		statisticLabel_3_3.setLabelText("/4")
+		statisticLabel_3_3.setLabelTextWithKerning("/4")
 		statisticLabel_3_3.setTranslatesAutoresizingMaskIntoConstraints(false)
 		statisticView.addSubview(statisticLabel_3_3)
 		
@@ -212,6 +212,20 @@ class ViewController: UIViewController {
 		mainCollectionView!.contentInset = UIEdgeInsetsMake(0, 45, 0, 45)
 		
 		self.view.addSubview(mainCollectionView!)
+		
+		// MainCollectionView > Overlay
+		//////////////////////////
+		
+		let overlay = UIView()
+		overlay.backgroundColor = UIColor.blackColor()
+		overlay.alpha = 0.9
+		overlay.setTranslatesAutoresizingMaskIntoConstraints(false)
+		mainCollectionView!.addSubview(overlay)
+		
+		mainCollectionView!.addConstraint(NSLayoutConstraint(item: overlay, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: mainCollectionView!, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0))
+		mainCollectionView!.addConstraint(NSLayoutConstraint(item: overlay, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: mainCollectionView!, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0))
+		mainCollectionView!.addConstraint(NSLayoutConstraint(item: overlay, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: mainCollectionView!, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
+		mainCollectionView!.addConstraint(NSLayoutConstraint(item: overlay, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: mainCollectionView!, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
 		
 		//////////////////////////
 		// MARK: CONSTRAINTS (to Superview)
