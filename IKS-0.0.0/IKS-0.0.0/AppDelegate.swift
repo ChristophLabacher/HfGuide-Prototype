@@ -13,7 +13,7 @@ var dataArray:NSArray?
 	// COLLECTIONVIEWS
 	// ScrollCollectionView
 	var scrollCollectionView:UICollectionView?
-	var scrollCollectionViewDelegateAndDataSource = ScrollCollectionViewController()
+	var scrollCollectionViewDelegateAndDataSource = ScrollCollectionViewDelegateAndDataSource()
 	
 	// MainCollectionView
 	var mainCollectionView:UICollectionView?
@@ -62,6 +62,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		// Override point for customization after application launch.
 		
+		// Load Data
+		var path = NSBundle.mainBundle().pathForResource("cards", ofType: "plist")
+		var data = NSArray(contentsOfFile: path!)!
+		
+		for card in data {
+			cards.append(Card(card: card as! NSDictionary))
+		}
+		
 		// Setup Window & ViewController
 		UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
 		
@@ -70,13 +78,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		window!.rootViewController = ViewController()
 		window!.makeKeyAndVisible()
 		
-		// Load Data
-		var path = NSBundle.mainBundle().pathForResource("cards", ofType: "plist")
-		var data = NSArray(contentsOfFile: path!)!
-		
-		for card in data {
-			cards.append(Card(card: card as! NSDictionary))
-		}
 		
 		// Beacons
 		beaconManager.delegate = beaconManagerDelegate

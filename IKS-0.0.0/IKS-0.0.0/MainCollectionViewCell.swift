@@ -66,8 +66,8 @@ class MainCollectionViewCell: UICollectionViewCell {
 		let horizontalTitelLabelContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-15-[v1]-15-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(titelLabel))
 		card.addConstraints(horizontalTitelLabelContraint)
 		
-		card.addConstraint(NSLayoutConstraint(item: titelLabel, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: card, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
-		card.addConstraint(NSLayoutConstraint(item: titelLabel, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: card, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: -40))
+		card.addConstraint(NSLayoutConstraint(item: titelLabel, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: backgroundImage, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
+		card.addConstraint(NSLayoutConstraint(item: titelLabel, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: backgroundImage, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
 		
 		// Card > BlurEffect
 		//////////////////////////
@@ -156,6 +156,9 @@ class MainCollectionViewCell: UICollectionViewCell {
 		
 		let horizontalNoteLabelContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:[v1]-15-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(noteLabel))
 		card.addConstraints(horizontalNoteLabelContraint)
+		
+		// Card > WebView
+		//////////////////////////
 		
 		super.init(frame: frame)
 		contentView.addSubview(card)

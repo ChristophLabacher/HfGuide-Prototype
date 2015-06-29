@@ -8,28 +8,33 @@
 
 import UIKit
 
-class ScrollCollectionViewController: NSObject, UICollectionViewDelegate, UICollectionViewDataSource  {
+class ScrollCollectionViewDelegateAndDataSource: NSObject, UICollectionViewDelegate, UICollectionViewDataSource  {
+	var data : [Card] = []
 	
 	func collectionView(collectionView: UICollectionView, numberOfSectionsInCollectionView section: Int) -> Int {
 		return 1
 	}
 	
 	func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return cards.count
+		return data.count
 	}
  
 	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! ScrollCollectionViewCell
 		
-		cell.data = cards[indexPath.item]
+		cell.data = data[indexPath.item]
 		cell.initCard()
+		
+		if cell.data.active	{
+			cell.becameActive()
+		}
 		
 		return cell
 	}
 	
-	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-		let cell = collectionView.cellForItemAtIndexPath(indexPath)
-		collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: true)
-		mainCollectionView?.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: true)
-	}
+//	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+//		let cell = collectionView.cellForItemAtIndexPath(indexPath)
+//		collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: true)
+//		mainCollectionView?.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: true)
+//	}
 }

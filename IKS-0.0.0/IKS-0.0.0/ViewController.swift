@@ -142,6 +142,7 @@ class ViewController: UIViewController {
 		scrollCollectionView!.contentInset = UIEdgeInsetsMake(0, 14, 0, 14)
 
 		scrollCollectionView!.setTranslatesAutoresizingMaskIntoConstraints(false)
+		scrollCollectionViewDelegateAndDataSource.data = cards
 
 		topView!.addSubview(scrollCollectionView!)
 		
@@ -271,15 +272,15 @@ class ViewController: UIViewController {
 		let size = mainCollectionViewDelegateAndDataSource.data.count
 		mainCollectionViewDelegateAndDataSource.data.append(cards[cardIndex])
 		mainCollectionView!.insertItemsAtIndexPaths([NSIndexPath(forItem: size, inSection: 0)])
+		
+		scrollCollectionView?.reloadData()
 	}
 	
 	func cardTransitionToDetail()	{
 		mainViewTopVerticalConstraint.constant = -180 - 90
 		mainViewBottomVerticalConstraint.constant = 0
 		
-		// TODO: Hier will ich drauf zugreifen
 		mainCollectionViewDelegateAndDataSource.cellMargin = 0
-		
 		mainCollectionView!.reloadData()
 		
 		UIView.animateWithDuration(0.8, animations: {
@@ -300,7 +301,6 @@ class ViewController: UIViewController {
 		var touchPos = sender.locationInView(self.view).y - 180 - 80
 		var duration = 0.0
 		var newAlpha : CGFloat = 0.5
-		
 		
 		if (touchPos <= 0 && touchPos >= -180)	{
 			currentPos = touchPos;

@@ -29,6 +29,7 @@ class ScrollCollectionViewCell: UICollectionViewCell {
 		card.clipsToBounds = true
 		card.setTranslatesAutoresizingMaskIntoConstraints(false)
 		card.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
+		card.alpha = 0.3
 		
 		imageView = UIImageView()
 		imageView.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
@@ -67,6 +68,10 @@ class ScrollCollectionViewCell: UICollectionViewCell {
 		imageView.image = UIImage(named: data!.coverImage)
 		borderTop.backgroundColor = cardColor
 		borderBottom.backgroundColor = cardColor
+	}
+	
+	func becameActive()	{
+		card.alpha = 1
 	}
 	
 	required init(coder aDecoder: NSCoder) {
