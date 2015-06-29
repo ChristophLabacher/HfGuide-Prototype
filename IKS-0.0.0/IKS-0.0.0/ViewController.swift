@@ -216,16 +216,18 @@ class ViewController: UIViewController {
 		// MainCollectionView > Overlay
 		//////////////////////////
 		
-		let overlay = UIView()
-		overlay.backgroundColor = UIColor.blackColor()
-		overlay.alpha = 0.9
-		overlay.setTranslatesAutoresizingMaskIntoConstraints(false)
-		mainCollectionView!.addSubview(overlay)
+//		let overlay = UIView()
+//		overlay.backgroundColor = UIColor.blackColor()
+//		overlay.alpha = 0.9
+//		overlay.setTranslatesAutoresizingMaskIntoConstraints(false)
+//		self.view.addSubview(overlay)
+//		
+//		self.view.addConstraint(NSLayoutConstraint(item: overlay, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: mainCollectionView!, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0))
+//		self.view.addConstraint(NSLayoutConstraint(item: overlay, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: mainCollectionView!, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0))
+//		self.view.addConstraint(NSLayoutConstraint(item: overlay, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: mainCollectionView!, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
+//		self.view.addConstraint(NSLayoutConstraint(item: overlay, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: mainCollectionView!, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
 		
-		mainCollectionView!.addConstraint(NSLayoutConstraint(item: overlay, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: mainCollectionView!, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0))
-		mainCollectionView!.addConstraint(NSLayoutConstraint(item: overlay, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: mainCollectionView!, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0))
-		mainCollectionView!.addConstraint(NSLayoutConstraint(item: overlay, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: mainCollectionView!, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
-		mainCollectionView!.addConstraint(NSLayoutConstraint(item: overlay, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: mainCollectionView!, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
+		mainCollectionView!.alpha = 0.3
 		
 		//////////////////////////
 		// MARK: CONSTRAINTS (to Superview)
