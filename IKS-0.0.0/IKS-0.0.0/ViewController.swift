@@ -258,7 +258,7 @@ class ViewController: UIViewController {
 		mainViewBottomVerticalConstraint = NSLayoutConstraint(item: mainCollectionView!, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: -40)
 		self.view.addConstraint(mainViewBottomVerticalConstraint!)
 
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: "cardTransitionToDetail:", name: "cardTransitionToDetail", object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: "cardTransitionToDetail", name: "cardTransitionToDetail", object: nil)
 		
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: "cardBecameActive:", name: "cardBecameActive", object: nil)
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: "cardBecameVisible:", name: "cardBecameVisible", object: nil)
