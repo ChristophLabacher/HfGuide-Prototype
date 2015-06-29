@@ -10,6 +10,7 @@ import UIKit
 
 class MainCollectionViewController: NSObject, UICollectionViewDelegate, UICollectionViewDataSource  {
 	var cellMargin : CGFloat = 80
+	var data : [Card] = []
 
 	override init() {
 
@@ -20,13 +21,13 @@ class MainCollectionViewController: NSObject, UICollectionViewDelegate, UICollec
 	}
 	
 	func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return cards.count
+		return data.count
 	}
  
 	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! MainCollectionViewCell
 		
-		cell.data = cards[indexPath.item]
+		cell.data = data[indexPath.item]
 		cell.initCard()
 		
 		return cell

@@ -280,6 +280,11 @@ class ViewController: UIViewController {
 		cards[cardIndex].visible = true
 		
 		println("Card became visible \(cardIndex)")
+		
+		let size = mainCollectionViewDelegateAndDataSource.data.count
+		mainCollectionViewDelegateAndDataSource.data.append(cards[cardIndex])
+		mainCollectionView!.insertItemsAtIndexPaths([NSIndexPath(forItem: size, inSection: 0)])
+		//mainCollectionView!.reloadData()
 	}
 	
 	func cardTransitionToDetail()	{
