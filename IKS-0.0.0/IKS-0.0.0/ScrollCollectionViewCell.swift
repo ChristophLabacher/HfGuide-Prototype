@@ -9,8 +9,17 @@
 import UIKit
 
 class ScrollCollectionViewCell: UICollectionViewCell {
+	var data : Card!
+	var cardColor : UIColor = UIColor.grayColor()
+	
 	let card : UIView!
 	let imageView: UIImageView!
+		
+	let borderTop : UIView = UIView()
+	let borderRight : UIView = UIView()
+	let borderBottom : UIView = UIView()
+	let borderLeft : UIView = UIView()
+
 	
 	override init(frame: CGRect) {
 		
@@ -29,22 +38,18 @@ class ScrollCollectionViewCell: UICollectionViewCell {
 		
 		let borderWidth : CGFloat = 5.0
 		
-		let borderTop = UIView()
 		borderTop.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: borderWidth)
 		borderTop.backgroundColor = appColorBlue
 		card.addSubview(borderTop)
 		
-		let borderRight = UIView()
 		borderRight.frame = CGRect(x: frame.size.width - borderWidth, y: borderWidth, width: borderWidth, height: frame.size.height - (borderWidth*2))
 		borderRight.backgroundColor = appColorBlue
 		card.addSubview(borderRight)
 		
-		let borderBottom = UIView()
 		borderBottom.frame = CGRect(x: 0, y: frame.size.height - borderWidth, width: frame.size.width, height: borderWidth)
 		borderBottom.backgroundColor = appColorBlue
 		card.addSubview(borderBottom)
 		
-		let borderLeft = UIView()
 		borderLeft.frame = CGRect(x: 0, y: borderWidth, width: borderWidth, height: frame.size.height - (borderWidth*2))
 		borderLeft.backgroundColor = appColorBlue
 		card.addSubview(borderLeft)
@@ -54,6 +59,14 @@ class ScrollCollectionViewCell: UICollectionViewCell {
 		
 		super.init(frame: frame)
 		contentView.addSubview(card)
+	}
+	
+	func initCard()	{
+		cardColor = colors[data!.type]!
+		
+		imageView.image = UIImage(named: data!.coverImage)
+		borderTop.backgroundColor = cardColor
+		borderBottom.backgroundColor = cardColor
 	}
 	
 	required init(coder aDecoder: NSCoder) {

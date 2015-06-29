@@ -9,7 +9,11 @@
 import UIKit
 
 class MainCollectionViewCell: UICollectionViewCell {
+	var data : Card!
+	var cardColor : UIColor = UIColor.grayColor()
+	
 	let card: UIView!
+	let overlay: UIView!
 	let backgroundImage: UIImageView!
 	let blurEffectView : UIVisualEffectView!
 	let readMoreButtonBorderTop : UIView!
@@ -22,19 +26,24 @@ class MainCollectionViewCell: UICollectionViewCell {
 	
 	var verticalContraint : [AnyObject]!
 	var viewsDictionary : [String : UIView]!
-	
-	var data : Card!
-	
-	var cardColor : UIColor = UIColor.grayColor()
 		
 	override init(frame: CGRect) {
+		
+		//////////////////////////
+		// Overlay
+		//////////////////////////
+		
+		overlay = UIView()
+		overlay.backgroundColor = UIColor.blackColor()
+		overlay.alpha = 0.5
+		overlay.setTranslatesAutoresizingMaskIntoConstraints(false)
 		
 		//////////////////////////
 		// Card
 		//////////////////////////
 		
 		card = UIView();
-		card.backgroundColor = UIColor.whiteColor();
+		card.backgroundColor = UIColor.blackColor();
 		card.layer.cornerRadius = 10;
 		card.clipsToBounds = true
 		card.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -44,6 +53,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 		
 		backgroundImage = UIImageView()
 		backgroundImage.contentMode = UIViewContentMode.ScaleAspectFill
+		backgroundImage.alpha = 0.8
 		backgroundImage.clipsToBounds = true
 		backgroundImage.setTranslatesAutoresizingMaskIntoConstraints(false)
 
@@ -57,8 +67,11 @@ class MainCollectionViewCell: UICollectionViewCell {
 		
 		let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
 		blurEffectView = UIVisualEffectView(effect: blurEffect)
-		blurEffectView.frame = card.bounds
+		blurEffectView.setTranslatesAutoresizingMaskIntoConstraints(false)
 		//card.addSubview(blurEffectView)
+		
+		//card.addConstraint(NSLayoutConstraint(item: blurEffectView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: card, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0))
+		//card.addConstraint(NSLayoutConstraint(item: blurEffectView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: card, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0))
 		
 		// Card > ReadMoreButtonBorderTop
 		//////////////////////////
@@ -137,19 +150,26 @@ class MainCollectionViewCell: UICollectionViewCell {
 		let horizontalNoteLabelContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:[v1]-15-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(noteLabel))
 		card.addConstraints(horizontalNoteLabelContraint)
 		
-		
+		// Card > TitelLabel
+		//////////////////////////
 		
 		titelLabel = CLLabel()
-		titelLabel.font = UIFont(name: "SourceSansPro-SemiBold", size: 24)
+		titelLabel.font = UIFont(name: "SourceSansPro-Bold", size: 30)
+		titelLabel.numberOfLines = 0;
+		titelLabel.textAlignment = NSTextAlignment.Center
 		titelLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
 		
 		card.addSubview(titelLabel)
+		
+		let horizontalTitelLabelContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-15-[v1]-15-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(titelLabel))
+		card.addConstraints(horizontalTitelLabelContraint)
 		
 		card.addConstraint(NSLayoutConstraint(item: titelLabel, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: card, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
 		card.addConstraint(NSLayoutConstraint(item: titelLabel, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: card, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: -40))
 		
 		super.init(frame: frame)
 		contentView.addSubview(card)
+		contentView.addSubview(overlay)
 		
 		//////////////////////////
 		// CONSTRAINTS (to card)
@@ -159,6 +179,13 @@ class MainCollectionViewCell: UICollectionViewCell {
 		let horizontalCardContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[v1]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(card))
 		contentView.addConstraints(verticalCardContraint)
 		contentView.addConstraints(horizontalCardContraint)
+		
+		
+		// Overlay
+//		let verticalOverlayContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|-0-[v1]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(overlay))
+//		let horizontalOverlayContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[v1]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(overlay))
+//		contentView.addConstraints(verticalOverlayContraint)
+//		contentView.addConstraints(horizontalOverlayContraint)
 		
 		viewsDictionary = [
 			"backgroundImage": backgroundImage,

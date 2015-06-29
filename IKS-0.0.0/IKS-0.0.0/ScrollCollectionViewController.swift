@@ -21,9 +21,8 @@ class ScrollCollectionViewController: NSObject, UICollectionViewDelegate, UIColl
 	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! ScrollCollectionViewCell
 		
-		//cell.imageView.image = UIImage(named: String(viewController.dataArray![indexPath.item] as! NSString))
-		let path = String(dataArray![indexPath.item] as! NSString);
-		cell.imageView.image = UIImage(named: path)
+		cell.data = cards[indexPath.item]
+		cell.initCard()
 		
 		return cell
 	}

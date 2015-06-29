@@ -25,6 +25,13 @@ class CLLabel: UILabel {
 		let labelAttributedText : NSMutableAttributedString = NSMutableAttributedString(string: labelText)
 		
 		labelAttributedText.addAttribute(NSKernAttributeName, value: CGFloat(0.6), range: NSRange(location: 0, length: count(labelText)))
+		
+		var paragraphStyle = NSMutableParagraphStyle()
+		paragraphStyle.lineSpacing = 10
+		
+		labelAttributedText.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSRange(location: 0, length: count(labelText)))
+
+		
 		self.attributedText = labelAttributedText
 	}
 }
