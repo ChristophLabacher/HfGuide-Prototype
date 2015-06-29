@@ -52,16 +52,33 @@ class MainCollectionViewCell: UICollectionViewCell {
 		let backgroundImageWidthContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|[v1]|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(backgroundImage))
 		card.addConstraints(backgroundImageWidthContraint)
 		
+		// Card > TitelLabel
+		//////////////////////////
+		
+		titelLabel = CLLabel()
+		titelLabel.font = UIFont(name: "SourceSansPro-Bold", size: 30)
+		titelLabel.numberOfLines = 0;
+		titelLabel.textAlignment = NSTextAlignment.Center
+		titelLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+		
+		card.addSubview(titelLabel)
+		
+		let horizontalTitelLabelContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-15-[v1]-15-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(titelLabel))
+		card.addConstraints(horizontalTitelLabelContraint)
+		
+		card.addConstraint(NSLayoutConstraint(item: titelLabel, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: card, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
+		card.addConstraint(NSLayoutConstraint(item: titelLabel, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: card, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: -40))
+		
 		// Card > BlurEffect
 		//////////////////////////
 		
 		let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Dark)
 		blurEffectView = UIVisualEffectView(effect: blurEffect)
 		blurEffectView.setTranslatesAutoresizingMaskIntoConstraints(false)
-		//card.addSubview(blurEffectView)
+		card.addSubview(blurEffectView)
 		
-		//card.addConstraint(NSLayoutConstraint(item: blurEffectView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: card, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0))
-		//card.addConstraint(NSLayoutConstraint(item: blurEffectView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: card, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0))
+		card.addConstraint(NSLayoutConstraint(item: blurEffectView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: card, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0))
+		card.addConstraint(NSLayoutConstraint(item: blurEffectView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: card, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0))
 		
 		// Card > ReadMoreButtonBorderTop
 		//////////////////////////
@@ -140,23 +157,6 @@ class MainCollectionViewCell: UICollectionViewCell {
 		let horizontalNoteLabelContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:[v1]-15-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(noteLabel))
 		card.addConstraints(horizontalNoteLabelContraint)
 		
-		// Card > TitelLabel
-		//////////////////////////
-		
-		titelLabel = CLLabel()
-		titelLabel.font = UIFont(name: "SourceSansPro-Bold", size: 30)
-		titelLabel.numberOfLines = 0;
-		titelLabel.textAlignment = NSTextAlignment.Center
-		titelLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
-		
-		card.addSubview(titelLabel)
-		
-		let horizontalTitelLabelContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-15-[v1]-15-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(titelLabel))
-		card.addConstraints(horizontalTitelLabelContraint)
-		
-		card.addConstraint(NSLayoutConstraint(item: titelLabel, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: card, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
-		card.addConstraint(NSLayoutConstraint(item: titelLabel, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: card, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: -40))
-		
 		super.init(frame: frame)
 		contentView.addSubview(card)
 		
@@ -187,8 +187,6 @@ class MainCollectionViewCell: UICollectionViewCell {
 		// Actions
 		//////////////////////////
 		readMoreButton.addTarget(self, action: "readMoreButtonTap:", forControlEvents: UIControlEvents.TouchUpInside)
-		
-
 	}
 	
 	func initCard()	{
@@ -224,5 +222,13 @@ class MainCollectionViewCell: UICollectionViewCell {
 			self.card.layoutIfNeeded()
 			self.card.layer.cornerRadius = 0;
 		}, completion: nil)
+	}
+	
+	func becameActive()	{
+		UIView.animateWithDuration(0.8, animations: {
+			self.blurEffectView.alpha = 0
+			}, completion: { (finished : Bool) in
+			self.blurEffectView.removeFromSuperview()
+		})
 	}
 }

@@ -17,7 +17,7 @@ var dataArray:NSArray?
 	
 	// MainCollectionView
 	var mainCollectionView:UICollectionView?
-	var mainCollectionViewDelegateAndDataSource = MainCollectionViewController()
+	var mainCollectionViewDelegateAndDataSource = MainCollectionViewDelegateAndDataSource()
 	
 	// COLORS
 	let appColorRed : UIColor = UIColor(hue: 3.0/360, saturation: 63.0/100, brightness: 95.0/100, alpha: 1.0)

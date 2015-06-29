@@ -1,5 +1,5 @@
 //
-//  ScrollCollectionViewController.swift
+//  MainCollectionViewDelegateAndDataSource
 //  IKS-0.0.0
 //
 //  Created by Christoph Labacher on 11.05.15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainCollectionViewController: NSObject, UICollectionViewDelegate, UICollectionViewDataSource  {
+class MainCollectionViewDelegateAndDataSource: NSObject, UICollectionViewDelegate, UICollectionViewDataSource  {
 	var cellMargin : CGFloat = 80
 	var data : [Card] = []
 
@@ -29,6 +29,10 @@ class MainCollectionViewController: NSObject, UICollectionViewDelegate, UICollec
 		
 		cell.data = data[indexPath.item]
 		cell.initCard()
+		
+		if cell.data.active	{
+			cell.becameActive()
+		}
 		
 		return cell
 	}

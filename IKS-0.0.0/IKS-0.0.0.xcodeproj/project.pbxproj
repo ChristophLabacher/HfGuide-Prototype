@@ -17,7 +17,7 @@
 		4C7876F01B3B3B8000845D19 /* ObjCBridge.h in Sources */ = {isa = PBXBuildFile; fileRef = 4C7876EC1B3B3B4A00845D19 /* ObjCBridge.h */; };
 		4C7876F31B3B3C3B00845D19 /* BeaconDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C7876F21B3B3C3B00845D19 /* BeaconDelegate.swift */; };
 		4CABB0861B2F7658002FF93C /* CLLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CABB0851B2F7658002FF93C /* CLLabel.swift */; };
-		4CC72D2D1B2B0A1B00895616 /* MainCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC72D2C1B2B0A1B00895616 /* MainCollectionViewController.swift */; };
+		4CC72D2D1B2B0A1B00895616 /* MainCollectionViewDelegateAndDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC72D2C1B2B0A1B00895616 /* MainCollectionViewDelegateAndDataSource.swift */; };
 		4CCFDBBB1B00E0A10085AD75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCFDBBA1B00E0A10085AD75 /* AppDelegate.swift */; };
 		4CCFDBBD1B00E0A10085AD75 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCFDBBC1B00E0A10085AD75 /* ViewController.swift */; };
 		4CCFDBC21B00E0A10085AD75 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CCFDBC11B00E0A10085AD75 /* Images.xcassets */; };
@@ -47,7 +47,7 @@
 		4C7876EE1B3B3B6500845D19 /* EstimoteSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = EstimoteSDK.framework; sourceTree = "<group>"; };
 		4C7876F21B3B3C3B00845D19 /* BeaconDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconDelegate.swift; sourceTree = "<group>"; };
 		4CABB0851B2F7658002FF93C /* CLLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLabel.swift; sourceTree = "<group>"; };
-		4CC72D2C1B2B0A1B00895616 /* MainCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectionViewController.swift; sourceTree = "<group>"; };
+		4CC72D2C1B2B0A1B00895616 /* MainCollectionViewDelegateAndDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectionViewDelegateAndDataSource.swift; sourceTree = "<group>"; };
 		4CCFDBB51B00E0A10085AD75 /* IKS-0.0.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IKS-0.0.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CCFDBB91B00E0A10085AD75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CCFDBBA1B00E0A10085AD75 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -123,7 +123,7 @@
 				4CCFDBBC1B00E0A10085AD75 /* ViewController.swift */,
 				4C01B6A11B052714003A2464 /* ScrollCollectionViewController.swift */,
 				4C01B6A31B052752003A2464 /* ScrollCollectionViewCell.swift */,
-				4CC72D2C1B2B0A1B00895616 /* MainCollectionViewController.swift */,
+				4CC72D2C1B2B0A1B00895616 /* MainCollectionViewDelegateAndDataSource.swift */,
 				4CCFDBDC1B00E16C0085AD75 /* MainCollectionViewCell.swift */,
 				4C12B3B81B2B8A3E008D30C7 /* Card.swift */,
 				4CABB0851B2F7658002FF93C /* CLLabel.swift */,
@@ -266,7 +266,7 @@
 			files = (
 				4C7876F01B3B3B8000845D19 /* ObjCBridge.h in Sources */,
 				4C01B6A21B052714003A2464 /* ScrollCollectionViewController.swift in Sources */,
-				4CC72D2D1B2B0A1B00895616 /* MainCollectionViewController.swift in Sources */,
+				4CC72D2D1B2B0A1B00895616 /* MainCollectionViewDelegateAndDataSource.swift in Sources */,
 				4C7876F31B3B3C3B00845D19 /* BeaconDelegate.swift in Sources */,
 				4C01B6A41B052752003A2464 /* ScrollCollectionViewCell.swift in Sources */,
 				4CCFDBBD1B00E0A10085AD75 /* ViewController.swift in Sources */,

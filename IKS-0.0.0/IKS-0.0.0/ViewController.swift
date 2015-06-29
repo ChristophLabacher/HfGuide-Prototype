@@ -210,20 +210,6 @@ class ViewController: UIViewController {
 		mainCollectionView!.contentInset = UIEdgeInsetsMake(0, 45, 0, 45)
 		
 		self.view.addSubview(mainCollectionView!)
-		
-		// MainCollectionView > Overlay
-		//////////////////////////
-		
-//		let overlay = UIView()
-//		overlay.backgroundColor = UIColor.blackColor()
-//		overlay.alpha = 0.9
-//		overlay.setTranslatesAutoresizingMaskIntoConstraints(false)
-//		self.view.addSubview(overlay)
-//		
-//		self.view.addConstraint(NSLayoutConstraint(item: overlay, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: mainCollectionView!, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0))
-//		self.view.addConstraint(NSLayoutConstraint(item: overlay, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: mainCollectionView!, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0))
-//		self.view.addConstraint(NSLayoutConstraint(item: overlay, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: mainCollectionView!, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
-//		self.view.addConstraint(NSLayoutConstraint(item: overlay, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: mainCollectionView!, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
 
 		
 		//////////////////////////
@@ -269,6 +255,7 @@ class ViewController: UIViewController {
 		let cardIndex = info.valueForKey("index") as! Int
 		
 		cards[cardIndex].active = true
+		mainCollectionView!.reloadData()
 		
 		println("Card became active \(cardIndex)")
 	}
@@ -284,7 +271,6 @@ class ViewController: UIViewController {
 		let size = mainCollectionViewDelegateAndDataSource.data.count
 		mainCollectionViewDelegateAndDataSource.data.append(cards[cardIndex])
 		mainCollectionView!.insertItemsAtIndexPaths([NSIndexPath(forItem: size, inSection: 0)])
-		//mainCollectionView!.reloadData()
 	}
 	
 	func cardTransitionToDetail()	{
