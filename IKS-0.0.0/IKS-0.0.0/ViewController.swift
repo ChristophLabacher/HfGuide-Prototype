@@ -226,8 +226,7 @@ class ViewController: UIViewController {
 //		self.view.addConstraint(NSLayoutConstraint(item: overlay, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: mainCollectionView!, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0))
 //		self.view.addConstraint(NSLayoutConstraint(item: overlay, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: mainCollectionView!, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
 //		self.view.addConstraint(NSLayoutConstraint(item: overlay, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: mainCollectionView!, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
-		
-		mainCollectionView!.alpha = 0.3
+
 		
 		//////////////////////////
 		// MARK: CONSTRAINTS (to Superview)
@@ -255,7 +254,7 @@ class ViewController: UIViewController {
 		mainViewVerticalConstraint = NSLayoutConstraint.constraintsWithVisualFormat("V:[topView(180)]-10-[scrubbingHandle(80)]-0-[mainCollectionView]", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary!)
 		self.view.addConstraints(mainViewVerticalConstraint!)
 		
-		mainViewTopVerticalConstraint = NSLayoutConstraint(item: topView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: -20)
+		mainViewTopVerticalConstraint = NSLayoutConstraint(item: topView, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: -180)
 		self.view.addConstraint(mainViewTopVerticalConstraint!)
 		
 		mainViewBottomVerticalConstraint = NSLayoutConstraint(item: mainCollectionView!, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: -40)
@@ -295,19 +294,23 @@ class ViewController: UIViewController {
 		var currentPos = mainViewTopVerticalConstraint.constant
 		var touchPos = sender.locationInView(self.view).y - 180 - 80
 		var duration = 0.0
+		var newAlpha : CGFloat = 0.5
 		
 		
 		if (touchPos <= 0 && touchPos >= -180)	{
 			currentPos = touchPos;
+			newAlpha = 0.5
 		}
 		
 		if (sender.state == UIGestureRecognizerState.Ended || sender.state == UIGestureRecognizerState.Cancelled)	{
 			if (sender.velocityInView(self.view).y > 0)	{
 				// Down
 				currentPos = bottom
+				newAlpha = 0.2
 			} else if (sender.velocityInView(self.view).y < 0)	{
 				// Up
 				currentPos = top
+				newAlpha = 1
 			}
 			
 			duration = 0.9
@@ -319,6 +322,10 @@ class ViewController: UIViewController {
 		UIView.animateWithDuration(duration, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.01, options: nil, animations: {
 			self.view.layoutIfNeeded()
 		}, completion: nil)
+		
+		UIView.animateWithDuration(0.5, animations: {
+			mainCollectionView!.alpha = newAlpha
+		})
 	}
 }
 
