@@ -30,6 +30,7 @@ var dataArray:NSArray?
 	var cards : [Card] = []
 	
 	// BEACONS
+	let logBeacons = false
 	var searchingInterval = 0.2
 	var searchingTimer = NSTimer()
 	var searchingBeacons = false
@@ -95,7 +96,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		beaconManager.requestWhenInUseAuthorization()
 		beaconManager.startRangingBeaconsInRegion(beaconRegion)
-		print(".")
+		
+		if logBeacons	{
+			print(".")
+		}
 	}
 	
 	func applicationWillResignActive(application: UIApplication) {

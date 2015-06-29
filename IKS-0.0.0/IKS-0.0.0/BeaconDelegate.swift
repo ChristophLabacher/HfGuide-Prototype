@@ -14,7 +14,9 @@ class BeaconDelegate: NSObject, ESTBeaconManagerDelegate {
 		didRangeBeacons beacons: [AnyObject]!,
 		inRegion region: CLBeaconRegion!) {
 		
-		print("|")
+		if logBeacons	{
+			print("|")
+		}
 			
 		//Kopie aller available minors erstellen und in saveBeaconArray speichern
 		//gleichzeitig rssis auslesen und für eine höhere responsivnes über einem bestimmten wert kicken
@@ -35,7 +37,6 @@ class BeaconDelegate: NSObject, ESTBeaconManagerDelegate {
 		//sort the Beacons - dann nur die minor
 		sortBeaconsIntoArrays(saveBeaconArray)
 			
-
 		
 		checkForNewBeacons()
         checkForGoneBeacons()
