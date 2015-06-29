@@ -257,6 +257,7 @@ class ViewController: UIViewController {
 		
 		cards[cardIndex].active = true
 		mainCollectionView!.reloadData()
+		scrollCollectionView?.reloadData()
 		
 		println("Card became active \(cardIndex)")
 	}
@@ -272,8 +273,6 @@ class ViewController: UIViewController {
 		let size = mainCollectionViewDelegateAndDataSource.data.count
 		mainCollectionViewDelegateAndDataSource.data.append(cards[cardIndex])
 		mainCollectionView!.insertItemsAtIndexPaths([NSIndexPath(forItem: size, inSection: 0)])
-		
-		scrollCollectionView?.reloadData()
 	}
 	
 	func cardTransitionToDetail()	{

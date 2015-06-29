@@ -44,7 +44,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 		
 		backgroundImage = UIImageView()
 		backgroundImage.contentMode = UIViewContentMode.ScaleAspectFill
-		backgroundImage.alpha = 0.8
+		backgroundImage.alpha = 0.7
 		backgroundImage.clipsToBounds = true
 		backgroundImage.setTranslatesAutoresizingMaskIntoConstraints(false)
 
@@ -232,7 +232,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 		]
 		
 		self.card.removeConstraints(self.verticalContraint!)
-		self.verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage(120)][readMoreButtonBorderTop(0)][readMoreButton(0)][detailWebView]-(>=0)-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+		self.verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage(100)][readMoreButtonBorderTop(0)][readMoreButton(0)][detailWebView]-(>=0)-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 		self.card.addConstraints(self.verticalContraint!)
 		
 		UIView.animateWithDuration(0.8, animations: {

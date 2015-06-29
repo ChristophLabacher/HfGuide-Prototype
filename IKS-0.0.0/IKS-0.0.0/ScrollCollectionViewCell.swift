@@ -71,7 +71,9 @@ class ScrollCollectionViewCell: UICollectionViewCell {
 	}
 	
 	func becameActive()	{
-		card.alpha = 1
+		UIView.animateWithDuration(0.8, animations: {
+			self.card.alpha = 1
+		})
 	}
 	
 	required init(coder aDecoder: NSCoder) {
