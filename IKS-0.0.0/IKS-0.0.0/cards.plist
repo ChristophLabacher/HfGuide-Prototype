@@ -18,8 +18,8 @@
 		<string>Frage</string>
 		<key>coverImage</key>
 		<string>cousteau</string>
-		<key>detailSlides</key>
-		<array/>
+		<key>detailSlide</key>
+		<string>http://www.florian-ludwig.de/iks</string>
 	</dict>
 	<dict>
 		<key>id</key>
@@ -37,8 +37,8 @@
 		<string>Projekt</string>
 		<key>coverImage</key>
 		<string>swarm</string>
-		<key>detailSlides</key>
-		<array/>
+		<key>detailSlide</key>
+		<string>http://www.florian-ludwig.de/iks</string>
 	</dict>
 	<dict>
 		<key>id</key>
@@ -56,8 +56,8 @@
 		<string>Ausstattung</string>
 		<key>coverImage</key>
 		<string>opms</string>
-		<key>detailSlides</key>
-		<array/>
+		<key>detailSlide</key>
+		<string>http://www.florian-ludwig.de/iks</string>
 	</dict>
 	<dict>
 		<key>id</key>
@@ -75,8 +75,8 @@
 		<string>Projekt</string>
 		<key>coverImage</key>
 		<string>money</string>
-		<key>detailSlides</key>
-		<array/>
+		<key>detailSlide</key>
+		<string>http://www.florian-ludwig.de/iks</string>
 	</dict>
 </array>
 </plist>

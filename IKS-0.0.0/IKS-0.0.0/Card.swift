@@ -18,7 +18,7 @@ class Card	{
 	let title : String
 	let subtitle : String
 	let coverImage : String
-	let detailSlides : [String]
+	let detailSlide : String
 	
     // visible if a beacon is close, but not gone away again
 	var visible : Bool = false
@@ -39,7 +39,7 @@ class Card	{
 		self.title = card["title"] as! String
 		self.subtitle = card["subtitle"] as! String
 		self.coverImage = card["coverImage"] as! String
-		self.detailSlides = card["detailSlides"] as! [String]
+		self.detailSlide = card["detailSlide"] as! String
 		self.minorIds = card["minorIds"] as! [Int]
 		self.type = card["type"] as! String;
 	}

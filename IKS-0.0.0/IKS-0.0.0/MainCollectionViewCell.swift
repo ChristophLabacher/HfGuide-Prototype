@@ -22,6 +22,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 	let categoryLabel : CLLabel!
 	let noteLabel : CLLabel!
 	let titelLabel : CLLabel;
+    let detailWebView : UIWebView!
 	
 	var verticalContraint : [AnyObject]!
 	var viewsDictionary : [String : UIView]!
@@ -159,6 +160,16 @@ class MainCollectionViewCell: UICollectionViewCell {
 		
 		// Card > WebView
 		//////////////////////////
+        detailWebView = UIWebView()
+        detailWebView.setTranslatesAutoresizingMaskIntoConstraints(false)
+
+        detailWebView.backgroundColor = UIColor.whiteColor()
+		detailWebView.scrollView.bounces = false
+        
+        card.addSubview(detailWebView)
+
+        let horizontalDetailWebViewContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-0-[v1]-0-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(detailWebView))
+        card.addConstraints(horizontalDetailWebViewContraint)
 		
 		super.init(frame: frame)
 		contentView.addSubview(card)
@@ -180,10 +191,11 @@ class MainCollectionViewCell: UICollectionViewCell {
 			"noteLabel": noteLabel,
 			"titelLabel" : titelLabel,
 			"contentView":contentView,
+            "detailWebView":detailWebView,
 			"card":card
 		]
 
-		verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage][readMoreButtonBorderTop(5)][readMoreButton(45)]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+		verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage][readMoreButtonBorderTop(5)][readMoreButton(45)][detailWebView(0)]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 		card.addConstraints(verticalContraint)
 		
 		//////////////////////////
@@ -198,6 +210,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 		titelLabel.setLabelTextWithLineHeight(data!.title)
 		backgroundImage.image = UIImage(named: data!.coverImage)
 		categoryLabel.setLabelTextWithKerning(data!.type)
+		detailWebView.loadRequest(NSURLRequest(URL: NSURL(string: data!.detailSlide)!))
 		
 		readMoreButtonBorderTop.backgroundColor = cardColor
 		self.readMoreButtonLabel.textColor = cardColor
@@ -215,10 +228,11 @@ class MainCollectionViewCell: UICollectionViewCell {
 			"readMoreButton": readMoreButton,
 			"readMoreButtonBorderTop": readMoreButtonBorderTop,
 			"contentView":contentView,
+			"detailWebView":detailWebView
 		]
 		
 		self.card.removeConstraints(self.verticalContraint!)
-		self.verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage(120)][readMoreButtonBorderTop(5)][readMoreButton(45)]-(>=0)-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+		self.verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage(120)][readMoreButtonBorderTop(0)][readMoreButton(0)][detailWebView]-(>=0)-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 		self.card.addConstraints(self.verticalContraint!)
 		
 		UIView.animateWithDuration(0.8, animations: {
