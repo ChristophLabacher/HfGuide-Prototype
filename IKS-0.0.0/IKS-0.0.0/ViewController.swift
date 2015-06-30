@@ -299,18 +299,21 @@ class ViewController: UIViewController {
 		var currentPos = mainViewTopVerticalConstraint.constant
 		var touchPos = sender.locationInView(self.view).y - 180 - 80
 		var duration = 0.0
-		var newAlpha : CGFloat = 0.5
-		
-		if (touchPos <= 0 && touchPos >= -180)	{
-			currentPos = touchPos;
-			newAlpha = 0.5
-		}
-		
+		var newAlpha : CGFloat = 1
+        
+		if touchPos <= 0 && touchPos >= -180 {
+			currentPos = touchPos
+            newAlpha = 0.5 + 0.5 * (currentPos / -180)
+        }else if touchPos > 0 {
+            newAlpha = 0.5
+        }
+        
+        
 		if (sender.state == UIGestureRecognizerState.Ended || sender.state == UIGestureRecognizerState.Cancelled)	{
 			if (sender.velocityInView(self.view).y > 0)	{
 				// Down
 				currentPos = bottom
-				newAlpha = 0.2
+				newAlpha = 0.5
 			} else if (sender.velocityInView(self.view).y < 0)	{
 				// Up
 				currentPos = top
@@ -327,7 +330,7 @@ class ViewController: UIViewController {
 			self.view.layoutIfNeeded()
 		}, completion: nil)
 		
-		UIView.animateWithDuration(0.5, animations: {
+		UIView.animateWithDuration(0, animations: {
 			mainCollectionView!.alpha = newAlpha
 		})
 	}
