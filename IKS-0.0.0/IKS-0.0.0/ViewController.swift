@@ -303,9 +303,9 @@ class ViewController: UIViewController {
         
 		if touchPos <= 0 && touchPos >= -180 {
 			currentPos = touchPos
-            newAlpha = 0.5 + 0.5 * (currentPos / -180)
-        }else if touchPos > 0 {
-            newAlpha = 0.5
+            newAlpha = 0.3 + 0.7 * (currentPos / -180)
+        } else if touchPos > 0 {
+            newAlpha = 0.3
         }
         
         
@@ -313,7 +313,7 @@ class ViewController: UIViewController {
 			if (sender.velocityInView(self.view).y > 0)	{
 				// Down
 				currentPos = bottom
-				newAlpha = 0.5
+				newAlpha = 0.3
 			} else if (sender.velocityInView(self.view).y < 0)	{
 				// Up
 				currentPos = top
