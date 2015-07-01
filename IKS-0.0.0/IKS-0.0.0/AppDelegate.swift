@@ -27,7 +27,7 @@ var dataArray:NSArray?
 	let appColorViolet : UIColor = UIColor(hue: 270.0/360, saturation: 45.0/100, brightness: 72.0/100, alpha: 1.0)
 	let appColorGrey : UIColor = UIColor(hue: 0.0/360, saturation: 0.0/100, brightness: 60.0/100, alpha: 1.0)
 	
-	let colors : [String : UIColor] = ["Projekt" : appColorRed, "Frage" : appColorBlue, "Ausstattung" : appColorGreen]
+	let colors : [String : UIColor] = ["Projekt" : appColorRed, "Frage" : appColorBlue, "Ausstattung" : appColorGreen, "Bewerbung" : appColorYellow, "Eigenes" : appColorViolet]
  	
 	var cards : [Card] = []
 	
