@@ -7,19 +7,19 @@
 		<integer>1</integer>
 		<key>minorIds</key>
 		<array>
-			<integer>4</integer>
+			<integer>1</integer>
 			<integer>2</integer>
 		</array>
 		<key>title</key>
-		<string>Muss ich programmieren können?</string>
+		<string>Application Design</string>
 		<key>subtitle</key>
-		<string>Viele Fragen sich diese Frage.</string>
+		<string>Redesign einer Wetterapplikation</string>
 		<key>type</key>
-		<string>Frage</string>
+		<string>Projekt</string>
 		<key>coverImage</key>
-		<string>cousteau</string>
+		<string>applicationimage</string>
 		<key>detailSlide</key>
-		<string>http://www.florian-ludwig.de/iks</string>
+		<string>http://florian-ludwig.de/iks/application/</string>
 	</dict>
 	<dict>
 		<key>id</key>
@@ -27,56 +27,56 @@
 		<key>minorIds</key>
 		<array>
 			<integer>3</integer>
-			<integer>1</integer>
+			<integer>4</integer>
 		</array>
 		<key>title</key>
-		<string>Application Design</string>
+		<string>Das Medienlabor</string>
 		<key>subtitle</key>
-		<string>Ein Projekt von Moritz und Manuel</string>
+		<string>Der Arbeitsplatz für IG-Studierende</string>
 		<key>type</key>
-		<string>Projekt</string>
+		<string>Ausstattung</string>
 		<key>coverImage</key>
-		<string>swarm</string>
+		<string>medienlaborimage</string>
 		<key>detailSlide</key>
-		<string>http://www.florian-ludwig.de/iks</string>
+		<string>http://www.florian-ludwig.de/iks/medienlabor/</string>
 	</dict>
 	<dict>
 		<key>id</key>
 		<integer>3</integer>
 		<key>minorIds</key>
 		<array>
+			<integer>5</integer>
 			<integer>6</integer>
-			<integer>7</integer>
 		</array>
 		<key>title</key>
-		<string>Medienlabor</string>
+		<string>Was sind meine Zukunftsaussichten?</string>
 		<key>subtitle</key>
-		<string>Herzlich Willkommen in unserem zweiten Zuhause</string>
+		<string>Ehemaliger Student Thomas Techert gibt Antworten.</string>
 		<key>type</key>
-		<string>Ausstattung</string>
+		<string>Frage</string>
 		<key>coverImage</key>
-		<string>opms</string>
+		<string>zukunftsimage</string>
 		<key>detailSlide</key>
-		<string>http://www.florian-ludwig.de/iks</string>
+		<string>http://florian-ludwig.de/iks/interview/</string>
 	</dict>
 	<dict>
 		<key>id</key>
 		<integer>4</integer>
 		<key>minorIds</key>
 		<array>
-			<integer>10</integer>
-			<integer>12</integer>
+			<integer>7</integer>
+			<integer>8</integer>
 		</array>
 		<key>title</key>
-		<string>Interface Design</string>
+		<string> </string>
 		<key>subtitle</key>
-		<string>Ein Interface Design Projekt aus dem dritten Semester</string>
+		<string> </string>
 		<key>type</key>
-		<string>Projekt</string>
+		<string>Bewerbung</string>
 		<key>coverImage</key>
-		<string>money</string>
+		<string>bewerbungsimage</string>
 		<key>detailSlide</key>
-		<string>http://www.florian-ludwig.de/iks</string>
+		<string>http://florian-ludwig.de/iks/bewerbung/</string>
 	</dict>
 </array>
 </plist>
