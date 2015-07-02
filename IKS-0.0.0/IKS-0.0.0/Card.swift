@@ -25,6 +25,8 @@ class Card	{
 
     // active when a beacon was close and gone away
 	var active : Bool = false
+	
+	var selected : Bool = false
 
     var read : Bool = false
 	

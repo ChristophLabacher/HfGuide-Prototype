@@ -83,14 +83,34 @@ class ScrollCollectionViewCell: UICollectionViewCell {
 		borderTop.backgroundColor = cardColor
 		borderLeft.backgroundColor = cardColor
 		borderRight.backgroundColor = cardColor
-		
 		borderBottom.backgroundColor = cardColor
 
 	}
 	
 	func becameActive()	{
 		UIView.animateWithDuration(0.8, animations: {
+			self.blurEffectView.alpha = 0
+		})
+	}
+	
+	
+	func wasRead()	{
+		UIView.animateWithDuration(0.8, animations: {
+			self.borderTop.backgroundColor = UIColor.clearColor()
+			self.borderLeft.backgroundColor = UIColor.clearColor()
+			self.borderRight.backgroundColor = UIColor.clearColor()
+		})
+	}
+	
+	func wasSelected()	{
+		UIView.animateWithDuration(0.8, animations: {
 			self.card.alpha = 1
+		})
+	}
+	
+	func wasDeselected()	{
+		UIView.animateWithDuration(0.8, animations: {
+			self.card.alpha = 0.3
 		})
 	}
 	

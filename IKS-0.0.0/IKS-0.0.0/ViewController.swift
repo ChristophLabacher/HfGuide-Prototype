@@ -245,7 +245,7 @@ class ViewController: UIViewController {
 		mainViewBottomVerticalConstraint = NSLayoutConstraint(item: mainCollectionView!, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: self.view, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: -40)
 		self.view.addConstraint(mainViewBottomVerticalConstraint!)
 
-		NSNotificationCenter.defaultCenter().addObserver(self, selector: "cardTransitionToDetail", name: "cardTransitionToDetail", object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: "cardTransitionToDetail:", name: "cardTransitionToDetail", object: nil)
 		
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: "cardBecameActive:", name: "cardBecameActive", object: nil)
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: "cardBecameVisible:", name: "cardBecameVisible", object: nil)
@@ -268,14 +268,21 @@ class ViewController: UIViewController {
 		
 		cards[cardIndex].visible = true
 		
-		println("Card became visible \(cardIndex)")
-		
 		let size = mainCollectionViewDelegateAndDataSource.data.count
 		mainCollectionViewDelegateAndDataSource.data.append(cards[cardIndex])
 		mainCollectionView!.insertItemsAtIndexPaths([NSIndexPath(forItem: size, inSection: 0)])
+		
+		//scrollCollectionView?.reloadData()
+
+		println("Card became visible \(cardIndex)")
 	}
 	
-	func cardTransitionToDetail()	{
+	func cardTransitionToDetail(notification: NSNotification)	{
+		let info : NSDictionary = notification.userInfo!
+		let cardId = info.valueForKey("id") as! Int
+		
+		scrollCollectionView?.reloadData()
+		
 		mainViewTopVerticalConstraint.constant = -180 - 90
 		mainViewBottomVerticalConstraint.constant = 0
 		

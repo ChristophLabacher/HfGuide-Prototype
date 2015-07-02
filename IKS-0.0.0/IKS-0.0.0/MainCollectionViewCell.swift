@@ -113,7 +113,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 		//////////////////////////
 		
 		readMoreButtonLabel = CLLabel()
-		readMoreButtonLabel.setLabelTextWithKerning("Weiterlesen")
+		readMoreButtonLabel.setLabelTextWithKerning("Neue Stichworte")
 		readMoreButtonLabel.textColor = cardColor
 		readMoreButtonLabel.textAlignment = NSTextAlignment.Center
 		readMoreButtonLabel.userInteractionEnabled = false;
@@ -221,24 +221,29 @@ class MainCollectionViewCell: UICollectionViewCell {
 	}
 	
 	func readMoreButtonTap(sender: UIButton)	{
-		NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "cardTransitionToDetail", object: self))
 		
-		viewsDictionary = [
-			"backgroundImage": backgroundImage,
-			"readMoreButton": readMoreButton,
-			"readMoreButtonBorderTop": readMoreButtonBorderTop,
-			"contentView":contentView,
-			"detailWebView":detailWebView
-		]
-		
-		self.card.removeConstraints(self.verticalContraint!)
-		self.verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage(100)][readMoreButtonBorderTop(0)][readMoreButton(0)][detailWebView]-(>=0)-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
-		self.card.addConstraints(self.verticalContraint!)
-		
-		UIView.animateWithDuration(0.8, animations: {
-			self.card.layoutIfNeeded()
-			self.card.layer.cornerRadius = 0;
-		}, completion: nil)
+		if self.data.active {
+			NSNotificationCenter.defaultCenter().postNotificationName("cardTransitionToDetail", object: nil, userInfo: ["cardId" : self.data.id as Int])
+			
+			self.data.read = true
+			
+			viewsDictionary = [
+				"backgroundImage": backgroundImage,
+				"readMoreButton": readMoreButton,
+				"readMoreButtonBorderTop": readMoreButtonBorderTop,
+				"contentView":contentView,
+				"detailWebView":detailWebView
+			]
+			
+			self.card.removeConstraints(self.verticalContraint!)
+			self.verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage(100)][readMoreButtonBorderTop(0)][readMoreButton(0)][detailWebView]-(>=0)-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+			self.card.addConstraints(self.verticalContraint!)
+			
+			UIView.animateWithDuration(0.8, animations: {
+				self.card.layoutIfNeeded()
+				self.card.layer.cornerRadius = 0;
+			}, completion: nil)
+		}
 	}
 	
 	func becameActive()	{
@@ -247,5 +252,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 			}, completion: { (finished : Bool) in
 			self.blurEffectView.removeFromSuperview()
 		})
+		
+		readMoreButtonLabel.setLabelTextWithKerning("Weiterlesen")
 	}
 }

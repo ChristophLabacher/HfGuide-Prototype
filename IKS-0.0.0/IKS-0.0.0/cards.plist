@@ -17,7 +17,7 @@
 		<key>type</key>
 		<string>Projekt</string>
 		<key>coverImage</key>
-		<string>applicationimage</string>
+		<string>applicationdesign</string>
 		<key>detailSlide</key>
 		<string>http://florian-ludwig.de/iks/application/</string>
 	</dict>
@@ -36,7 +36,7 @@
 		<key>type</key>
 		<string>Ausstattung</string>
 		<key>coverImage</key>
-		<string>medienlaborimage</string>
+		<string>medienlabor</string>
 		<key>detailSlide</key>
 		<string>http://www.florian-ludwig.de/iks/medienlabor/</string>
 	</dict>
@@ -51,11 +51,11 @@
 		<key>title</key>
 		<string>Was sind meine Zukunftsaussichten?</string>
 		<key>subtitle</key>
-		<string>Ehemaliger Student Thomas Techert gibt Antworten.</string>
+		<string>Der ehemalige Student Thomas Techert gibt Antworten.</string>
 		<key>type</key>
 		<string>Frage</string>
 		<key>coverImage</key>
-		<string>zukunftsimage</string>
+		<string>zukunftsaussichten</string>
 		<key>detailSlide</key>
 		<string>http://florian-ludwig.de/iks/interview/</string>
 	</dict>
@@ -74,7 +74,7 @@
 		<key>type</key>
 		<string>Bewerbung</string>
 		<key>coverImage</key>
-		<string>bewerbungsimage</string>
+		<string>bewerbung</string>
 		<key>detailSlide</key>
 		<string>http://florian-ludwig.de/iks/bewerbung/</string>
 	</dict>

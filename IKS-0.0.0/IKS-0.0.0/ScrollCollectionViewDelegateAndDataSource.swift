@@ -29,6 +29,16 @@ class ScrollCollectionViewDelegateAndDataSource: NSObject, UICollectionViewDeleg
 			cell.becameActive()
 		}
 		
+		if cell.data.read	{
+			cell.wasRead()
+		}
+		
+		if cell.data.selected	{
+			cell.wasSelected()
+		} else	{
+			cell.wasDeselected()
+		}
+		
 		return cell
 	}
 	
