@@ -19,13 +19,15 @@ class ScrollCollectionViewCell: UICollectionViewCell {
 	let borderRight : UIView = UIView()
 	let borderBottom : UIView = UIView()
 	let borderLeft : UIView = UIView()
+	
+	let blurEffectView : UIVisualEffectView!
 
 	
 	override init(frame: CGRect) {
 		
 		card = UIView();
 		card.backgroundColor = UIColor.whiteColor();
-		card.layer.cornerRadius = 5;
+		card.layer.cornerRadius = 4;
 		card.clipsToBounds = true
 		card.setTranslatesAutoresizingMaskIntoConstraints(false)
 		card.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height)
@@ -37,7 +39,7 @@ class ScrollCollectionViewCell: UICollectionViewCell {
 		imageView.clipsToBounds = true
 		card.addSubview(imageView)
 		
-		let borderWidth : CGFloat = 5.0
+		let borderWidth : CGFloat = 3.0
 		
 		borderTop.frame = CGRect(x: 0, y: 0, width: frame.size.width, height: borderWidth)
 		borderTop.backgroundColor = appColorBlue
@@ -55,8 +57,19 @@ class ScrollCollectionViewCell: UICollectionViewCell {
 		borderLeft.backgroundColor = appColorBlue
 		card.addSubview(borderLeft)
 		
+		borderTop.backgroundColor = UIColor.clearColor()
+		borderBottom.backgroundColor = UIColor.clearColor()
 		borderLeft.backgroundColor = UIColor.clearColor()
 		borderRight.backgroundColor = UIColor.clearColor()
+		
+		// Card > BlurEffect
+		//////////////////////////
+		
+		let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
+		blurEffectView = UIVisualEffectView(effect: blurEffect)
+		blurEffectView.frame = card.frame
+	//	blurEffectView.setTranslatesAutoresizingMaskIntoConstraints(false)
+		card.addSubview(blurEffectView)
 		
 		super.init(frame: frame)
 		contentView.addSubview(card)
@@ -66,8 +79,13 @@ class ScrollCollectionViewCell: UICollectionViewCell {
 		cardColor = colors[data!.type]!
 		
 		imageView.image = UIImage(named: data!.coverImage)
+		
 		borderTop.backgroundColor = cardColor
+		borderLeft.backgroundColor = cardColor
+		borderRight.backgroundColor = cardColor
+		
 		borderBottom.backgroundColor = cardColor
+
 	}
 	
 	func becameActive()	{
