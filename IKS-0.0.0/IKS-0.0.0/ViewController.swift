@@ -210,6 +210,9 @@ class ViewController: UIViewController {
 		mainCollectionView!.setTranslatesAutoresizingMaskIntoConstraints(false)
 		mainCollectionView!.contentInset = UIEdgeInsetsMake(0, 45, 0, 45)
 		
+		scrollCollectionViewDelegateAndDataSource.data = cards
+
+		
 		self.view.addSubview(mainCollectionView!)
 
 		
@@ -246,6 +249,7 @@ class ViewController: UIViewController {
 		self.view.addConstraint(mainViewBottomVerticalConstraint!)
 
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: "cardTransitionToDetail:", name: "cardTransitionToDetail", object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: "cardTransitionToMainScroll:", name: "cardTransitionToMainScroll", object: nil)
 		
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: "cardBecameActive:", name: "cardBecameActive", object: nil)
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: "cardBecameVisible:", name: "cardBecameVisible", object: nil)
@@ -279,7 +283,7 @@ class ViewController: UIViewController {
 	
 	func cardTransitionToDetail(notification: NSNotification)	{
 		let info : NSDictionary = notification.userInfo!
-		let cardId = info.valueForKey("id") as! Int
+		let cardId = info.valueForKey("cardId") as! Int
 		
 		scrollCollectionView?.reloadData()
 		
@@ -287,6 +291,24 @@ class ViewController: UIViewController {
 		mainViewBottomVerticalConstraint.constant = 0
 		
 		mainCollectionViewDelegateAndDataSource.cellMargin = 0
+		mainCollectionView!.reloadData()
+		
+		UIView.animateWithDuration(0.8, animations: {
+			self.view.layoutIfNeeded()
+		}, completion: nil)
+	}
+	
+	func cardTransitionToMainScroll(notification: NSNotification)	{
+		println("bak")
+		let info : NSDictionary = notification.userInfo!
+		let cardId = info.valueForKey("cardId") as! Int
+		
+		scrollCollectionView?.reloadData()
+		
+		mainViewTopVerticalConstraint.constant = -180
+		mainViewBottomVerticalConstraint.constant = -40
+		
+		mainCollectionViewDelegateAndDataSource.cellMargin = 80
 		mainCollectionView!.reloadData()
 		
 		UIView.animateWithDuration(0.8, animations: {

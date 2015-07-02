@@ -16,13 +16,15 @@ class MainCollectionViewCell: UICollectionViewCell {
 	let backgroundImage: UIImageView!
 	let blurEffectView : UIVisualEffectView!
 	let readMoreButtonBorderTop : UIView!
-//	let readMoreButtonBorderTopProgress : UIView!
 	let readMoreButton : UIButton!
 	let readMoreButtonLabel : CLLabel!
 	let categoryLabel : CLLabel!
 	let noteLabel : CLLabel!
-	let titelLabel : CLLabel;
+	let titelLabel : CLLabel!
+	
     let detailWebView : UIWebView!
+	let detailBackButton : UIButton!
+	let detailBackButtonLabel : CLLabel!
 	
 	var verticalContraint : [AnyObject]!
 	var viewsDictionary : [String : UIView]!
@@ -44,7 +46,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 		
 		backgroundImage = UIImageView()
 		backgroundImage.contentMode = UIViewContentMode.ScaleAspectFill
-		backgroundImage.alpha = 0.7
+		backgroundImage.alpha = 0.5
 		backgroundImage.clipsToBounds = true
 		backgroundImage.setTranslatesAutoresizingMaskIntoConstraints(false)
 
@@ -92,10 +94,6 @@ class MainCollectionViewCell: UICollectionViewCell {
 		
 		let readMoreButtonTopBorderWidthContraint = NSLayoutConstraint.constraintsWithVisualFormat("H:|[v1]|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(readMoreButtonBorderTop))
 		card.addConstraints(readMoreButtonTopBorderWidthContraint)
-		
-//		readMoreButtonBorderTopProgress = UIView()
-//		readMoreButtonBorderTopProgress.backgroundColor = cardColor
-//		readMoreButtonBorderTop.addSubview(readMoreButtonBorderTopProgress)
 
 		// Card > ReadMore
 		//////////////////////////
@@ -158,6 +156,40 @@ class MainCollectionViewCell: UICollectionViewCell {
 		let horizontalNoteLabelContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:[v1]-15-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(noteLabel))
 		card.addConstraints(horizontalNoteLabelContraint)
 		
+		// Card > DetailBackButton
+		//////////////////////////
+		
+		detailBackButton = UIButton()
+		detailBackButton.setTranslatesAutoresizingMaskIntoConstraints(false)
+		detailBackButton.alpha = 0;
+		
+		card.addSubview(detailBackButton)
+		
+		card.addConstraint(NSLayoutConstraint(item: detailBackButton, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: backgroundImage, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 10))
+		
+		let horizontalDdetailBackButtonContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[v1]", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(detailBackButton))
+		card.addConstraints(horizontalDdetailBackButtonContraint)
+		
+		
+		// Card > DetailBackButton > DetailBackButtonLabel
+		//////////////////////////
+		
+		detailBackButtonLabel = CLLabel()
+		detailBackButtonLabel.setLabelTextWithKerning("Zurück")
+		detailBackButtonLabel.textColor = cardColor
+		detailBackButtonLabel.textAlignment = NSTextAlignment.Center
+		detailBackButtonLabel.userInteractionEnabled = false;
+		
+		detailBackButton.addSubview(detailBackButtonLabel)
+		detailBackButtonLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+		
+		let detailBackButtonLabelWidthContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-[v1]-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(detailBackButtonLabel))
+		
+		let detailBackButtonLabelHeightContraint = NSLayoutConstraint.constraintsWithVisualFormat("V:|-[v1]-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(detailBackButtonLabel))
+		
+		detailBackButton.addConstraints(detailBackButtonLabelWidthContraint)
+		detailBackButton.addConstraints(detailBackButtonLabelHeightContraint)
+		
 		// Card > WebView
 		//////////////////////////
         detailWebView = UIWebView()
@@ -195,12 +227,13 @@ class MainCollectionViewCell: UICollectionViewCell {
 			"card":card
 		]
 
-		verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage][readMoreButtonBorderTop(5)][readMoreButton(45)][detailWebView(0)]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+		verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage][readMoreButtonBorderTop(5)][readMoreButton(45)][detailWebView(50)]-(-50)-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 		card.addConstraints(verticalContraint)
 		
 		//////////////////////////
 		// Actions
 		//////////////////////////
+		detailBackButton.addTarget(self, action: "detailBackButtonTap:", forControlEvents: UIControlEvents.TouchUpInside)
 		readMoreButton.addTarget(self, action: "readMoreButtonTap:", forControlEvents: UIControlEvents.TouchUpInside)
 	}
 	
@@ -214,6 +247,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 		
 		readMoreButtonBorderTop.backgroundColor = cardColor
 		self.readMoreButtonLabel.textColor = cardColor
+		self.detailBackButtonLabel.textColor = cardColor
 	}
 	
 	required init(coder aDecoder: NSCoder) {
@@ -226,6 +260,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 			NSNotificationCenter.defaultCenter().postNotificationName("cardTransitionToDetail", object: nil, userInfo: ["cardId" : self.data.id as Int])
 			
 			self.data.read = true
+			self.data.reading = true
 			
 			viewsDictionary = [
 				"backgroundImage": backgroundImage,
@@ -236,13 +271,52 @@ class MainCollectionViewCell: UICollectionViewCell {
 			]
 			
 			self.card.removeConstraints(self.verticalContraint!)
-			self.verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage(100)][readMoreButtonBorderTop(0)][readMoreButton(0)][detailWebView]-(>=0)-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+			verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage][readMoreButtonBorderTop(0)][readMoreButton(0)][detailWebView(0)]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+			self.card.addConstraints(self.verticalContraint!)
+			self.card.layoutIfNeeded()	
+			
+			self.card.removeConstraints(self.verticalContraint!)
+			self.verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage(100)][readMoreButtonBorderTop(0)][readMoreButton(0)][detailWebView]-(0)-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 			self.card.addConstraints(self.verticalContraint!)
 			
 			UIView.animateWithDuration(0.8, animations: {
 				self.card.layoutIfNeeded()
-				self.card.layer.cornerRadius = 0;
+				self.card.layer.cornerRadius = 0
+				
+				self.categoryLabel.alpha = 0
+				self.noteLabel.alpha = 0
+				self.detailBackButton.alpha = 1
 			}, completion: nil)
+		}
+	}
+	
+	func detailBackButtonTap(sender: UIButton)	{
+		
+		if self.data.reading {
+			NSNotificationCenter.defaultCenter().postNotificationName("cardTransitionToMainScroll", object: nil, userInfo: ["cardId" : self.data.id as Int])
+			
+			self.data.reading = false
+			
+			viewsDictionary = [
+				"backgroundImage": backgroundImage,
+				"readMoreButton": readMoreButton,
+				"readMoreButtonBorderTop": readMoreButtonBorderTop,
+				"contentView":contentView,
+				"detailWebView":detailWebView
+			]
+			
+			self.card.removeConstraints(self.verticalContraint!)
+			self.verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage][readMoreButtonBorderTop(5)][readMoreButton(45)][detailWebView(50)]-(-50)-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+			self.card.addConstraints(self.verticalContraint!)
+			
+			UIView.animateWithDuration(0.8, animations: {
+				self.card.layoutIfNeeded()
+				self.card.layer.cornerRadius = 10
+				
+				self.categoryLabel.alpha = 1
+				self.noteLabel.alpha = 1
+				self.detailBackButton.alpha = 0
+				}, completion: nil)
 		}
 	}
 	

@@ -20,9 +20,9 @@
 		4CC72D2D1B2B0A1B00895616 /* MainCollectionViewDelegateAndDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC72D2C1B2B0A1B00895616 /* MainCollectionViewDelegateAndDataSource.swift */; };
 		4CCFDBBB1B00E0A10085AD75 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCFDBBA1B00E0A10085AD75 /* AppDelegate.swift */; };
 		4CCFDBBD1B00E0A10085AD75 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCFDBBC1B00E0A10085AD75 /* ViewController.swift */; };
-		4CCFDBC21B00E0A10085AD75 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CCFDBC11B00E0A10085AD75 /* Images.xcassets */; };
 		4CCFDBD11B00E0A10085AD75 /* IKS_0_0_0Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCFDBD01B00E0A10085AD75 /* IKS_0_0_0Tests.swift */; };
 		4CCFDBDD1B00E16C0085AD75 /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CCFDBDC1B00E16C0085AD75 /* MainCollectionViewCell.swift */; };
+		4CF41B861B4594850071DCCD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CF41B851B4594850071DCCD /* Images.xcassets */; };
 		6AF1B39F1B3B264E005DEDDC /* cards.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6AF1B39E1B3B264E005DEDDC /* cards.plist */; };
 /* End PBXBuildFile section */
 
@@ -52,11 +52,11 @@
 		4CCFDBB91B00E0A10085AD75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CCFDBBA1B00E0A10085AD75 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4CCFDBBC1B00E0A10085AD75 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		4CCFDBC11B00E0A10085AD75 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		4CCFDBCA1B00E0A10085AD75 /* IKS-0.0.0Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "IKS-0.0.0Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CCFDBCF1B00E0A10085AD75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CCFDBD01B00E0A10085AD75 /* IKS_0_0_0Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IKS_0_0_0Tests.swift; sourceTree = "<group>"; };
 		4CCFDBDC1B00E16C0085AD75 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
+		4CF41B851B4594850071DCCD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6AF1B39E1B3B264E005DEDDC /* cards.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cards.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -128,7 +128,7 @@
 				4C12B3B81B2B8A3E008D30C7 /* Card.swift */,
 				4CABB0851B2F7658002FF93C /* CLLabel.swift */,
 				4C7876EC1B3B3B4A00845D19 /* ObjCBridge.h */,
-				4CCFDBC11B00E0A10085AD75 /* Images.xcassets */,
+				4CF41B851B4594850071DCCD /* Images.xcassets */,
 				4C12B3B41B2B6F1B008D30C7 /* Fonts */,
 				4C7876ED1B3B3B6500845D19 /* EstimoteSDK */,
 				4CCFDBB81B00E0A10085AD75 /* Supporting Files */,
@@ -243,8 +243,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C12B3B71B2B6F76008D30C7 /* SourceSansPro-Semibold.otf in Resources */,
+				4CF41B861B4594850071DCCD /* Images.xcassets in Resources */,
 				4C12B3B51B2B6F73008D30C7 /* SourceSansPro-Bold.otf in Resources */,
-				4CCFDBC21B00E0A10085AD75 /* Images.xcassets in Resources */,
 				4C12B3B61B2B6F76008D30C7 /* SourceSansPro-Regular.otf in Resources */,
 				6AF1B39F1B3B264E005DEDDC /* cards.plist in Resources */,
 			);

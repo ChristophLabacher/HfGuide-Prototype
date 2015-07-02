@@ -78,5 +78,24 @@
 		<key>detailSlide</key>
 		<string>http://florian-ludwig.de/iks/bewerbung/</string>
 	</dict>
+	<dict>
+		<key>id</key>
+		<integer>5</integer>
+		<key>minorIds</key>
+		<array>
+			<integer>9</integer>
+			<integer>10</integer>
+		</array>
+		<key>title</key>
+		<string>Der Campus</string>
+		<key>subtitle</key>
+		<string> </string>
+		<key>type</key>
+		<string>Ausstattung</string>
+		<key>coverImage</key>
+		<string>campus</string>
+		<key>detailSlide</key>
+		<string>http://florian-ludwig.de/iks/campus/</string>
+	</dict>
 </array>
 </plist>

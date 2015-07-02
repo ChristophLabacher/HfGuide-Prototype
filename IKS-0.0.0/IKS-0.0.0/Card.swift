@@ -22,12 +22,13 @@ class Card	{
 	
     // visible if a beacon is close, but not gone away again
 	var visible : Bool = false
-
     // active when a beacon was close and gone away
 	var active : Bool = false
-	
+	// selected when a card is centered
 	var selected : Bool = false
-
+	// reading when card is enlarged
+	var reading : Bool = false
+	// read when card was enlarged once
     var read : Bool = false
 	
 	var noteCount : Int = 0
