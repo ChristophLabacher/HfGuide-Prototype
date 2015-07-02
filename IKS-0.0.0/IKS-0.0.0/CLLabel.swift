@@ -35,7 +35,7 @@ class CLLabel: UILabel {
 		
 		var paragraphStyle = NSMutableParagraphStyle()
 		//paragraphStyle.lineSpacing = -10.0
-		paragraphStyle.lineHeightMultiple = 0.9
+		paragraphStyle.lineHeightMultiple = 0.8
 		paragraphStyle.alignment = NSTextAlignment.Center
 		
 		labelAttributedText.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSRange(location: 0, length: count(labelText)))

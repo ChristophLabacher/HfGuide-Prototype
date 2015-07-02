@@ -21,12 +21,14 @@ class MainCollectionViewCell: UICollectionViewCell {
 	let categoryLabel : CLLabel!
 	let noteLabel : CLLabel!
 	let titelLabel : CLLabel!
+	let subtitelLabel : CLLabel!
 	
     let detailWebView : UIWebView!
 	let detailBackButton : UIButton!
 	let detailBackButtonLabel : CLLabel!
 	
 	var verticalContraint : [AnyObject]!
+	var titelLabelVerticalConstraint : NSLayoutConstraint!
 	var viewsDictionary : [String : UIView]!
 		
 	override init(frame: CGRect) {
@@ -46,7 +48,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 		
 		backgroundImage = UIImageView()
 		backgroundImage.contentMode = UIViewContentMode.ScaleAspectFill
-		backgroundImage.alpha = 0.5
+		backgroundImage.alpha = 0.3
 		backgroundImage.clipsToBounds = true
 		backgroundImage.setTranslatesAutoresizingMaskIntoConstraints(false)
 
@@ -59,7 +61,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 		//////////////////////////
 		
 		titelLabel = CLLabel()
-		titelLabel.font = UIFont(name: "SourceSansPro-Bold", size: 30)
+		titelLabel.font = UIFont(name: "SourceSansPro-Bold", size: 34)
 		titelLabel.numberOfLines = 0;
 		titelLabel.textAlignment = NSTextAlignment.Center
 		titelLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -70,7 +72,27 @@ class MainCollectionViewCell: UICollectionViewCell {
 		card.addConstraints(horizontalTitelLabelContraint)
 		
 		card.addConstraint(NSLayoutConstraint(item: titelLabel, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: backgroundImage, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
-		card.addConstraint(NSLayoutConstraint(item: titelLabel, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: backgroundImage, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 0))
+		
+		titelLabelVerticalConstraint = NSLayoutConstraint(item: titelLabel, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: backgroundImage, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: -30)
+		card.addConstraint(titelLabelVerticalConstraint)
+		
+		// Card > SubtitelLabel
+		//////////////////////////
+		
+		subtitelLabel = CLLabel()
+		subtitelLabel.font = UIFont(name: "SourceSansPro-Regular", size: 24)
+		subtitelLabel.numberOfLines = 0;
+		subtitelLabel.textAlignment = NSTextAlignment.Center
+		subtitelLabel.alpha = 0.5;
+		subtitelLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+		
+		card.addSubview(subtitelLabel)
+		
+		let horizontalSubtitelLabelContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-15-[v1]-15-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(subtitelLabel))
+		card.addConstraints(horizontalSubtitelLabelContraint)
+		
+		card.addConstraint(NSLayoutConstraint(item: subtitelLabel, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: titelLabel, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: 3))
+
 		
 		// Card > BlurEffect
 		//////////////////////////
@@ -227,7 +249,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 			"card":card
 		]
 
-		verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage][readMoreButtonBorderTop(5)][readMoreButton(45)][detailWebView(50)]-(-50)-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+		verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage][readMoreButtonBorderTop(5)][readMoreButton(45)][detailWebView(60)]-(-60)-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 		card.addConstraints(verticalContraint)
 		
 		//////////////////////////
@@ -241,6 +263,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 		cardColor = colors[data!.type]!
 		
 		titelLabel.setLabelTextWithLineHeight(data!.title)
+		subtitelLabel.setLabelTextWithLineHeight(data!.subtitle)
 		backgroundImage.image = UIImage(named: data!.coverImage)
 		categoryLabel.setLabelTextWithKerning(data!.type)
 		detailWebView.loadRequest(NSURLRequest(URL: NSURL(string: data!.detailSlide)!))
@@ -279,6 +302,8 @@ class MainCollectionViewCell: UICollectionViewCell {
 			self.verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage(100)][readMoreButtonBorderTop(0)][readMoreButton(0)][detailWebView]-(0)-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 			self.card.addConstraints(self.verticalContraint!)
 			
+			titelLabelVerticalConstraint.constant = 10
+			
 			UIView.animateWithDuration(0.8, animations: {
 				self.card.layoutIfNeeded()
 				self.card.layer.cornerRadius = 0
@@ -286,6 +311,8 @@ class MainCollectionViewCell: UICollectionViewCell {
 				self.categoryLabel.alpha = 0
 				self.noteLabel.alpha = 0
 				self.detailBackButton.alpha = 1
+				self.titelLabel.font = UIFont(name: "SourceSansPro-Bold", size: 24)
+				self.subtitelLabel.alpha = 0
 			}, completion: nil)
 		}
 	}
@@ -309,6 +336,8 @@ class MainCollectionViewCell: UICollectionViewCell {
 			self.verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage][readMoreButtonBorderTop(5)][readMoreButton(45)][detailWebView(50)]-(-50)-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 			self.card.addConstraints(self.verticalContraint!)
 			
+			titelLabelVerticalConstraint.constant = -40
+			
 			UIView.animateWithDuration(0.8, animations: {
 				self.card.layoutIfNeeded()
 				self.card.layer.cornerRadius = 10
@@ -316,7 +345,9 @@ class MainCollectionViewCell: UICollectionViewCell {
 				self.categoryLabel.alpha = 1
 				self.noteLabel.alpha = 1
 				self.detailBackButton.alpha = 0
-				}, completion: nil)
+				self.titelLabel.font = UIFont(name: "SourceSansPro-Bold", size: 34)
+				self.subtitelLabel.alpha = 0.5
+			}, completion: nil)
 		}
 	}
 	
