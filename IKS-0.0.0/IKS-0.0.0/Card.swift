@@ -34,6 +34,8 @@ class Card	{
 	var noteCount : Int = 0
 	
 	let data : NSDictionary
+	
+	var scrollCollectionViewIndexPath : NSIndexPath!
 
 	
 	init(card : NSDictionary)	{

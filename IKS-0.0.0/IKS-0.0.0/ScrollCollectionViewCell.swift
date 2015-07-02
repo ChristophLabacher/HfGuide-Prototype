@@ -68,14 +68,19 @@ class ScrollCollectionViewCell: UICollectionViewCell {
 		let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.Light)
 		blurEffectView = UIVisualEffectView(effect: blurEffect)
 		blurEffectView.frame = card.frame
+		//blurEffectView.alpha = 0
 	//	blurEffectView.setTranslatesAutoresizingMaskIntoConstraints(false)
 		card.addSubview(blurEffectView)
+
 		
 		super.init(frame: frame)
 		contentView.addSubview(card)
 	}
 	
-	func initCard()	{
+	func initCard(indexPath : NSIndexPath)	{
+		self.data.scrollCollectionViewIndexPath = indexPath
+		//println("ItemAt: \(self.data.scrollCollectionViewIndexPath)")
+		
 		cardColor = colors[data!.type]!
 		
 		imageView.image = UIImage(named: data!.coverImage)

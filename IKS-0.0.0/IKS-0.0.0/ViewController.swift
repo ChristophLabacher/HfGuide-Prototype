@@ -267,6 +267,8 @@ class ViewController: UIViewController {
 	}
 	
 	func cardBecameVisible(notification: NSNotification)	{
+		scrollCollectionView?.reloadData()
+
 		let info : NSDictionary = notification.userInfo!
 		let cardIndex = info.valueForKey("index") as! Int
 		
@@ -276,7 +278,13 @@ class ViewController: UIViewController {
 		mainCollectionViewDelegateAndDataSource.data.append(cards[cardIndex])
 		mainCollectionView!.insertItemsAtIndexPaths([NSIndexPath(forItem: size, inSection: 0)])
 		
-		//scrollCollectionView?.reloadData()
+		var currentIndexPath = cards[cardIndex].scrollCollectionViewIndexPath
+		
+		println("became: \(currentIndexPath)")
+
+		var targetPosition = scrollCollectionViewDelegateAndDataSource.visibleItems
+		scrollCollectionView?.moveItemAtIndexPath(currentIndexPath, toIndexPath: NSIndexPath(forItem: targetPosition, inSection: 0))
+		scrollCollectionView?.reloadData()
 
 		println("Card became visible \(cardIndex)")
 	}

@@ -10,6 +10,7 @@ import UIKit
 
 class ScrollCollectionViewDelegateAndDataSource: NSObject, UICollectionViewDelegate, UICollectionViewDataSource  {
 	var data : [Card] = []
+	var visibleItems = 0
 	
 	func collectionView(collectionView: UICollectionView, numberOfSectionsInCollectionView section: Int) -> Int {
 		return 1
@@ -23,7 +24,11 @@ class ScrollCollectionViewDelegateAndDataSource: NSObject, UICollectionViewDeleg
 		let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! ScrollCollectionViewCell
 		
 		cell.data = data[indexPath.item]
-		cell.initCard()
+		cell.initCard(indexPath)
+
+		if cell.data.visible	{
+			visibleItems++
+		}
 		
 		if cell.data.active	{
 			cell.becameActive()
