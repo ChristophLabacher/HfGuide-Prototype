@@ -27,7 +27,6 @@ class ScrollCollectionViewDelegateAndDataSource: NSObject, UICollectionViewDeleg
 		cell.initCard(indexPath)
 
 		if cell.data.visible	{
-			visibleItems++
 		}
 		
 		if cell.data.active	{

@@ -274,19 +274,26 @@ class ViewController: UIViewController {
 		
 		cards[cardIndex].visible = true
 		
+		println("Card became visible \(cardIndex)")
+		
 		let size = mainCollectionViewDelegateAndDataSource.data.count
 		mainCollectionViewDelegateAndDataSource.data.append(cards[cardIndex])
 		mainCollectionView!.insertItemsAtIndexPaths([NSIndexPath(forItem: size, inSection: 0)])
 		
 		var currentIndexPath = cards[cardIndex].scrollCollectionViewIndexPath
-		
-		println("became: \(currentIndexPath)")
 
 		var targetPosition = scrollCollectionViewDelegateAndDataSource.visibleItems
-		scrollCollectionView?.moveItemAtIndexPath(currentIndexPath, toIndexPath: NSIndexPath(forItem: targetPosition, inSection: 0))
-		scrollCollectionView?.reloadData()
+		var currentPosition = currentIndexPath.item
+		
+		var me = scrollCollectionViewDelegateAndDataSource.data.removeAtIndex(currentPosition)
+		scrollCollectionViewDelegateAndDataSource.data.insert(me, atIndex: targetPosition)
+		
+		println("became: \(currentPosition)")
 
-		println("Card became visible \(cardIndex)")
+		scrollCollectionView?.moveItemAtIndexPath(currentIndexPath, toIndexPath: NSIndexPath(forItem: targetPosition, inSection: 0))
+		
+		scrollCollectionViewDelegateAndDataSource.visibleItems++
+		scrollCollectionView?.reloadData()
 	}
 	
 	func cardTransitionToDetail(notification: NSNotification)	{
@@ -307,7 +314,6 @@ class ViewController: UIViewController {
 	}
 	
 	func cardTransitionToMainScroll(notification: NSNotification)	{
-		println("bak")
 		let info : NSDictionary = notification.userInfo!
 		let cardId = info.valueForKey("cardId") as! Int
 		

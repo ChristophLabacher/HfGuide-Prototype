@@ -266,7 +266,6 @@ class MainCollectionViewCell: UICollectionViewCell {
 		subtitelLabel.setLabelTextWithLineHeight(data!.subtitle)
 		backgroundImage.image = UIImage(named: data!.coverImage)
 		categoryLabel.setLabelTextWithKerning(data!.type)
-		detailWebView.loadRequest(NSURLRequest(URL: NSURL(string: data!.detailSlide)!))
 		
 		readMoreButtonBorderTop.backgroundColor = cardColor
 		self.readMoreButtonLabel.textColor = cardColor
@@ -284,6 +283,8 @@ class MainCollectionViewCell: UICollectionViewCell {
 			
 			self.data.read = true
 			self.data.reading = true
+			
+			self.detailWebView.loadRequest(NSURLRequest(URL: NSURL(string: data!.detailSlide)!))
 			
 			viewsDictionary = [
 				"backgroundImage": backgroundImage,
