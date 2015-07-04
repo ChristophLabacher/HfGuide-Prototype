@@ -327,7 +327,11 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 		
 		UIView.animateWithDuration(0.8, animations: {
 			self.view.layoutIfNeeded()
+			mainCollectionView?.contentOffset.x += 40
 		}, completion: nil)
+		
+		var number : CGFloat = CGFloat(currentPage * 80)
+		mainCollectionView?.contentOffset.x += number
 	}
 	
 	func cardTransitionToMainScroll(notification: NSNotification)	{
@@ -350,6 +354,12 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 				invisibleScrollView!.pagingEnabled = true
 				invisibleScrollView!.scrollEnabled = true
 		})
+		
+		println(currentPage)
+		
+		if (currentPage == 0 && mainCollectionViewDelegateAndDataSource.data.count > 1)	{
+			mainCollectionView?.contentOffset.x -= 40
+		}
 	}
 
 	override func didReceiveMemoryWarning() {
