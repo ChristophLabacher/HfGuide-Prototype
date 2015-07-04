@@ -55,6 +55,8 @@ var dataArray:NSArray?
 	let beaconRegion = CLBeaconRegion(
 		proximityUUID: NSUUID(UUIDString: "B60F3FAE-04B4-4367-9DD5-0B9B5CA759ED"),
 		identifier: "hfgBeaconsRegion")
+	
+	var currentlyInDetailMode = false
 
 
 @UIApplicationMain

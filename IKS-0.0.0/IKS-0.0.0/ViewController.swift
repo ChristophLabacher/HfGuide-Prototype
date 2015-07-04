@@ -203,7 +203,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 		
 		mainCollectionView = UICollectionView(frame: CGRectMake(0, 0, 0, 0), collectionViewLayout: mainCollectionViewLayout)
 		mainCollectionView!.showsHorizontalScrollIndicator = false
-		mainCollectionView!.pagingEnabled = true;
+		mainCollectionView!.pagingEnabled = false
+		mainCollectionView!.scrollEnabled = false
 		mainCollectionView!.dataSource = mainCollectionViewDelegateAndDataSource
 		mainCollectionView!.delegate = mainCollectionViewDelegateAndDataSource
 		mainCollectionView!.registerClass(MainCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
@@ -308,6 +309,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 	}
 	
 	func cardTransitionToDetail(notification: NSNotification)	{
+		currentlyInDetailMode = true
+		
 		let info : NSDictionary = notification.userInfo!
 		let cardId = info.valueForKey("cardId") as! Int
 		
@@ -325,6 +328,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 	}
 	
 	func cardTransitionToMainScroll(notification: NSNotification)	{
+		currentlyInDetailMode = false
+		
 		let info : NSDictionary = notification.userInfo!
 		let cardId = info.valueForKey("cardId") as! Int
 		
@@ -389,9 +394,14 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 		})
 	}
 	
+	
 	func scrollViewDidScroll(scrollView: UIScrollView) {
-		mainCollectionView?.contentOffset = invisibleScrollView!.contentOffset
-		mainCollectionView?.contentOffset.x -= mainCollectionView!.contentInset.left
+		if !currentlyInDetailMode	{
+			mainCollectionView?.contentOffset = invisibleScrollView!.contentOffset
+			mainCollectionView?.contentOffset.x -= mainCollectionView!.contentInset.left
+		} else	{
+			invisibleScrollView!.contentOffset.x -= invisibleScrollView!.frame.width
+		}
 	}
 }
 
