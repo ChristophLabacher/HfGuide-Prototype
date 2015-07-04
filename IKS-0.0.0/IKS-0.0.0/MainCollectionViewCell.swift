@@ -73,7 +73,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 		
 		card.addConstraint(NSLayoutConstraint(item: titelLabel, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: backgroundImage, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
 		
-		titelLabelVerticalConstraint = NSLayoutConstraint(item: titelLabel, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: backgroundImage, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: -30)
+		titelLabelVerticalConstraint = NSLayoutConstraint(item: titelLabel, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: backgroundImage, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: -20)
 		card.addConstraint(titelLabelVerticalConstraint)
 		
 		// Card > SubtitelLabel
@@ -337,7 +337,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 			self.verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage][readMoreButtonBorderTop(5)][readMoreButton(45)][detailWebView(50)]-(-50)-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 			self.card.addConstraints(self.verticalContraint!)
 			
-			titelLabelVerticalConstraint.constant = -40
+			titelLabelVerticalConstraint.constant = -20
 			
 			UIView.animateWithDuration(0.8, animations: {
 				self.card.layoutIfNeeded()
@@ -361,4 +361,5 @@ class MainCollectionViewCell: UICollectionViewCell {
 		
 		readMoreButtonLabel.setLabelTextWithKerning("Weiterlesen")
 	}
+
 }

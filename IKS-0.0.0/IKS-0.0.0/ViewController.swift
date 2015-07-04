@@ -280,17 +280,15 @@ class ViewController: UIViewController {
 		mainCollectionViewDelegateAndDataSource.data.append(cards[cardIndex])
 		mainCollectionView!.insertItemsAtIndexPaths([NSIndexPath(forItem: size, inSection: 0)])
 		
-		var currentIndexPath = cards[cardIndex].scrollCollectionViewIndexPath
-
 		var targetPosition = scrollCollectionViewDelegateAndDataSource.visibleItems
-		var currentPosition = currentIndexPath.item
+		var currentPosition = (scrollCollectionViewDelegateAndDataSource.data as NSArray).indexOfObject(cards[cardIndex])
 		
 		var me = scrollCollectionViewDelegateAndDataSource.data.removeAtIndex(currentPosition)
 		scrollCollectionViewDelegateAndDataSource.data.insert(me, atIndex: targetPosition)
 		
 		println("became: \(currentPosition)")
 
-		scrollCollectionView?.moveItemAtIndexPath(currentIndexPath, toIndexPath: NSIndexPath(forItem: targetPosition, inSection: 0))
+		scrollCollectionView?.moveItemAtIndexPath(NSIndexPath(forItem: currentPosition, inSection: 0), toIndexPath: NSIndexPath(forItem: targetPosition, inSection: 0))
 		
 		scrollCollectionViewDelegateAndDataSource.visibleItems++
 		scrollCollectionView?.reloadData()
