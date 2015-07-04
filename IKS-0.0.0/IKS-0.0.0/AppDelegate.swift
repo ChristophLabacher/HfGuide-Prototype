@@ -19,6 +19,9 @@ var dataArray:NSArray?
 	var mainCollectionView:UICollectionView?
 	var mainCollectionViewDelegateAndDataSource = MainCollectionViewDelegateAndDataSource()
 	
+	// InivisibleScrollView
+	var invisibleScrollView:UIScrollView?
+	
 	// COLORS
 	let appColorRed : UIColor = UIColor(hue: 3.0/360, saturation: 63.0/100, brightness: 95.0/100, alpha: 1.0)
 	let appColorYellow : UIColor = UIColor(hue: 55.0/360, saturation: 85.0/100, brightness: 99.0/100, alpha: 1.0)

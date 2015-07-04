@@ -10,7 +10,7 @@ import UIKit
 
 // TODO: Test
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIScrollViewDelegate {
 	
 	let topView : UIView! = UIView()
 	let scrubbingHandle: UIImageView! = UIImageView()
@@ -203,18 +203,28 @@ class ViewController: UIViewController {
 		
 		mainCollectionView = UICollectionView(frame: CGRectMake(0, 0, 0, 0), collectionViewLayout: mainCollectionViewLayout)
 		mainCollectionView!.showsHorizontalScrollIndicator = false
-		//mainCollectionView!.pagingEnabled = true;
+		mainCollectionView!.pagingEnabled = true;
 		mainCollectionView!.dataSource = mainCollectionViewDelegateAndDataSource
 		mainCollectionView!.delegate = mainCollectionViewDelegateAndDataSource
 		mainCollectionView!.registerClass(MainCollectionViewCell.self, forCellWithReuseIdentifier: "Cell")
 		mainCollectionView!.setTranslatesAutoresizingMaskIntoConstraints(false)
-		mainCollectionView!.contentInset = UIEdgeInsetsMake(0, 45, 0, 45)
+		mainCollectionView!.contentInset = UIEdgeInsetsMake(0, 40, 0, 40)
 		
 		scrollCollectionViewDelegateAndDataSource.data = cards
 
 		
 		self.view.addSubview(mainCollectionView!)
 
+		invisibleScrollView = UIScrollView(frame: CGRectMake((40-11), 0, self.view.frame.width-(80-22), self.view.frame.height))
+		//invisibleScrollView?.backgroundColor = UIColor.redColor()
+		invisibleScrollView?.contentSize = CGSizeMake(2000, 0)
+		invisibleScrollView?.pagingEnabled = true
+		invisibleScrollView?.userInteractionEnabled = false
+		invisibleScrollView?.delegate = self
+		
+		mainCollectionView!.addGestureRecognizer(invisibleScrollView!.panGestureRecognizer)
+		
+		self.view.addSubview(invisibleScrollView!)
 		
 		//////////////////////////
 		// MARK: CONSTRAINTS (to Superview)
@@ -374,6 +384,11 @@ class ViewController: UIViewController {
 		UIView.animateWithDuration(0, animations: {
 			mainCollectionView!.alpha = newAlpha
 		})
+	}
+	
+	func scrollViewDidScroll(scrollView: UIScrollView) {
+		mainCollectionView?.contentOffset = invisibleScrollView!.contentOffset
+		mainCollectionView?.contentOffset.x -= mainCollectionView!.contentInset.left
 	}
 }
 
