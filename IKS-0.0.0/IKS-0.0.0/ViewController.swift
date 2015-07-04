@@ -310,6 +310,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 	
 	func cardTransitionToDetail(notification: NSNotification)	{
 		currentlyInDetailMode = true
+		invisibleScrollView!.pagingEnabled = false
+		invisibleScrollView!.scrollEnabled = false
 		
 		let info : NSDictionary = notification.userInfo!
 		let cardId = info.valueForKey("cardId") as! Int
@@ -343,7 +345,10 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 		
 		UIView.animateWithDuration(0.8, animations: {
 			self.view.layoutIfNeeded()
-		}, completion: nil)
+			}, completion: { (finished : Bool) in
+				invisibleScrollView!.pagingEnabled = true
+				invisibleScrollView!.scrollEnabled = true
+		})
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -396,12 +401,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 	
 	
 	func scrollViewDidScroll(scrollView: UIScrollView) {
-		if !currentlyInDetailMode	{
-			mainCollectionView?.contentOffset = invisibleScrollView!.contentOffset
-			mainCollectionView?.contentOffset.x -= mainCollectionView!.contentInset.left
-		} else	{
-			invisibleScrollView!.contentOffset.x -= invisibleScrollView!.frame.width
-		}
+		mainCollectionView?.contentOffset = invisibleScrollView!.contentOffset
+		mainCollectionView?.contentOffset.x -= mainCollectionView!.contentInset.left
 	}
 }
 
