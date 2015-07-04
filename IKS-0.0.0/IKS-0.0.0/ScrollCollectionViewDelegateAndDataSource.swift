@@ -29,8 +29,10 @@ class ScrollCollectionViewDelegateAndDataSource: NSObject, UICollectionViewDeleg
 		if cell.data.visible	{
 		}
 		
-		if cell.data.active	{
-			cell.becameActive()
+		if cell.data.hasBecomeActive	{
+			cell.isActive()
+		} else	if cell.data.active	{
+			cell.becomeActive()
 		}
 		
 		if cell.data.read	{

@@ -297,13 +297,14 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 		var me = scrollCollectionViewDelegateAndDataSource.data.removeAtIndex(currentPosition)
 		scrollCollectionViewDelegateAndDataSource.data.insert(me, atIndex: targetPosition)
 		
-		println("became: \(currentPosition)")
-
 		scrollCollectionView?.moveItemAtIndexPath(NSIndexPath(forItem: currentPosition, inSection: 0), toIndexPath: NSIndexPath(forItem: targetPosition, inSection: 0))
+		
+//		if (scrollCollectionViewDelegateAndDataSource.visibleItems == 0)	{
+//			scrollCollectionViewDelegateAndDataSource.data[0].selected = true
+//		}
 		
 		scrollCollectionViewDelegateAndDataSource.visibleItems++
 		scrollCollectionView?.reloadData()
-		
 		
 		invisibleScrollView?.contentSize.width += (self.view.frame.width - 80) + 11
 	}
@@ -367,9 +368,9 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         
 		if touchPos <= 0 && touchPos >= -180 {
 			currentPos = touchPos
-            newAlpha = 0.3 + 0.7 * (currentPos / -180)
+            newAlpha = 0.2 + 0.8 * (currentPos / -180)
         } else if touchPos > 0 {
-            newAlpha = 0.3
+            newAlpha = 0.2
         }
         
         
@@ -377,11 +378,17 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 			if (sender.velocityInView(self.view).y > 0)	{
 				// Down
 				currentPos = bottom
-				newAlpha = 0.3
+				newAlpha = 0.2
+				
+				invisibleScrollView!.pagingEnabled = false
+				invisibleScrollView!.scrollEnabled = false
 			} else if (sender.velocityInView(self.view).y < 0)	{
 				// Up
 				currentPos = top
 				newAlpha = 1
+				
+				invisibleScrollView!.pagingEnabled = true
+				invisibleScrollView!.scrollEnabled = true
 			}
 			
 			duration = 0.9
@@ -401,8 +408,22 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 	
 	
 	func scrollViewDidScroll(scrollView: UIScrollView) {
+		
 		mainCollectionView?.contentOffset = invisibleScrollView!.contentOffset
 		mainCollectionView?.contentOffset.x -= mainCollectionView!.contentInset.left
+	}
+	
+	func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+		var pageCalc : CGFloat = invisibleScrollView!.contentOffset.x / invisibleScrollView!.frame.size.width
+		currentPage = Int(round(pageCalc))
+
+		
+		for card in scrollCollectionViewDelegateAndDataSource.data	{
+			card.selected = false
+		}
+		
+		scrollCollectionViewDelegateAndDataSource.data[currentPage].selected = true
+		scrollCollectionView?.reloadData()
 	}
 }
 

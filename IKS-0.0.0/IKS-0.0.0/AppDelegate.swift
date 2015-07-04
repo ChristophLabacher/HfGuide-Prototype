@@ -57,7 +57,7 @@ var dataArray:NSArray?
 		identifier: "hfgBeaconsRegion")
 	
 	var currentlyInDetailMode = false
-
+	var currentPage : Int = 0
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

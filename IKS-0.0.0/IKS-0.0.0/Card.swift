@@ -24,6 +24,7 @@ class Card	{
 	var visible : Bool = false
     // active when a beacon was close and gone away
 	var active : Bool = false
+	var hasBecomeActive : Bool = false
 	// selected when a card is centered
 	var selected : Bool = false
 	// reading when card is enlarged

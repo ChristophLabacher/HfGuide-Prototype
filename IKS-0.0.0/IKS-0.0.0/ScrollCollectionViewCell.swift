@@ -92,12 +92,16 @@ class ScrollCollectionViewCell: UICollectionViewCell {
 
 	}
 	
-	func becameActive()	{
-		UIView.animateWithDuration(0.8, animations: {
-			self.blurEffectView.alpha = 0
-		})
+	func isActive()	{
+		self.blurEffectView.alpha = 0
 	}
 	
+	func becomeActive()	{
+		UIView.animateWithDuration(0.8, animations: {
+			self.blurEffectView.alpha = 0
+			self.data.hasBecomeActive = true
+		})
+	}
 	
 	func wasRead()	{
 		UIView.animateWithDuration(0.8, animations: {
@@ -108,13 +112,13 @@ class ScrollCollectionViewCell: UICollectionViewCell {
 	}
 	
 	func wasSelected()	{
-		UIView.animateWithDuration(0.8, animations: {
+		UIView.animateWithDuration(0.2, animations: {
 			self.card.alpha = 1
 		})
 	}
 	
 	func wasDeselected()	{
-		UIView.animateWithDuration(0.8, animations: {
+		UIView.animateWithDuration(0.2, animations: {
 			self.card.alpha = 0.3
 		})
 	}
@@ -125,5 +129,6 @@ class ScrollCollectionViewCell: UICollectionViewCell {
 	
 	override func prepareForReuse() {
 		self.blurEffectView.alpha = 1
+		self.card.alpha = 0.3
 	}
 }
