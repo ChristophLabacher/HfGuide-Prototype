@@ -217,7 +217,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 
 		invisibleScrollView = UIScrollView(frame: CGRectMake((40-11), 0, self.view.frame.width-(80-22), self.view.frame.height))
 		//invisibleScrollView?.backgroundColor = UIColor.redColor()
-		invisibleScrollView?.contentSize = CGSizeMake(2000, 0)
+		invisibleScrollView?.contentSize = CGSizeMake(40, 0)
 		invisibleScrollView?.pagingEnabled = true
 		invisibleScrollView?.userInteractionEnabled = false
 		invisibleScrollView?.delegate = self
@@ -302,6 +302,9 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 		
 		scrollCollectionViewDelegateAndDataSource.visibleItems++
 		scrollCollectionView?.reloadData()
+		
+		
+		invisibleScrollView?.contentSize.width += (self.view.frame.width - 80) + 11
 	}
 	
 	func cardTransitionToDetail(notification: NSNotification)	{

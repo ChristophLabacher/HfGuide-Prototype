@@ -48,7 +48,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 		
 		backgroundImage = UIImageView()
 		backgroundImage.contentMode = UIViewContentMode.ScaleAspectFill
-		backgroundImage.alpha = 0.3
+		backgroundImage.alpha = 0.25
 		backgroundImage.clipsToBounds = true
 		backgroundImage.setTranslatesAutoresizingMaskIntoConstraints(false)
 
