@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 // TODO: Test
 
@@ -273,6 +274,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 		cards[cardIndex].active = true
 		mainCollectionView!.reloadData()
 		scrollCollectionView?.reloadData()
+		
+		AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
 		
 		println("Card became active \(cardIndex)")
 	}
