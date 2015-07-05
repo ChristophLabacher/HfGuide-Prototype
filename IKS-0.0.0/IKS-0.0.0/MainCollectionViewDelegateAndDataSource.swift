@@ -40,8 +40,4 @@ class MainCollectionViewDelegateAndDataSource: NSObject, UICollectionViewDelegat
 	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize{
 		return CGSizeMake(collectionView.frame.size.width-cellMargin, collectionView.frame.size.height)
 	}
-	
-	func setMarginZero()	{
-		self.cellMargin = 0
-	}
 }

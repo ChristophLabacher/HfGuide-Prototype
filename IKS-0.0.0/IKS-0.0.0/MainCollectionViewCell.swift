@@ -276,9 +276,10 @@ class MainCollectionViewCell: UICollectionViewCell {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
+	
 	func readMoreButtonTap(sender: UIButton)	{
 		
-		if self.data.active {
+		if self.data.active {			
 			NSNotificationCenter.defaultCenter().postNotificationName("cardTransitionToDetail", object: nil, userInfo: ["cardId" : self.data.id as Int])
 			
 			self.data.read = true
@@ -286,24 +287,24 @@ class MainCollectionViewCell: UICollectionViewCell {
 			
 			self.detailWebView.loadRequest(NSURLRequest(URL: NSURL(string: data!.detailSlide)!))
 			
-			viewsDictionary = [
-				"backgroundImage": backgroundImage,
-				"readMoreButton": readMoreButton,
-				"readMoreButtonBorderTop": readMoreButtonBorderTop,
-				"contentView":contentView,
-				"detailWebView":detailWebView
+			self.viewsDictionary = [
+				"backgroundImage": self.backgroundImage,
+				"readMoreButton": self.readMoreButton,
+				"readMoreButtonBorderTop": self.readMoreButtonBorderTop,
+				"contentView": self.contentView,
+				"detailWebView": self.detailWebView
 			]
 			
 			self.card.removeConstraints(self.verticalContraint!)
-			verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage][readMoreButtonBorderTop(0)][readMoreButton(0)][detailWebView(0)]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+			self.verticalContraint = NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage][readMoreButtonBorderTop(0)][readMoreButton(0)][detailWebView(0)]|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 			self.card.addConstraints(self.verticalContraint!)
 			self.card.layoutIfNeeded()	
 			
 			self.card.removeConstraints(self.verticalContraint!)
-			self.verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage(100)][readMoreButtonBorderTop(0)][readMoreButton(0)][detailWebView]-(0)-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
+			self.verticalContraint = NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage(100)][readMoreButtonBorderTop(0)][readMoreButton(0)][detailWebView]-(0)-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 			self.card.addConstraints(self.verticalContraint!)
 			
-			titelLabelVerticalConstraint.constant = 10
+			self.titelLabelVerticalConstraint.constant = 10
 			
 			UIView.animateWithDuration(0.8, animations: {
 				self.card.layoutIfNeeded()
@@ -326,18 +327,18 @@ class MainCollectionViewCell: UICollectionViewCell {
 			self.data.reading = false
 			
 			viewsDictionary = [
-				"backgroundImage": backgroundImage,
-				"readMoreButton": readMoreButton,
-				"readMoreButtonBorderTop": readMoreButtonBorderTop,
-				"contentView":contentView,
-				"detailWebView":detailWebView
+				"backgroundImage": self.backgroundImage,
+				"readMoreButton": self.readMoreButton,
+				"readMoreButtonBorderTop": self.readMoreButtonBorderTop,
+				"contentView": self.contentView,
+				"detailWebView": self.detailWebView
 			]
 			
 			self.card.removeConstraints(self.verticalContraint!)
 			self.verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage][readMoreButtonBorderTop(5)][readMoreButton(45)][detailWebView(50)]-(-50)-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 			self.card.addConstraints(self.verticalContraint!)
-			
-			titelLabelVerticalConstraint.constant = -20
+		
+			self.titelLabelVerticalConstraint.constant = -20
 			
 			UIView.animateWithDuration(0.8, animations: {
 				self.card.layoutIfNeeded()

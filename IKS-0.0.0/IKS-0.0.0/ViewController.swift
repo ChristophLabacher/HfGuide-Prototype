@@ -19,6 +19,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 	var mainViewVerticalConstraint : [AnyObject]! = nil
 	var mainViewTopVerticalConstraint : NSLayoutConstraint!
 	var mainViewBottomVerticalConstraint : NSLayoutConstraint!
+	var mainCollectionViewLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -198,7 +199,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 		// MainCollectionView
 		//////////////////////////
 		
-		let mainCollectionViewLayout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
 		mainCollectionViewLayout.scrollDirection = UICollectionViewScrollDirection.Horizontal
 		mainCollectionViewLayout.minimumLineSpacing = 22
 		
@@ -324,8 +324,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 		
 		mainViewTopVerticalConstraint.constant = -180 - 90
 		mainViewBottomVerticalConstraint.constant = 0
-		
 		mainCollectionViewDelegateAndDataSource.cellMargin = 0
+		//mainCollectionView!.collectionViewLayout.invalidateLayout()
 		mainCollectionView!.reloadData()
 		
 		UIView.animateWithDuration(0.8, animations: {
@@ -347,22 +347,24 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 		
 		mainViewTopVerticalConstraint.constant = -180
 		mainViewBottomVerticalConstraint.constant = -40
-		
 		mainCollectionViewDelegateAndDataSource.cellMargin = 80
+		//mainCollectionView!.collectionViewLayout.invalidateLayout()
+
 		mainCollectionView!.reloadData()
 		
 		UIView.animateWithDuration(0.8, animations: {
 			self.view.layoutIfNeeded()
-			}, completion: { (finished : Bool) in
-				invisibleScrollView!.pagingEnabled = true
-				invisibleScrollView!.scrollEnabled = true
+		}, completion: { (finished : Bool) in
+			invisibleScrollView!.pagingEnabled = true
+			invisibleScrollView!.scrollEnabled = true
 		})
-		
-		println(currentPage)
 		
 		if (currentPage == 0 && mainCollectionViewDelegateAndDataSource.data.count > 1)	{
 			mainCollectionView?.contentOffset.x -= 40
 		}
+		
+//		var number : CGFloat = CGFloat(currentPage * 80)
+//		mainCollectionView?.contentOffset.x -= number + 40
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -421,7 +423,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 	
 	
 	func scrollViewDidScroll(scrollView: UIScrollView) {
-		
 		mainCollectionView?.contentOffset = invisibleScrollView!.contentOffset
 		mainCollectionView?.contentOffset.x -= mainCollectionView!.contentInset.left
 	}
@@ -430,7 +431,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 		var pageCalc : CGFloat = invisibleScrollView!.contentOffset.x / invisibleScrollView!.frame.size.width
 		currentPage = Int(round(pageCalc))
 
-		
 		for card in scrollCollectionViewDelegateAndDataSource.data	{
 			card.selected = false
 		}
