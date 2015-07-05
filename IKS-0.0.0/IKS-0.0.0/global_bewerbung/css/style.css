@@ -138,7 +138,7 @@ body{
 .answer .question{
 	width:375px;
 	height:70px;
-	background-color:#F00;
+	background-color:transparent;
 	position:absolute;
 	left:350px;
 	top:0px;
