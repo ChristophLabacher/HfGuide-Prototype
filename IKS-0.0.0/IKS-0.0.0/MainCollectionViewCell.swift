@@ -284,8 +284,12 @@ class MainCollectionViewCell: UICollectionViewCell {
 			
 			self.data.read = true
 			self.data.reading = true
-			
-			self.detailWebView.loadRequest(NSURLRequest(URL: NSURL(string: data!.detailSlide)!))
+            
+            let localfilePath = NSBundle.mainBundle().URLForResource(data!.detailSlide, withExtension: "html");
+
+            let requestObj = NSURLRequest(URL: localfilePath!)
+            
+			self.detailWebView.loadRequest(requestObj)
 			
 			self.viewsDictionary = [
 				"backgroundImage": self.backgroundImage,
