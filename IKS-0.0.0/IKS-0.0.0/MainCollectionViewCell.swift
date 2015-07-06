@@ -13,6 +13,30 @@ class MainCollectionViewCell: UICollectionViewCell {
 	var cardColor : UIColor = UIColor.grayColor()
 	
 	let card: UIView!
+	let keywordView: UIView!
+	var keywordCounter = 0
+	let keywordLabelMinus2 : CLLabel!
+	let keywordLabelMinus2Constraint : NSLayoutConstraint!
+	let keywordLabelMinus1 : CLLabel!
+	let keywordLabelMinus1Constraint : NSLayoutConstraint!
+	let keywordLabel0 : CLLabel!
+	let keywordLabel0Constraint : NSLayoutConstraint!
+	let keywordLabel1 : CLLabel!
+	let keywordLabel1Constraint : NSLayoutConstraint!
+	let keywordLabel2 : CLLabel!
+	let keywordLabel2Constraint : NSLayoutConstraint!
+	let keywordLabel3 : CLLabel!
+	let keywordLabel3Constraint : NSLayoutConstraint!
+	let keywordLabel4 : CLLabel!
+	let keywordLabel4Constraint : NSLayoutConstraint!
+	let keywordLabel5 : CLLabel!
+	let keywordLabel5Constraint : NSLayoutConstraint!
+	let keywordLabel6 : CLLabel!
+	let keywordLabel6Constraint : NSLayoutConstraint!
+	let keywordLabel7 : CLLabel!
+	let keywordLabel7Constraint : NSLayoutConstraint!
+
+	
 	let backgroundImage: UIImageView!
 	let blurEffectView : UIVisualEffectView!
 	let readMoreButtonBorderTop : UIView!
@@ -102,8 +126,169 @@ class MainCollectionViewCell: UICollectionViewCell {
 		blurEffectView.setTranslatesAutoresizingMaskIntoConstraints(false)
 		card.addSubview(blurEffectView)
 		
-		card.addConstraint(NSLayoutConstraint(item: blurEffectView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: card, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0))
-		card.addConstraint(NSLayoutConstraint(item: blurEffectView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: card, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0))
+		card.addConstraint(NSLayoutConstraint(item: blurEffectView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: backgroundImage, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0))
+		card.addConstraint(NSLayoutConstraint(item: blurEffectView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: backgroundImage, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0))
+		
+		// Card > keywordView
+		//////////////////////////
+		
+		keywordView = UIView()
+		keywordView.clipsToBounds = true
+		keywordView.setTranslatesAutoresizingMaskIntoConstraints(false)
+		card.addSubview(keywordView)
+		
+		card.addConstraint(NSLayoutConstraint(item: keywordView, attribute: NSLayoutAttribute.Width, relatedBy: NSLayoutRelation.Equal, toItem: backgroundImage, attribute: NSLayoutAttribute.Width, multiplier: 1, constant: 0))
+		card.addConstraint(NSLayoutConstraint(item: keywordView, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: backgroundImage, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0))
+		
+		keywordLabelMinus2 = CLLabel()
+		keywordLabelMinus2.textColor = UIColor.whiteColor()
+		keywordLabelMinus2.font = UIFont(name: "SourceSansPro-Bold", size: 30)
+		keywordLabelMinus2.numberOfLines = 0;
+		keywordLabelMinus2.textAlignment = NSTextAlignment.Center
+		keywordLabelMinus2.alpha = 1
+		keywordLabelMinus2.setTranslatesAutoresizingMaskIntoConstraints(false)
+		keywordLabelMinus2.setLabelTextWithLineHeight("Technologie")
+		keywordView.addSubview(keywordLabelMinus2)
+		
+		keywordView.addConstraint(NSLayoutConstraint(item: keywordLabelMinus2, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: keywordView, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
+		
+		keywordLabelMinus2Constraint = NSLayoutConstraint(item: keywordLabelMinus2, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: keywordView, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 380)
+		keywordView.addConstraint(keywordLabelMinus2Constraint)
+
+		
+		keywordLabelMinus1 = CLLabel()
+		keywordLabelMinus1.textColor = UIColor.whiteColor()
+		keywordLabelMinus1.font = UIFont(name: "SourceSansPro-Bold", size: 30)
+		keywordLabelMinus1.numberOfLines = 0;
+		keywordLabelMinus1.textAlignment = NSTextAlignment.Center
+		keywordLabelMinus1.alpha = 1
+		keywordLabelMinus1.setTranslatesAutoresizingMaskIntoConstraints(false)
+		keywordLabelMinus1.setLabelTextWithLineHeight("Schwierigkeiten")
+		keywordView.addSubview(keywordLabelMinus1)
+		
+		keywordView.addConstraint(NSLayoutConstraint(item: keywordLabelMinus1, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: keywordView, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
+		
+		keywordLabelMinus1Constraint = NSLayoutConstraint(item: keywordLabelMinus1, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: keywordView, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 340)
+		keywordView.addConstraint(keywordLabelMinus1Constraint)
+
+
+		
+		keywordLabel0 = CLLabel()
+		keywordLabel0.textColor = UIColor.whiteColor()
+		keywordLabel0.font = UIFont(name: "SourceSansPro-Bold", size: 30)
+		keywordLabel0.numberOfLines = 0;
+		keywordLabel0.textAlignment = NSTextAlignment.Center
+		keywordLabel0.alpha = 1
+		keywordLabel0.setTranslatesAutoresizingMaskIntoConstraints(false)
+		keywordLabel0.setLabelTextWithLineHeight("Prozess")
+		keywordView.addSubview(keywordLabel0)
+		
+		keywordView.addConstraint(NSLayoutConstraint(item: keywordLabel0, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: keywordView, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
+		
+		keywordLabel0Constraint = NSLayoutConstraint(item: keywordLabel0, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: keywordView, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 300)
+		keywordView.addConstraint(keywordLabel0Constraint)
+		
+		keywordLabel1 = CLLabel()
+		keywordLabel1.textColor = UIColor.whiteColor()
+		keywordLabel1.font = UIFont(name: "SourceSansPro-Bold", size: 30)
+		keywordLabel1.numberOfLines = 0;
+		keywordLabel1.textAlignment = NSTextAlignment.Center
+		keywordLabel1.alpha = 1
+		keywordLabel1.setTranslatesAutoresizingMaskIntoConstraints(false)
+		keywordLabel1.setLabelTextWithLineHeight("Zielsetzung")
+		keywordView.addSubview(keywordLabel1)
+		
+		keywordView.addConstraint(NSLayoutConstraint(item: keywordLabel1, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: keywordView, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
+		
+		keywordLabel1Constraint = NSLayoutConstraint(item: keywordLabel1, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: keywordView, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: 30)
+		keywordView.addConstraint(keywordLabel1Constraint)
+		
+		keywordLabel2 = CLLabel()
+		keywordLabel2.textColor = UIColor.whiteColor()
+		keywordLabel2.font = UIFont(name: "SourceSansPro-Bold", size: 18)
+		keywordLabel2.numberOfLines = 0;
+		keywordLabel2.textAlignment = NSTextAlignment.Center
+		keywordLabel2.alpha = 0.26
+		keywordLabel2.setTranslatesAutoresizingMaskIntoConstraints(false)
+		keywordLabel2.setLabelTextWithLineHeight("Nutzergruppe")
+		keywordView.addSubview(keywordLabel2)
+		
+		keywordView.addConstraint(NSLayoutConstraint(item: keywordLabel2, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: keywordView, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
+		
+		keywordLabel2Constraint = NSLayoutConstraint(item: keywordLabel2, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: keywordView, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: -20)
+		keywordView.addConstraint(keywordLabel2Constraint)
+
+		
+		keywordLabel3 = CLLabel()
+		keywordLabel3.textColor = UIColor.whiteColor()
+		keywordLabel3.font = UIFont(name: "SourceSansPro-Bold", size: 18)
+		keywordLabel3.numberOfLines = 0;
+		keywordLabel3.textAlignment = NSTextAlignment.Center
+		keywordLabel3.alpha = 0.21
+		keywordLabel3.setTranslatesAutoresizingMaskIntoConstraints(false)
+		keywordLabel3.setLabelTextWithLineHeight("Visuelle Gestaltung")
+		keywordView.addSubview(keywordLabel3)
+		
+		keywordView.addConstraint(NSLayoutConstraint(item: keywordLabel3, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: keywordView, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
+		keywordLabel3Constraint = NSLayoutConstraint(item: keywordLabel3, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: keywordView, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: -60)
+		keywordView.addConstraint(keywordLabel3Constraint)
+		
+		keywordLabel4 = CLLabel()
+		keywordLabel4.textColor = UIColor.whiteColor()
+		keywordLabel4.font = UIFont(name: "SourceSansPro-Bold", size: 18)
+		keywordLabel4.numberOfLines = 0;
+		keywordLabel4.textAlignment = NSTextAlignment.Center
+		keywordLabel4.alpha = 0.16
+		keywordLabel4.setTranslatesAutoresizingMaskIntoConstraints(false)
+		keywordLabel4.setLabelTextWithLineHeight("Recherche")
+		keywordView.addSubview(keywordLabel4)
+		
+		keywordView.addConstraint(NSLayoutConstraint(item: keywordLabel4, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: keywordView, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
+		
+		keywordLabel4Constraint = NSLayoutConstraint(item: keywordLabel4, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: keywordView, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: -100)
+		keywordView.addConstraint(keywordLabel4Constraint)
+		
+		keywordLabel5 = CLLabel()
+		keywordLabel5.textColor = UIColor.whiteColor()
+		keywordLabel5.font = UIFont(name: "SourceSansPro-Bold", size: 18)
+		keywordLabel5.numberOfLines = 0;
+		keywordLabel5.textAlignment = NSTextAlignment.Center
+		keywordLabel5.alpha = 0.11
+		keywordLabel5.setTranslatesAutoresizingMaskIntoConstraints(false)
+		keywordLabel5.setLabelTextWithLineHeight("Bediensituation")
+		keywordView.addSubview(keywordLabel5)
+		
+		keywordView.addConstraint(NSLayoutConstraint(item: keywordLabel5, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: keywordView, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
+		keywordLabel5Constraint = NSLayoutConstraint(item: keywordLabel5, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: keywordView, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: -140)
+		keywordView.addConstraint(keywordLabel5Constraint)
+		
+		keywordLabel6 = CLLabel()
+		keywordLabel6.textColor = UIColor.whiteColor()
+		keywordLabel6.font = UIFont(name: "SourceSansPro-Bold", size: 18)
+		keywordLabel6.numberOfLines = 0;
+		keywordLabel6.textAlignment = NSTextAlignment.Center
+		keywordLabel6.alpha = 0.06
+		keywordLabel6.setTranslatesAutoresizingMaskIntoConstraints(false)
+		keywordLabel6.setLabelTextWithLineHeight("Mentales Modell")
+		keywordView.addSubview(keywordLabel6)
+		
+		keywordView.addConstraint(NSLayoutConstraint(item: keywordLabel6, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: keywordView, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
+		keywordLabel6Constraint = NSLayoutConstraint(item: keywordLabel6, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: keywordView, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: -180)
+		keywordView.addConstraint(keywordLabel6Constraint)
+		
+		keywordLabel7 = CLLabel()
+		keywordLabel7.textColor = UIColor.whiteColor()
+		keywordLabel7.font = UIFont(name: "SourceSansPro-Bold", size: 18)
+		keywordLabel7.numberOfLines = 0;
+		keywordLabel7.textAlignment = NSTextAlignment.Center
+		keywordLabel7.alpha = 0.01
+		keywordLabel7.setTranslatesAutoresizingMaskIntoConstraints(false)
+		keywordLabel7.setLabelTextWithLineHeight("Mentales Modell")
+		keywordView.addSubview(keywordLabel7)
+		
+		keywordView.addConstraint(NSLayoutConstraint(item: keywordLabel7, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: keywordView, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
+		keywordLabel7Constraint = NSLayoutConstraint(item: keywordLabel7, attribute: NSLayoutAttribute.CenterY, relatedBy: NSLayoutRelation.Equal, toItem: keywordView, attribute: NSLayoutAttribute.CenterY, multiplier: 1, constant: -220)
+		keywordView.addConstraint(keywordLabel7Constraint)
 		
 		// Card > ReadMoreButtonBorderTop
 		//////////////////////////
@@ -133,7 +318,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 		//////////////////////////
 		
 		readMoreButtonLabel = CLLabel()
-		readMoreButtonLabel.setLabelTextWithKerning("Neue Stichworte")
+		readMoreButtonLabel.setLabelTextWithKerning("Neues Stichwort")
 		readMoreButtonLabel.textColor = cardColor
 		readMoreButtonLabel.textAlignment = NSTextAlignment.Center
 		readMoreButtonLabel.userInteractionEnabled = false;
@@ -274,6 +459,10 @@ class MainCollectionViewCell: UICollectionViewCell {
 		let localfilePath = NSBundle.mainBundle().URLForResource(data!.detailSlide, withExtension: "html");
 		let requestObj = NSURLRequest(URL: localfilePath!)
 		self.detailWebView.loadRequest(requestObj)
+		
+		if !data!.hasKeywords	{
+			self.keywordView.removeFromSuperview()
+		}
 	}
 	
 	required init(coder aDecoder: NSCoder) {
@@ -289,8 +478,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 			self.data.read = true
 			self.data.reading = true
 
-			
-			
+
 			self.viewsDictionary = [
 				"backgroundImage": self.backgroundImage,
 				"readMoreButton": self.readMoreButton,
@@ -320,6 +508,54 @@ class MainCollectionViewCell: UICollectionViewCell {
 				self.titelLabel.font = UIFont(name: "SourceSansPro-Bold", size: 24)
 				self.subtitelLabel.alpha = 0
 			}, completion: nil)
+		} else	{
+			
+			
+			self.keywordLabelMinus2.alpha -= 0.05
+			self.keywordLabelMinus1.alpha -= 0.05
+			self.keywordLabel0.alpha -= 0.05
+			self.keywordLabel1.alpha -= 0.05
+			self.keywordLabel2.alpha -= 0.05
+			self.keywordLabel3.alpha -= 0.05
+			self.keywordLabel4.alpha -= 0.05
+			self.keywordLabel5.alpha -= 0.05
+			self.keywordLabel6.alpha -= 0.05
+			self.keywordLabel7.alpha -= 0.05
+			
+			self.keywordLabelMinus2Constraint.constant -= 40
+			self.keywordLabelMinus1Constraint.constant -= 40
+			self.keywordLabel0Constraint.constant -= 40
+			self.keywordLabel1Constraint.constant -= 40
+			self.keywordLabel2Constraint.constant -= 40
+			self.keywordLabel3Constraint.constant -= 40
+			self.keywordLabel4Constraint.constant -= 40
+			self.keywordLabel5Constraint.constant -= 40
+			self.keywordLabel6Constraint.constant -= 40
+			self.keywordLabel7Constraint.constant -= 40
+			
+			if (keywordCounter == 0)	{
+				self.keywordLabel1.alpha = 0.26
+				self.keywordLabel1.font = UIFont(name: "SourceSansPro-Bold", size: 18)
+				self.keywordLabel1Constraint.constant = -20
+				self.keywordLabel0Constraint.constant = 30
+			} else if (keywordCounter == 1)	{
+				self.keywordLabel0.alpha = 0.26
+				self.keywordLabel0.font = UIFont(name: "SourceSansPro-Bold", size: 18)
+				self.keywordLabel0Constraint.constant = -20
+				self.keywordLabelMinus1Constraint.constant = 30
+			} else if (keywordCounter == 2)	{
+				self.keywordLabelMinus1.alpha = 0.26
+				self.keywordLabelMinus1.font = UIFont(name: "SourceSansPro-Bold", size: 18)
+				self.keywordLabelMinus1Constraint.constant = -20
+				self.keywordLabelMinus2Constraint.constant = 30
+			}
+			
+			UIView.animateWithDuration(1.3, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0.05, options: nil, animations:{
+				self.keywordView.layoutIfNeeded()
+			}, completion: { (finished : Bool) in
+				self.keywordCounter++
+			})
+			
 		}
 	}
 	
@@ -365,6 +601,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 		})
 		
 		readMoreButtonLabel.setLabelTextWithKerning("Weiterlesen")
+		self.keywordView.removeFromSuperview()
 	}
 
 }

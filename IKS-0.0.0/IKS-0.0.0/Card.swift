@@ -33,6 +33,7 @@ class Card	{
     var read : Bool = false
 	
 	var noteCount : Int = 0
+	var hasKeywords : Bool = false
 	
 	let data : NSDictionary
 	
@@ -48,6 +49,7 @@ class Card	{
 		self.detailSlide = card["detailSlide"] as! String
 		self.minorIds = card["minorIds"] as! [Int]
 		self.type = card["type"] as! String;
+		self.hasKeywords = card["hasKeywords"] as! Bool;
 	}
 	
 }

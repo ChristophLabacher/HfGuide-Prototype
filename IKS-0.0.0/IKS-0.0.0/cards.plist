@@ -20,8 +20,12 @@
 		<string>applicationdesign</string>
 		<key>detailSlide</key>
 		<string>application</string>
+		<key>hasKeywords</key>
+		<true/>
 	</dict>
 	<dict>
+		<key>hasKeywords</key>
+		<false/>
 		<key>id</key>
 		<integer>2</integer>
 		<key>minorIds</key>
@@ -41,6 +45,8 @@
 		<string>medienlabor</string>
 	</dict>
 	<dict>
+		<key>hasKeywords</key>
+		<false/>
 		<key>id</key>
 		<integer>3</integer>
 		<key>minorIds</key>
@@ -60,6 +66,8 @@
 		<string>interview</string>
 	</dict>
 	<dict>
+		<key>hasKeywords</key>
+		<false/>
 		<key>id</key>
 		<integer>4</integer>
 		<key>minorIds</key>
@@ -79,6 +87,8 @@
 		<string>bewerbung</string>
 	</dict>
 	<dict>
+		<key>hasKeywords</key>
+		<false/>
 		<key>id</key>
 		<integer>5</integer>
 		<key>minorIds</key>
