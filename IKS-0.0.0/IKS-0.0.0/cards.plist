@@ -19,7 +19,7 @@
 		<key>coverImage</key>
 		<string>applicationdesign</string>
 		<key>detailSlide</key>
-		<string>http://florian-ludwig.de/iks/application/</string>
+		<string>application</string>
 	</dict>
 	<dict>
 		<key>id</key>
@@ -38,7 +38,7 @@
 		<key>coverImage</key>
 		<string>medienlabor</string>
 		<key>detailSlide</key>
-		<string>http://www.florian-ludwig.de/iks/medienlabor/</string>
+		<string>medienlabor</string>
 	</dict>
 	<dict>
 		<key>id</key>
@@ -57,7 +57,7 @@
 		<key>coverImage</key>
 		<string>zukunftsaussichten</string>
 		<key>detailSlide</key>
-		<string>http://florian-ludwig.de/iks/interview/</string>
+		<string>interview</string>
 	</dict>
 	<dict>
 		<key>id</key>
@@ -76,7 +76,7 @@
 		<key>coverImage</key>
 		<string>bewerbung</string>
 		<key>detailSlide</key>
-		<string>http://florian-ludwig.de/iks/bewerbung/</string>
+		<string>bewerbung</string>
 	</dict>
 	<dict>
 		<key>id</key>
@@ -95,7 +95,7 @@
 		<key>coverImage</key>
 		<string>campus</string>
 		<key>detailSlide</key>
-		<string>http://florian-ludwig.de/iks/campus/</string>
+		<string>campus</string>
 	</dict>
 </array>
 </plist>

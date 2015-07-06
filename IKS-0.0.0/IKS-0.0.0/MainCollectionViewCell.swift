@@ -270,6 +270,10 @@ class MainCollectionViewCell: UICollectionViewCell {
 		readMoreButtonBorderTop.backgroundColor = cardColor
 		self.readMoreButtonLabel.textColor = cardColor
 		self.detailBackButtonLabel.textColor = cardColor
+		
+		let localfilePath = NSBundle.mainBundle().URLForResource(data!.detailSlide, withExtension: "html");
+		let requestObj = NSURLRequest(URL: localfilePath!)
+		self.detailWebView.loadRequest(requestObj)
 	}
 	
 	required init(coder aDecoder: NSCoder) {
@@ -284,8 +288,8 @@ class MainCollectionViewCell: UICollectionViewCell {
 			
 			self.data.read = true
 			self.data.reading = true
+
 			
-			self.detailWebView.loadRequest(NSURLRequest(URL: NSURL(string: data!.detailSlide)!))
 			
 			self.viewsDictionary = [
 				"backgroundImage": self.backgroundImage,
