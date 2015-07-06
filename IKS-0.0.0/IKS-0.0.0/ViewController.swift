@@ -317,6 +317,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 	func initFirstCard()	{
 		cards[3].visible = true
 		cards[3].active = true
+		cards[3].selected = true
 		
 		let size = mainCollectionViewDelegateAndDataSource.data.count
 		mainCollectionViewDelegateAndDataSource.data.append(cards[3])
@@ -467,6 +468,10 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 		}
 		
 		scrollCollectionViewDelegateAndDataSource.data[currentPage].selected = true
+		
+		let indexPath = NSIndexPath(forItem: currentPage, inSection: 0)
+		scrollCollectionView?.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: true)
+
 		scrollCollectionView?.reloadData()
 	}
 }
