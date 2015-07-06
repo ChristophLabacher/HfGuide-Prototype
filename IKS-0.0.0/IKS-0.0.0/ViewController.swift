@@ -265,6 +265,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 		
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: "cardBecameActive:", name: "cardBecameActive", object: nil)
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: "cardBecameVisible:", name: "cardBecameVisible", object: nil)
+		
+		initFirstCard()
 	}
 	
 	func cardBecameActive(notification: NSNotification)	{
@@ -306,6 +308,24 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 //			scrollCollectionViewDelegateAndDataSource.data[0].selected = true
 //		}
 		
+		scrollCollectionViewDelegateAndDataSource.visibleItems++
+		scrollCollectionView?.reloadData()
+		
+		invisibleScrollView?.contentSize.width += (self.view.frame.width - 80) + 11
+	}
+	
+	func initFirstCard()	{
+		cards[3].visible = true
+		cards[3].active = true
+		
+		let size = mainCollectionViewDelegateAndDataSource.data.count
+		mainCollectionViewDelegateAndDataSource.data.append(cards[3])
+		mainCollectionView!.reloadData()
+		
+		var targetPosition = scrollCollectionViewDelegateAndDataSource.visibleItems
+		var currentPosition = (scrollCollectionViewDelegateAndDataSource.data as NSArray).indexOfObject(cards[3])
+		var me = scrollCollectionViewDelegateAndDataSource.data.removeAtIndex(currentPosition)
+		scrollCollectionViewDelegateAndDataSource.data.insert(me, atIndex: targetPosition)
 		scrollCollectionViewDelegateAndDataSource.visibleItems++
 		scrollCollectionView?.reloadData()
 		
