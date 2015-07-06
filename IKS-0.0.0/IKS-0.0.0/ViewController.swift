@@ -325,16 +325,16 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 		mainViewTopVerticalConstraint.constant = -180 - 90
 		mainViewBottomVerticalConstraint.constant = 0
 		mainCollectionViewDelegateAndDataSource.cellMargin = 0
-		//mainCollectionView!.collectionViewLayout.invalidateLayout()
-		mainCollectionView!.reloadData()
+		mainCollectionView!.collectionViewLayout.invalidateLayout()
+		//mainCollectionView!.reloadData()
 		
 		UIView.animateWithDuration(0.8, animations: {
 			self.view.layoutIfNeeded()
-			mainCollectionView?.contentOffset.x += 40
+
+			var number : CGFloat = CGFloat(currentPage * 80)
+			mainCollectionView?.contentOffset.x += number + 40
+
 		}, completion: nil)
-		
-		var number : CGFloat = CGFloat(currentPage * 80)
-		mainCollectionView?.contentOffset.x += number
 	}
 	
 	func cardTransitionToMainScroll(notification: NSNotification)	{
@@ -348,20 +348,31 @@ class ViewController: UIViewController, UIScrollViewDelegate {
 		mainViewTopVerticalConstraint.constant = -180
 		mainViewBottomVerticalConstraint.constant = -40
 		mainCollectionViewDelegateAndDataSource.cellMargin = 80
-		//mainCollectionView!.collectionViewLayout.invalidateLayout()
-
-		mainCollectionView!.reloadData()
+		mainCollectionView!.collectionViewLayout.invalidateLayout()
+		//mainCollectionView!.reloadData()
 		
 		UIView.animateWithDuration(0.8, animations: {
 			self.view.layoutIfNeeded()
+	
+			if (currentPage == mainCollectionViewDelegateAndDataSource.data.count - 1 && mainCollectionViewDelegateAndDataSource.data.count > 1)	{
+				var number : CGFloat = CGFloat((currentPage - 1) * 80)
+				mainCollectionView?.contentOffset.x += number - 40 + 28
+				
+				println("last card")
+			} else	{
+				var number : CGFloat = CGFloat(currentPage * 80)
+				mainCollectionView?.contentOffset.x -= number + 40
+			}
+			
+			
+			if (currentPage == 0 && mainCollectionViewDelegateAndDataSource.data.count == 1)	{
+				mainCollectionView?.contentOffset.x += 40
+			}
+			
 		}, completion: { (finished : Bool) in
 			invisibleScrollView!.pagingEnabled = true
 			invisibleScrollView!.scrollEnabled = true
 		})
-		
-		if (currentPage == 0 && mainCollectionViewDelegateAndDataSource.data.count > 1)	{
-			mainCollectionView?.contentOffset.x -= 40
-		}
 		
 //		var number : CGFloat = CGFloat(currentPage * 80)
 //		mainCollectionView?.contentOffset.x -= number + 40
