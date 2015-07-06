@@ -58,7 +58,7 @@
 		4C7876F21B3B3C3B00845D19 /* BeaconDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconDelegate.swift; sourceTree = "<group>"; };
 		4CABB0851B2F7658002FF93C /* CLLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CLLabel.swift; sourceTree = "<group>"; };
 		4CC72D2C1B2B0A1B00895616 /* MainCollectionViewDelegateAndDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainCollectionViewDelegateAndDataSource.swift; sourceTree = "<group>"; };
-		4CCFDBB51B00E0A10085AD75 /* IKS-0.0.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IKS-0.0.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4CCFDBB51B00E0A10085AD75 /* HfGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HfGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CCFDBB91B00E0A10085AD75 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4CCFDBBA1B00E0A10085AD75 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4CCFDBBC1B00E0A10085AD75 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -129,7 +129,7 @@
 		4CCFDBB61B00E0A10085AD75 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4CCFDBB51B00E0A10085AD75 /* IKS-0.0.0.app */,
+				4CCFDBB51B00E0A10085AD75 /* HfGuide.app */,
 				4CCFDBCA1B00E0A10085AD75 /* IKS-0.0.0Tests.xctest */,
 			);
 			name = Products;
@@ -257,7 +257,7 @@
 			);
 			name = "IKS-0.0.0";
 			productName = "IKS-0.0.0";
-			productReference = 4CCFDBB51B00E0A10085AD75 /* IKS-0.0.0.app */;
+			productReference = 4CCFDBB51B00E0A10085AD75 /* HfGuide.app */;
 			productType = "com.apple.product-type.application";
 		};
 		4CCFDBC91B00E0A10085AD75 /* IKS-0.0.0Tests */ = {
@@ -477,7 +477,7 @@
 				INFOPLIST_FILE = "IKS-0.0.0/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = HfGuide;
 				SWIFT_OBJC_BRIDGING_HEADER = "IKS-0.0.0/ObjCBridge.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -495,7 +495,7 @@
 				INFOPLIST_FILE = "IKS-0.0.0/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = HfGuide;
 				SWIFT_OBJC_BRIDGING_HEADER = "IKS-0.0.0/ObjCBridge.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
