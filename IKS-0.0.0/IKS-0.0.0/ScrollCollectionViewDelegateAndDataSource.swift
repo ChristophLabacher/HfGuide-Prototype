@@ -63,22 +63,9 @@ class ScrollCollectionViewDelegateAndDataSource: NSObject, UICollectionViewDeleg
 			cell.data.selected = true
 			collectionView.reloadData()
 			
-		//	mainCollectionView!.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: true)
-			println(invisibleScrollView!.frame.width)
-			println(indexPath.item)
-			
-			var slideWidth : Double = Double(invisibleScrollView!.frame.width)
-			var path : Double = Double(indexPath.item)
-			var test = slideWidth * path
-			
 			UIView.animateWithDuration(0.3, animations: {
 				invisibleScrollView?.contentOffset.x = CGFloat(Double(invisibleScrollView!.frame.width) * Double(indexPath.item))
 			})
 		}
-		
-		
-		//collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: true)
-		//mainCollectionView?.scrollToItemAtIndexPath(indexPath, atScrollPosition: UICollectionViewScrollPosition.CenteredHorizontally, animated: true)
-		
 	}
 }

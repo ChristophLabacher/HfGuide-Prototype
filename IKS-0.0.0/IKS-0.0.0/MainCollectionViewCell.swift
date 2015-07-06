@@ -36,7 +36,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 	let keywordLabel7 : CLLabel!
 	let keywordLabel7Constraint : NSLayoutConstraint!
 
-	
+	let bewerbungImage : UIImageView!
 	let backgroundImage: UIImageView!
 	let blurEffectView : UIVisualEffectView!
 	let readMoreButtonBorderTop : UIView!
@@ -80,6 +80,22 @@ class MainCollectionViewCell: UICollectionViewCell {
 		
 		let backgroundImageWidthContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|[v1]|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(backgroundImage))
 		card.addConstraints(backgroundImageWidthContraint)
+		
+		
+		// Card > BewerbungImage
+		//////////////////////////
+		
+		bewerbungImage = UIImageView()
+		bewerbungImage.image = UIImage(named: "bewerbung-overlay")
+		bewerbungImage.contentMode = UIViewContentMode.ScaleAspectFill
+		bewerbungImage.clipsToBounds = true
+		bewerbungImage.setTranslatesAutoresizingMaskIntoConstraints(false)
+		
+		card.addSubview(bewerbungImage)
+		
+		let bewerbungImageWidthContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|[v1]|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(bewerbungImage))
+		card.addConstraint(NSLayoutConstraint(item: bewerbungImage, attribute: NSLayoutAttribute.Height, relatedBy: NSLayoutRelation.Equal, toItem: backgroundImage, attribute: NSLayoutAttribute.Height, multiplier: 1, constant: 0))
+		card.addConstraints(bewerbungImageWidthContraint)
 		
 		// Card > TitelLabel
 		//////////////////////////
@@ -462,6 +478,10 @@ class MainCollectionViewCell: UICollectionViewCell {
 		
 		if !data!.hasKeywords	{
 			self.keywordView.removeFromSuperview()
+		}
+		
+		if !(data!.type == "Bewerbung")	{
+			self.bewerbungImage.removeFromSuperview()
 		}
 	}
 	
