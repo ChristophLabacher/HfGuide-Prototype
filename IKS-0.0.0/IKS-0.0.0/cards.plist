@@ -57,7 +57,7 @@
 		<key>title</key>
 		<string>Und nach dem Studium?</string>
 		<key>subtitle</key>
-		<string>Der ehemalige Student Thomas Techert gibt Antworten.</string>
+		<string>Der ehemalige Student Thomas Techert berichtet.</string>
 		<key>type</key>
 		<string>Frage</string>
 		<key>coverImage</key>
@@ -106,6 +106,27 @@
 		<string>campus</string>
 		<key>detailSlide</key>
 		<string>campus</string>
+	</dict>
+	<dict>
+		<key>hasKeywords</key>
+		<false/>
+		<key>id</key>
+		<integer>6</integer>
+		<key>minorIds</key>
+		<array>
+			<integer>9</integer>
+			<integer>10</integer>
+		</array>
+		<key>title</key>
+		<string>Muss ich programmieren können?</string>
+		<key>subtitle</key>
+		<string>Prof. Jens Döring gibt Antworten.</string>
+		<key>type</key>
+		<string>Frage</string>
+		<key>coverImage</key>
+		<string>programmieren</string>
+		<key>detailSlide</key>
+		<string>bewerbung</string>
 	</dict>
 </array>
 </plist>
