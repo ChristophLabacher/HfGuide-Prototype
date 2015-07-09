@@ -107,26 +107,5 @@
 		<key>detailSlide</key>
 		<string>campus</string>
 	</dict>
-	<dict>
-		<key>hasKeywords</key>
-		<false/>
-		<key>id</key>
-		<integer>6</integer>
-		<key>minorIds</key>
-		<array>
-			<integer>11</integer>
-			<integer>12</integer>
-		</array>
-		<key>title</key>
-		<string>Muss ich programmieren können?</string>
-		<key>subtitle</key>
-		<string>Prof. Jens Döring gibt Antworten.</string>
-		<key>type</key>
-		<string>Frage</string>
-		<key>coverImage</key>
-		<string>programmieren</string>
-		<key>detailSlide</key>
-		<string>interviewJens</string>
-	</dict>
 </array>
 </plist>
