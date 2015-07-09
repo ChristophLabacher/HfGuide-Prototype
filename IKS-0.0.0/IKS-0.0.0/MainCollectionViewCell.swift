@@ -530,7 +530,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 				self.categoryLabel.alpha = 0
 				self.noteLabel.alpha = 0
 				self.detailBackButton.alpha = 1
-				self.titelLabel.font = UIFont(name: "SourceSansPro-Bold", size: 20x )
+				self.titelLabel.font = UIFont(name: "SourceSansPro-Bold", size: 20)
 				self.subtitelLabel.alpha = 0
 			}, completion: nil)
 		} else	{
