@@ -45,6 +45,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 	let categoryLabel : CLLabel!
 	let noteLabel : CLLabel!
 	let titelLabel : CLLabel!
+	var horizontalTitelLabelContraint : [AnyObject]!
 	let subtitelLabel : CLLabel!
 	
     let detailWebView : UIWebView!
@@ -108,7 +109,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 		
 		card.addSubview(titelLabel)
 		
-		let horizontalTitelLabelContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-15-[v1]-15-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(titelLabel))
+		horizontalTitelLabelContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-15-[v1]-15-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(titelLabel))
 		card.addConstraints(horizontalTitelLabelContraint)
 		
 		card.addConstraint(NSLayoutConstraint(item: titelLabel, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: backgroundImage, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0))
@@ -516,6 +517,10 @@ class MainCollectionViewCell: UICollectionViewCell {
 			self.verticalContraint = NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage(100)][readMoreButtonBorderTop(0)][readMoreButton(0)][detailWebView]-(0)-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 			self.card.addConstraints(self.verticalContraint!)
 			
+			
+			self.card.removeConstraints(self.horizontalTitelLabelContraint!)
+			self.horizontalTitelLabelContraint = NSLayoutConstraint.constraintsWithVisualFormat("H:|-70-[v1]-70-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(self.titelLabel))
+			self.card.addConstraints(self.horizontalTitelLabelContraint)
 			self.titelLabelVerticalConstraint.constant = 10
 			
 			UIView.animateWithDuration(0.8, animations: {
@@ -525,7 +530,7 @@ class MainCollectionViewCell: UICollectionViewCell {
 				self.categoryLabel.alpha = 0
 				self.noteLabel.alpha = 0
 				self.detailBackButton.alpha = 1
-				self.titelLabel.font = UIFont(name: "SourceSansPro-Bold", size: 24)
+				self.titelLabel.font = UIFont(name: "SourceSansPro-Bold", size: 20x )
 				self.subtitelLabel.alpha = 0
 			}, completion: nil)
 		} else	{
@@ -598,6 +603,9 @@ class MainCollectionViewCell: UICollectionViewCell {
 			self.verticalContraint =	NSLayoutConstraint.constraintsWithVisualFormat("V:|[backgroundImage][readMoreButtonBorderTop(5)][readMoreButton(45)][detailWebView(50)]-(-50)-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDictionary)
 			self.card.addConstraints(self.verticalContraint!)
 		
+			self.card.removeConstraints(self.horizontalTitelLabelContraint!)
+			self.horizontalTitelLabelContraint =	NSLayoutConstraint.constraintsWithVisualFormat("H:|-15-[v1]-15-|", options: NSLayoutFormatOptions(0), metrics: nil, views: dictionaryOfNames(titelLabel))
+			self.card.addConstraints(self.horizontalTitelLabelContraint)
 			self.titelLabelVerticalConstraint.constant = -20
 			
 			UIView.animateWithDuration(0.8, animations: {
