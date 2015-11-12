@@ -15,4 +15,4 @@ Since we are using iBeacon technology in order to provide location based informa
 The prototype was written in Swift (it’s our first native app!), with some web-based componnents. While the quality of the code will probably make experienced developers cry all relevant features of the app actually work (most importantly the triggering of information based on the proximity to a beacon). It was a great tool to explain our vision to people not familiar with the technology.
 
 ## Meta
-HfGuide was developed as a student project during summer semester 2015 by [Nikolas Klein](http://nikolasklein.de), [Florian Ludwig](http://florian-ludwig.de) and [Christoph Labacher](http://christophlabacher.com) as part of a course in Interface Design by Thomas Techert.
+HfGuide was developed as a student project during summer semester 2015 by [Nikolas Klein](http://nikolasklein.de), [Florian Ludwig](http://florian-ludwig.de) and [Christoph Labacher](http://christophlabacher.com) as part of a course in Interactive Communication Systems by Prof. Jens Döring and Julia Stäbler.
